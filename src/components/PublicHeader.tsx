@@ -37,7 +37,7 @@ export default function PublicHeader({
       }`}
     >
       <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between gap-4 px-6 py-4 sm:px-10">
-        <div className="flex items-center gap-8 lg:gap-12">
+        <div className="flex items-center gap-6 lg:gap-10">
           <Link href="/" className="group flex items-center shrink-0">
             <div
               className={
@@ -56,7 +56,7 @@ export default function PublicHeader({
           </Link>
 
           <nav
-            className="hidden md:flex items-center gap-7 text-xs font-bold uppercase tracking-wider"
+            className="hidden md:flex items-center gap-5 lg:gap-7 text-xs font-bold uppercase tracking-wider whitespace-nowrap"
             aria-label="Public navigation"
           >
             <a
@@ -77,7 +77,7 @@ export default function PublicHeader({
                   : 'text-[#fee5b1] hover:text-[#ffcc00]'
               }`}
             >
-              100-Day Structure
+              Structure
             </a>
             {HEADER_MARKETING_NAV_LINKS.map((link) => (
               <Link
@@ -105,19 +105,19 @@ export default function PublicHeader({
           </nav>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5 shrink-0 whitespace-nowrap">
           {onToggleTheme && (
             <button
               type="button"
               onClick={onToggleTheme}
               aria-label={isLight ? 'Przełącz na tryb ciemny' : 'Przełącz na tryb jasny'}
-              className={`inline-flex items-center gap-2 text-xs font-bold px-3.5 py-2 rounded-md border transition-colors cursor-pointer ${
+              className={`inline-flex items-center gap-2 text-xs font-bold px-3 py-2 rounded-md border transition-colors cursor-pointer whitespace-nowrap ${
                 isLight
                   ? 'border-[#203e5f] bg-white text-[#1a2634] hover:bg-[#fee5b1]'
                   : 'border-[#fee5b1]/30 bg-[#203e5f] text-[#fee5b1] hover:border-[#ffcc00] hover:text-[#ffcc00]'
               }`}
             >
-              <span className={`h-2 w-2 rounded-full ${isLight ? 'bg-[#1a2634]' : 'bg-[#ffcc00]'}`} />
+              <span className={`h-2 w-2 rounded-full shrink-0 ${isLight ? 'bg-[#1a2634]' : 'bg-[#ffcc00]'}`} />
               <span>{isLight ? 'Dark' : 'Light'}</span>
             </button>
           )}
@@ -134,7 +134,7 @@ export default function PublicHeader({
 
           <Link
             href={investorHref}
-            className={`hidden sm:inline-flex items-center rounded-md border px-4 py-2 text-xs font-bold transition-colors ${
+            className={`hidden lg:inline-flex items-center rounded-md border px-3.5 py-2 text-xs font-bold transition-colors whitespace-nowrap ${
               isLight
                 ? 'border-[#203e5f] bg-white text-[#203e5f] hover:bg-[#203e5f] hover:text-white'
                 : 'border-[#fee5b1]/35 bg-[#203e5f]/60 text-[#fee5b1] hover:bg-[#203e5f] hover:border-[#ffcc00]'
@@ -145,7 +145,7 @@ export default function PublicHeader({
 
           <Link
             href={founderHref}
-            className="inline-flex items-center justify-center rounded-md bg-[#ffcc00] px-4 py-2 text-xs font-extrabold text-[#1a2634] transition-colors hover:bg-[#fee5b1]"
+            className="inline-flex items-center justify-center rounded-md bg-[#ffcc00] px-4 py-2 text-xs font-extrabold text-[#1a2634] transition-colors hover:bg-[#fee5b1] whitespace-nowrap"
           >
             {founderButtonText}
           </Link>
