@@ -96,10 +96,9 @@ export default function SiteFooter({ settings, companyName, variant = 'full', th
     const year = new Date().getFullYear()
     const copyrightText = footer?.copyrightText || companyName
 
-    // Fixed variant — minimal footer for form pages
     if (variant === 'fixed') {
         return (
-            <footer className="fixed bottom-0 left-0 w-full z-40 border-t border-[#eaeaea]/10 py-4 bg-[#1a2634]/95 backdrop-blur-md">
+            <footer className="fixed bottom-0 left-0 w-full z-40 border-t border-white/10 py-4 bg-[#1a2634]/80 backdrop-blur-xl">
                 <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-[#eaeaea]/60">
                     <div className="flex items-center gap-2 sm:gap-4 flex-wrap justify-center">
                         <span>&copy; {year} {copyrightText}</span>
@@ -119,38 +118,37 @@ export default function SiteFooter({ settings, companyName, variant = 'full', th
                         <FooterLegalLink
                             href={privacyLink.href}
                             label={privacyLink.label}
-                            className="hover:text-[#ffcc00] transition-colors"
+                            className="hover:text-white transition-colors"
                         />
                         <div className="bg-[#eaeaea]/20 w-px h-3.5" />
                         <FooterLegalLink
                             href={termsLink.href}
                             label={termsLink.label}
-                            className="hover:text-[#ffcc00] transition-colors"
+                            className="hover:text-white transition-colors"
                         />
                         {FOOTER_LEGAL_NAV_LINKS.map((link) => (
                             <Fragment key={link.href}>
                                 <div className="bg-[#eaeaea]/20 w-px h-3.5" />
-                                <Link href={link.href} className="hover:text-[#ffcc00] transition-colors">
+                                <Link href={link.href} className="hover:text-white transition-colors">
                                     {link.label}
                                 </Link>
                             </Fragment>
                         ))}
                     </div>
-                    <span className="text-[#ffcc00] font-semibold hidden sm:inline">Making European Startups Great Again</span>
+                    <span className="text-[#fee5b1] font-medium hidden sm:inline">Making European Startups Great Again</span>
                 </div>
             </footer>
         )
     }
 
-    // Compact variant — for dashboards (no full company block)
     if (variant === 'compact') {
         return (
-            <footer className="relative z-10 w-full border-t border-[#eaeaea]/10 pt-10 pb-8 px-6 bg-[#1a2634]">
+            <footer className="relative z-10 w-full border-t border-white/10 pt-12 pb-10 px-6 bg-[#1a2634]/80 backdrop-blur-xl">
                 <div className="mx-auto w-full max-w-7xl">
                     <div className="flex flex-col justify-between gap-8 md:flex-row">
                         <div>
-                            <h3 className="text-xl font-bold tracking-wide text-[#eaeaea]">{companyName}</h3>
-                            <p className="mt-1 text-sm font-medium text-[#ffcc00]">Make European Startups Great Again</p>
+                            <h3 className="text-xl font-bold tracking-wide text-white">{companyName}</h3>
+                            <p className="mt-1 text-sm font-medium text-[#fee5b1]/80">Make European Startups Great Again</p>
                             {sellerName && (
                                 <p className="mt-3 text-xs text-[#eaeaea]/50">{sellerName}{nip ? ` | NIP: ${nip}` : ''}{regon ? ` | REGON: ${regon}` : ''}</p>
                             )}
@@ -163,31 +161,31 @@ export default function SiteFooter({ settings, companyName, variant = 'full', th
                         </div>
                         <div className="flex flex-col gap-2 text-sm text-[#eaeaea]/65">
                             {customLinks.map((link: any, i: number) => (
-                                <Link key={i} href={link.url} target={link.newTab ? '_blank' : undefined} className="hover:text-[#ffcc00] transition-colors">
+                                <Link key={i} href={link.url} target={link.newTab ? '_blank' : undefined} className="hover:text-white transition-colors">
                                     {link.label}
                                 </Link>
                             ))}
                         </div>
                     </div>
-                    <div className="flex flex-row justify-between items-center mt-8 border-t border-[#eaeaea]/10 pt-6">
+                    <div className="flex flex-row justify-between items-center mt-8 border-t border-white/10 pt-6">
                         <div className="flex flex-row items-center gap-2 sm:gap-4">
                             <FooterLegalLink
                                 href={privacyLink.href}
                                 label={privacyLink.label}
-                                className="text-[10px] sm:text-xs text-[#eaeaea]/60 hover:text-[#ffcc00] transition-colors whitespace-nowrap"
+                                className="text-[10px] sm:text-xs text-[#eaeaea]/60 hover:text-white transition-colors whitespace-nowrap"
                             />
                             <div className="bg-[#eaeaea]/20 w-0.5 h-4.5" />
                             <FooterLegalLink
                                 href={termsLink.href}
                                 label={termsLink.label}
-                                className="text-[10px] sm:text-xs text-[#eaeaea]/60 hover:text-[#ffcc00] transition-colors whitespace-nowrap"
+                                className="text-[10px] sm:text-xs text-[#eaeaea]/60 hover:text-white transition-colors whitespace-nowrap"
                             />
                             {FOOTER_LEGAL_NAV_LINKS.map((link) => (
                                 <Fragment key={link.href}>
                                     <div className="bg-[#eaeaea]/20 w-0.5 h-4.5" />
                                     <Link
                                         href={link.href}
-                                        className="text-[10px] sm:text-xs text-[#eaeaea]/60 hover:text-[#ffcc00] transition-colors whitespace-nowrap"
+                                        className="text-[10px] sm:text-xs text-[#eaeaea]/60 hover:text-white transition-colors whitespace-nowrap"
                                     >
                                         {link.label}
                                     </Link>
@@ -204,25 +202,34 @@ export default function SiteFooter({ settings, companyName, variant = 'full', th
     // Full variant — for landing page
     return (
         <footer
-            className={`mt-24 w-full border-t pt-14 pb-10 px-6 relative z-10 transition-colors duration-300 ${
+            className={`mt-28 w-full border-t pt-16 pb-12 px-6 sm:px-10 relative z-10 transition-colors duration-300 backdrop-blur-xl ${
                 isLight
-                    ? 'border-[#203e5f]/20 bg-[#1a2634] text-[#eaeaea]'
-                    : 'border-[#eaeaea]/12 bg-[#1a2634] text-[#eaeaea]'
+                    ? 'border-[#1a2634]/10 bg-white/55 text-[#1a2634]'
+                    : 'border-white/[0.08] bg-white/[0.02] text-[#eaeaea]'
             }`}
         >
-            <div className="mx-auto w-full max-w-6xl">
-                <div className="flex flex-col justify-between gap-10 md:flex-row">
+            <div className="mx-auto w-full max-w-7xl">
+                <div className="flex flex-col justify-between gap-12 md:flex-row">
                     <div>
-                        <div className="inline-flex items-center gap-2.5">
-                            <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[#203e5f] text-xs text-[#ffcc00] border border-[#ffcc00]/40">
+                        <div className="inline-flex items-center gap-3">
+                            <span
+                                className={`inline-flex h-8 w-8 items-center justify-center rounded-xl text-xs font-bold border ${
+                                    isLight
+                                        ? 'bg-[#1a2634] text-[#ffcc00] border-[#1a2634]/10'
+                                        : 'bg-white/[0.06] text-[#ffcc00] border-white/10'
+                                }`}
+                            >
                                 ★
                             </span>
-                            <h3 className="text-2xl font-extrabold tracking-wide text-[#eaeaea]">{companyName}</h3>
+                            <h3 className={`text-2xl font-bold tracking-wide ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                                {companyName}
+                            </h3>
                         </div>
-                        <p className="mt-2 text-sm font-semibold text-[#ffcc00]">Make European Startups Great Again</p>
+                        <p className={`mt-2.5 text-sm font-medium ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/65'}`}>
+                            Make European Startups Great Again
+                        </p>
 
-                        {/* Company data block — required by PayNow / Polish e-commerce law */}
-                        <div className="mt-6 space-y-1 text-xs text-[#eaeaea]/65">
+                        <div className={`mt-6 space-y-1.5 text-xs ${isLight ? 'text-[#1a2634]/65' : 'text-[#eaeaea]/55'}`}>
                             {sellerName && <p>{sellerName}</p>}
                             {(address || city) && (
                                 <p>{[address, [postalCode, city].filter(Boolean).join(' ')].filter(Boolean).join(', ')}</p>
@@ -231,52 +238,64 @@ export default function SiteFooter({ settings, companyName, variant = 'full', th
                             {regon && <p>REGON: {regon}</p>}
                             {contactEmail && (
                                 <p className="mt-2">
-                                    <a href={`mailto:${contactEmail}`} className="hover:text-[#ffcc00] transition-colors">{contactEmail}</a>
+                                    <a href={`mailto:${contactEmail}`} className="hover:underline transition-colors">{contactEmail}</a>
                                 </p>
                             )}
                             {contactPhone && (
                                 <p>
-                                    <a href={`tel:${contactPhone}`} className="hover:text-[#ffcc00] transition-colors">{contactPhone}</a>
+                                    <a href={`tel:${contactPhone}`} className="hover:underline transition-colors">{contactPhone}</a>
                                 </p>
                             )}
                         </div>
                     </div>
                     <div className="flex flex-col gap-10 sm:flex-row sm:gap-20">
-                        <div className="flex flex-col gap-2.5 text-sm text-[#eaeaea]/75">
+                        <div className={`flex flex-col gap-3 text-sm ${isLight ? 'text-[#1a2634]/75' : 'text-[#eaeaea]/70'}`}>
                             {customLinks.map((link: any, i: number) => (
-                                <Link key={i} href={link.url} target={link.newTab ? '_blank' : undefined} className="hover:text-[#ffcc00] transition-colors">
+                                <Link key={i} href={link.url} target={link.newTab ? '_blank' : undefined} className="hover:underline transition-colors">
                                     {link.label}
                                 </Link>
                             ))}
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mt-10 border-t border-[#eaeaea]/12 pt-6">
-                    <div className="flex flex-row flex-wrap items-center justify-center gap-2 sm:gap-4">
+                <div
+                    className={`flex flex-col sm:flex-row justify-between items-center gap-4 mt-12 border-t pt-8 ${
+                        isLight ? 'border-[#1a2634]/10' : 'border-white/[0.08]'
+                    }`}
+                >
+                    <div className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-5">
                         <FooterLegalLink
                             href={privacyLink.href}
                             label={privacyLink.label}
-                            className="text-[10px] sm:text-xs text-[#eaeaea]/70 hover:text-[#ffcc00] transition-colors whitespace-nowrap"
+                            className={`text-xs transition-colors whitespace-nowrap ${
+                                isLight ? 'text-[#1a2634]/65 hover:text-[#1a2634]' : 'text-[#eaeaea]/60 hover:text-white'
+                            }`}
                         />
-                        <div className="bg-[#eaeaea]/25 w-0.5 h-4" />
+                        <div className={`w-px h-3.5 ${isLight ? 'bg-[#1a2634]/20' : 'bg-white/15'}`} />
                         <FooterLegalLink
                             href={termsLink.href}
                             label={termsLink.label}
-                            className="text-[10px] sm:text-xs text-[#eaeaea]/70 hover:text-[#ffcc00] transition-colors whitespace-nowrap"
+                            className={`text-xs transition-colors whitespace-nowrap ${
+                                isLight ? 'text-[#1a2634]/65 hover:text-[#1a2634]' : 'text-[#eaeaea]/60 hover:text-white'
+                            }`}
                         />
                         {FOOTER_LEGAL_NAV_LINKS.map((link) => (
                             <Fragment key={link.href}>
-                                <div className="bg-[#eaeaea]/25 w-0.5 h-4" />
+                                <div className={`w-px h-3.5 ${isLight ? 'bg-[#1a2634]/20' : 'bg-white/15'}`} />
                                 <Link
                                     href={link.href}
-                                    className="text-[10px] sm:text-xs text-[#eaeaea]/70 hover:text-[#ffcc00] transition-colors whitespace-nowrap"
+                                    className={`text-xs transition-colors whitespace-nowrap ${
+                                        isLight ? 'text-[#1a2634]/65 hover:text-[#1a2634]' : 'text-[#eaeaea]/60 hover:text-white'
+                                    }`}
                                 >
                                     {link.label}
                                 </Link>
                             </Fragment>
                         ))}
                     </div>
-                    <p className="text-[10px] sm:text-xs text-[#eaeaea]/60 whitespace-nowrap">&copy; {year} {copyrightText}</p>
+                    <p className={`text-xs whitespace-nowrap ${isLight ? 'text-[#1a2634]/55' : 'text-[#eaeaea]/50'}`}>
+                        &copy; {year} {copyrightText}
+                    </p>
                 </div>
             </div>
         </footer>

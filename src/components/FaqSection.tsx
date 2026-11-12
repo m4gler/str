@@ -25,43 +25,45 @@ export default function FaqSection({ settings, variant = 'landing', theme = 'dar
     return (
         <section
             id="faq"
-            className={`not-prose ${isStandalonePage ? 'mb-0' : 'mb-24'}`}
+            className={`not-prose ${isStandalonePage ? 'mb-0' : 'mb-36 sm:mb-44'}`}
             itemScope
             itemType="https://schema.org/FAQPage"
         >
             <div
-                className={`border-t-2 pt-12 ${
-                    isLight ? 'border-[#1a2634]' : 'border-[#eaeaea]/20'
+                className={`border-t pt-20 sm:pt-28 ${
+                    isLight ? 'border-[#1a2634]/10' : 'border-white/[0.08]'
                 }`}
             >
-                <div className="grid gap-12 lg:grid-cols-12">
+                <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
                     {/* Left sticky column */}
                     <div className="lg:col-span-4">
-                        <div className="lg:sticky lg:top-28">
+                        <div className="lg:sticky lg:top-32 space-y-6">
                             <div
-                                className={`font-mono text-xs font-bold uppercase tracking-[0.2em] mb-3 ${
-                                    isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'
+                                className={`font-mono text-xs font-semibold uppercase tracking-[0.22em] ${
+                                    isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'
                                 }`}
                             >
                                 09 // {label}
                             </div>
                             <h2
                                 className={`m-0 text-3xl font-bold leading-tight tracking-tight sm:text-4xl ${
-                                    isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'
+                                    isLight ? 'text-[#1a2634]' : 'text-white'
                                 }`}
                             >
                                 {title}
                             </h2>
                             <p
-                                className={`mt-4 text-sm leading-relaxed ${
-                                    isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/75'
+                                className={`m-0 text-base leading-relaxed ${
+                                    isLight ? 'text-[#1a2634]/70' : 'text-[#eaeaea]/70'
                                 }`}
                             >
                                 {intro}
                             </p>
                             <div
-                                className={`mt-6 border-l-2 border-[#ffcc00] pl-4 py-1 text-xs font-semibold leading-relaxed ${
-                                    isLight ? 'text-[#1a2634]' : 'text-[#fee5b1]'
+                                className={`rounded-2xl border p-5 text-xs font-medium leading-relaxed backdrop-blur-md ${
+                                    isLight
+                                        ? 'border-[#1a2634]/10 bg-white/55 text-[#1a2634]/80'
+                                        : 'border-white/10 bg-white/[0.03] text-[#eaeaea]/75'
                                 }`}
                             >
                                 {scope}
@@ -69,10 +71,10 @@ export default function FaqSection({ settings, variant = 'landing', theme = 'dar
                             {!isStandalonePage && (
                                 <Link
                                     href="/faq"
-                                    className={`mt-6 inline-flex items-center gap-2 border-b-2 border-[#ffcc00] pb-1 text-xs font-bold uppercase tracking-wider transition-colors ${
+                                    className={`inline-flex items-center gap-2.5 pt-2 text-xs font-bold uppercase tracking-wider transition-colors ${
                                         isLight
-                                            ? 'text-[#1a2634] hover:text-[#203e5f]'
-                                            : 'text-[#eaeaea] hover:text-[#ffcc00]'
+                                            ? 'text-[#203e5f] hover:text-[#1a2634]'
+                                            : 'text-[#fee5b1] hover:text-[#ffcc00]'
                                     }`}
                                 >
                                     <span>Open full FAQ documentation</span>
@@ -82,25 +84,23 @@ export default function FaqSection({ settings, variant = 'landing', theme = 'dar
                         </div>
                     </div>
 
-                    {/* Right Q&A list */}
-                    <div
-                        className={`lg:col-span-8 divide-y border-t lg:border-t-0 ${
-                            isLight
-                                ? 'divide-[#1a2634]/15 border-[#1a2634]/15'
-                                : 'divide-[#eaeaea]/12 border-[#eaeaea]/12'
-                        }`}
-                    >
+                    {/* Right Q&A cards with breathing room */}
+                    <div className="lg:col-span-8 space-y-5">
                         {faq.items.map((item, index) => (
                             <article
                                 key={`${item.question}-${index}`}
-                                className="py-7 first:pt-0 grid gap-4 sm:grid-cols-[3.5rem_1fr]"
+                                className={`rounded-2xl border p-7 sm:p-9 backdrop-blur-xl transition-colors grid gap-4 sm:grid-cols-[3.5rem_1fr] ${
+                                    isLight
+                                        ? 'border-[#1a2634]/[0.08] bg-white/60 hover:bg-white/80'
+                                        : 'border-white/[0.08] bg-white/[0.025] hover:bg-white/[0.045]'
+                                }`}
                                 itemProp="mainEntity"
                                 itemScope
                                 itemType="https://schema.org/Question"
                             >
                                 <div
-                                    className={`font-mono text-xs font-bold pt-1 ${
-                                        isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'
+                                    className={`font-mono text-xs font-semibold pt-1 ${
+                                        isLight ? 'text-[#1a2634]/45' : 'text-[#eaeaea]/45'
                                     }`}
                                 >
                                     /{String(index + 1).padStart(2, '0')}
@@ -109,7 +109,7 @@ export default function FaqSection({ settings, variant = 'landing', theme = 'dar
                                     <h3
                                         itemProp="name"
                                         className={`m-0 text-lg font-bold leading-snug sm:text-xl ${
-                                            isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'
+                                            isLight ? 'text-[#1a2634]' : 'text-white'
                                         }`}
                                     >
                                         {item.question}
@@ -117,8 +117,8 @@ export default function FaqSection({ settings, variant = 'landing', theme = 'dar
                                     <div itemProp="acceptedAnswer" itemScope itemType="https://schema.org/Answer">
                                         <p
                                             itemProp="text"
-                                            className={`m-0 mt-3 text-sm leading-7 sm:text-base ${
-                                                isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/75'
+                                            className={`m-0 mt-4 text-sm leading-relaxed sm:text-base ${
+                                                isLight ? 'text-[#1a2634]/75' : 'text-[#eaeaea]/70'
                                             }`}
                                         >
                                             {item.answer}

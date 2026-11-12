@@ -30,41 +30,20 @@ export default function PublicHeader({
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full border-b transition-colors duration-200 ${
+      className={`sticky top-0 z-50 w-full border-b transition-colors duration-300 backdrop-blur-xl ${
         isLight
-          ? 'border-[#1a2634]/15 bg-[#eaeaea]/95 text-[#1a2634]'
-          : 'border-[#eaeaea]/12 bg-[#1a2634]/95 text-[#eaeaea]'
-      } backdrop-blur-md`}
+          ? 'border-[#1a2634]/[0.08] bg-[#eaeaea]/70 text-[#1a2634]'
+          : 'border-white/[0.08] bg-[#1a2634]/60 text-[#eaeaea]'
+      }`}
     >
-      {/* Top thin institutional bar */}
-      <div
-        className={`w-full border-b px-4 py-1.5 text-[11px] font-medium sm:px-8 ${
-          isLight
-            ? 'border-[#1a2634]/10 bg-[#203e5f] text-[#eaeaea]'
-            : 'border-[#eaeaea]/8 bg-[#203e5f]/60 text-[#fee5b1]'
-        }`}
-      >
-        <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <span className="inline-block h-2 w-2 rounded-full bg-[#ffcc00]" />
-            <span className="tracking-wide uppercase font-mono text-[10px]">
-              EUROPEAN VENTURE EXECUTION SYSTEM · COHORT 2026
-            </span>
-          </div>
-          <div className="hidden sm:flex items-center gap-4 text-[10px] font-mono uppercase tracking-wider opacity-80">
-            <span>CEE &amp; EU SCOPE</span>
-            <span>/</span>
-            <span>100-DAY CADENCE</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-3.5 sm:px-8">
-        <div className="flex items-center gap-8">
+      <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-6 px-5 py-4 sm:px-10 sm:py-5">
+        <div className="flex items-center gap-10 lg:gap-14">
           <Link href="/" className="group flex items-center">
             <div
               className={`transition-all ${
-                isLight ? 'rounded-lg bg-[#1a2634] px-3 py-1.5' : ''
+                isLight
+                  ? 'rounded-xl bg-[#1a2634]/90 backdrop-blur-md px-3.5 py-1.5 shadow-sm'
+                  : ''
               }`}
             >
               <MesgaHorizontalLogo
@@ -77,17 +56,17 @@ export default function PublicHeader({
           </Link>
 
           <nav
-            className="hidden md:flex items-center gap-6 text-xs font-bold uppercase tracking-[0.16em]"
+            className="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-[0.18em]"
             aria-label="Public navigation"
           >
             {HEADER_MARKETING_NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`py-1 transition-colors border-b-2 border-transparent ${
+                className={`py-1 transition-colors ${
                   isLight
-                    ? 'text-[#203e5f] hover:border-[#1a2634] hover:text-[#1a2634]'
-                    : 'text-[#eaeaea]/75 hover:border-[#ffcc00] hover:text-[#eaeaea]'
+                    ? 'text-[#1a2634]/70 hover:text-[#1a2634]'
+                    : 'text-[#eaeaea]/65 hover:text-white'
                 }`}
               >
                 {link.label}
@@ -95,20 +74,20 @@ export default function PublicHeader({
             ))}
             <a
               href="#tracks"
-              className={`py-1 transition-colors border-b-2 border-transparent ${
+              className={`py-1 transition-colors ${
                 isLight
-                  ? 'text-[#203e5f] hover:border-[#1a2634] hover:text-[#1a2634]'
-                  : 'text-[#eaeaea]/75 hover:border-[#ffcc00] hover:text-[#eaeaea]'
+                  ? 'text-[#1a2634]/70 hover:text-[#1a2634]'
+                  : 'text-[#eaeaea]/65 hover:text-white'
               }`}
             >
               Tracks
             </a>
             <a
               href="#pricing"
-              className={`py-1 transition-colors border-b-2 border-transparent ${
+              className={`py-1 transition-colors ${
                 isLight
-                  ? 'text-[#203e5f] hover:border-[#1a2634] hover:text-[#1a2634]'
-                  : 'text-[#eaeaea]/75 hover:border-[#ffcc00] hover:text-[#eaeaea]'
+                  ? 'text-[#1a2634]/70 hover:text-[#1a2634]'
+                  : 'text-[#eaeaea]/65 hover:text-white'
               }`}
             >
               Pricing
@@ -116,37 +95,43 @@ export default function PublicHeader({
           </nav>
         </div>
 
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-3 sm:gap-3.5">
           {onToggleTheme && (
             <button
               type="button"
               onClick={onToggleTheme}
               aria-label={isLight ? 'Przełącz na tryb ciemny' : 'Przełącz na tryb jasny'}
-              className={`inline-flex items-center gap-2 rounded-lg border px-3 py-2 text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer ${
+              className={`inline-flex items-center gap-2 rounded-xl border px-3.5 py-2 text-xs font-semibold tracking-wider transition-all backdrop-blur-md cursor-pointer ${
                 isLight
-                  ? 'border-[#1a2634]/20 bg-white text-[#1a2634] hover:bg-[#fee5b1]'
-                  : 'border-[#eaeaea]/20 bg-[#203e5f]/50 text-[#eaeaea] hover:border-[#ffcc00] hover:text-[#ffcc00]'
+                  ? 'border-[#1a2634]/12 bg-white/60 text-[#1a2634] hover:bg-white/90'
+                  : 'border-white/12 bg-white/[0.05] text-[#eaeaea]/90 hover:bg-white/[0.1] hover:text-white'
               }`}
             >
               <span
-                className={`h-2.5 w-2.5 rounded-full ${
-                  isLight ? 'bg-[#1a2634]' : 'bg-[#ffcc00]'
+                className={`h-2 w-2 rounded-full ${
+                  isLight ? 'bg-[#203e5f]' : 'bg-[#fee5b1]'
                 }`}
               />
               <span>{isLight ? 'Dark' : 'Light'}</span>
             </button>
           )}
 
-          <div className={isLight ? '[&_button]:rounded-lg! [&_button]:border-[#1a2634]/20! [&_button]:bg-[#1a2634]! [&_button]:text-[#eaeaea]!' : '[&_button]:rounded-lg!'}>
+          <div
+            className={
+              isLight
+                ? '[&_button]:rounded-xl! [&_button]:border-[#1a2634]/12! [&_button]:bg-white/60! [&_button]:text-[#1a2634]! [&_button]:backdrop-blur-md!'
+                : '[&_button]:rounded-xl! [&_button]:border-white/12! [&_button]:bg-white/[0.05]! [&_button]:backdrop-blur-md!'
+            }
+          >
             <LanguageSwitcher />
           </div>
 
           <Link
             href={investorHref}
-            className={`hidden sm:inline-flex items-center justify-center rounded-lg border px-4 py-2 text-xs font-bold tracking-wide transition-colors ${
+            className={`hidden sm:inline-flex items-center justify-center rounded-xl border px-4 py-2 text-xs font-semibold tracking-wide transition-all backdrop-blur-md ${
               isLight
-                ? 'border-[#203e5f] text-[#203e5f] hover:bg-[#203e5f] hover:text-[#eaeaea]'
-                : 'border-[#eaeaea]/25 text-[#eaeaea] hover:border-[#fee5b1] hover:text-[#fee5b1]'
+                ? 'border-[#1a2634]/15 bg-white/50 text-[#1a2634] hover:bg-white/85'
+                : 'border-white/15 bg-white/[0.04] text-[#eaeaea] hover:bg-white/[0.1] hover:border-white/25'
             }`}
           >
             {investorButtonText}
@@ -154,7 +139,7 @@ export default function PublicHeader({
 
           <Link
             href={founderHref}
-            className="inline-flex items-center justify-center rounded-lg bg-[#ffcc00] px-4 py-2 text-xs font-extrabold tracking-wide text-[#1a2634] transition-colors hover:bg-[#fee5b1]"
+            className="inline-flex items-center justify-center rounded-xl bg-[#ffcc00] px-4.5 py-2 text-xs font-bold tracking-wide text-[#1a2634] shadow-sm transition-all hover:bg-[#fee5b1]"
           >
             {founderButtonText}
           </Link>

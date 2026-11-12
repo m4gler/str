@@ -40,7 +40,6 @@ interface PillData {
 const LEGACY_PARTNERS_SUBTITLE = 'Each logo links directly to the partner behind the MESGA ecosystem. Manage visibility, logo, and destination URL from the Partners collection.'
 const DEFAULT_PARTNERS_SUBTITLE = 'These organizations help shape the MESGA ecosystem through expertise, market access, education, and real startup opportunities.'
 
-// Tymczasowi partnerzy pokazywani w kafelku tracku gdy żaden nie jest przypisany w CMS.
 const PLACEHOLDER_TRACK_PARTNERS: LandingPartner[] = [
     { id: 'ph-1', name: 'Amber Hill Studio', websiteUrl: 'https://amberhillstudio.com', logoUrl: null },
     { id: 'ph-2', name: 'Copernic Space', websiteUrl: 'https://copernicspace.com', logoUrl: null },
@@ -80,7 +79,7 @@ const DEFAULT_FALLBACK_TRACKS = [
         badge: 'EUSPA Beta Cohort · Now Open',
         tagline: 'Satellite data. Everyday life. Your idea.',
         desc: "You don't need to build a rocket. This track is for founders using satellite imagery, geolocation data, and Earth observation to solve real urban, civic, agricultural, or consumer problems.",
-        color: '#ffcc00',
+        color: '#38bdf8',
         applyUrl: '/login?role=founder',
         applyButtonText: 'Apply for Space & the City →',
         startTrackSlug: 'satc',
@@ -106,7 +105,7 @@ const DEFAULT_FALLBACK_TRACKS = [
         badge: 'Sponsored by TechniSchool',
         tagline: 'Build the future of learning — in 100 days.',
         desc: 'Transform education through technology. K–12, higher education, workforce learning, and corporate training. With TechniSchool as anchor sponsor, get direct access to school networks and a real testbed from Day 1.',
-        color: '#203e5f',
+        color: '#34d399',
         applyUrl: '/login?role=founder',
         applyButtonText: 'Apply for EduTech Track →',
         startTrackSlug: 'edutech',
@@ -162,8 +161,8 @@ const DEFAULT_SOCIAL_PROOF_QUOTES = [
     },
 ] as const
 
-const mentorAvatarFrameClass = 'mb-4 flex h-16 w-16 items-center justify-center overflow-hidden rounded-full border border-[#ffcc00]/35 bg-[#1a2634]'
-const mentorLogoFrameClass = 'mb-4 flex h-16 w-28 items-center justify-center overflow-hidden rounded-lg border border-[#ffcc00]/35 bg-[#1a2634] px-3 py-2'
+const mentorAvatarFrameClass = 'mb-4 flex h-16 w-16 items-center justify-center overflow-hidden rounded-full border border-white/15 bg-[#1a2634]/80'
+const mentorLogoFrameClass = 'mb-4 flex h-16 w-28 items-center justify-center overflow-hidden rounded-xl border border-white/15 bg-[#1a2634]/80 px-3 py-2'
 
 export interface MentorEntry {
     id?: number | string
@@ -196,24 +195,24 @@ function PartnersShowcase({ settings, partners, theme }: { settings: any; partne
             : storedSubtitle
 
     return (
-        <section className={`mb-24 border-t-2 pt-12 ${isLight ? 'border-[#1a2634]' : 'border-[#eaeaea]/20'}`}>
-            <div className="grid gap-10 lg:grid-cols-12 mb-10">
+        <section className={`mb-36 sm:mb-44 border-t pt-20 sm:pt-28 ${isLight ? 'border-[#1a2634]/10' : 'border-white/[0.08]'}`}>
+            <div className="grid gap-12 lg:grid-cols-12 mb-14">
                 <div className="lg:col-span-5">
-                    <div className={`font-mono text-xs font-bold uppercase tracking-[0.2em] mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                    <div className={`font-mono text-xs font-semibold uppercase tracking-[0.22em] mb-4 ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'}`}>
                         // {sectionLabel}
                     </div>
-                    <h2 className={`text-3xl font-bold leading-tight ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
+                    <h2 className={`text-3xl sm:text-4xl font-bold leading-tight ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                         {sectionTitle}
                     </h2>
                 </div>
                 <div className="lg:col-span-7 flex items-end">
-                    <p className={`text-base leading-relaxed max-w-2xl ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/75'}`}>
+                    <p className={`text-base leading-relaxed max-w-2xl ${isLight ? 'text-[#1a2634]/75' : 'text-[#eaeaea]/70'}`}>
                         {sectionSubtitle}
                     </p>
                 </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
                 {partners.map((partner) =>
                     partner.websiteUrl ? (
                         <a
@@ -221,10 +220,10 @@ function PartnersShowcase({ settings, partners, theme }: { settings: any; partne
                             href={partner.websiteUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className={`group relative flex min-h-28 items-center justify-center overflow-hidden rounded-lg border px-5 py-4 transition-all duration-200 ${
+                            className={`group relative flex min-h-32 items-center justify-center overflow-hidden rounded-2xl border px-6 py-5 backdrop-blur-xl transition-all duration-200 ${
                                 isLight
-                                    ? 'border-[#1a2634]/15 bg-[#1a2634] hover:border-[#ffcc00]'
-                                    : 'border-[#eaeaea]/15 bg-[#203e5f]/40 hover:border-[#ffcc00] hover:bg-[#203e5f]/70'
+                                    ? 'border-[#1a2634]/10 bg-[#1a2634]/85 hover:bg-[#1a2634]'
+                                    : 'border-white/10 bg-white/[0.03] hover:border-white/25 hover:bg-white/[0.06]'
                             }`}
                             aria-label={`Open ${partner.name}`}
                         >
@@ -242,7 +241,7 @@ function PartnersShowcase({ settings, partners, theme }: { settings: any; partne
                     ) : (
                         <div
                             key={partner.id}
-                            className="flex min-h-28 items-center justify-center overflow-hidden rounded-lg border border-[#eaeaea]/15 bg-[#1a2634] px-5 py-4"
+                            className="flex min-h-32 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl px-6 py-5"
                             aria-label={partner.name}
                         >
                             {partner.logoUrl ? (
@@ -266,42 +265,46 @@ function PartnersShowcase({ settings, partners, theme }: { settings: any; partne
 function SocialProofQuotes({ theme = 'dark' }: { theme?: 'dark' | 'light' }) {
     const isLight = theme === 'light'
     return (
-        <section className={`mb-24 border-t-2 pt-12 ${isLight ? 'border-[#1a2634]' : 'border-[#eaeaea]/20'}`}>
-            <div className="grid gap-10 lg:grid-cols-12">
-                <div className="lg:col-span-5">
-                    <div className={`font-mono text-xs font-bold uppercase tracking-[0.2em] mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+        <section className={`mb-36 sm:mb-44 border-t pt-20 sm:pt-28 ${isLight ? 'border-[#1a2634]/10' : 'border-white/[0.08]'}`}>
+            <div className="grid gap-14 lg:grid-cols-12 lg:gap-16 items-start">
+                <div className="lg:col-span-5 space-y-5">
+                    <div className={`font-mono text-xs font-semibold uppercase tracking-[0.22em] ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'}`}>
                         02 // FIELD PERSPECTIVE
                     </div>
-                    <h2 className={`text-3xl font-bold leading-tight mb-4 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
+                    <h2 className={`text-3xl sm:text-4xl font-bold leading-tight ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                         Backed by founders, operators, and ecosystem partners who care about execution clarity.
                     </h2>
-                    <p className={`text-sm leading-relaxed ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/70'}`}>
+                    <p className={`text-base leading-relaxed ${isLight ? 'text-[#1a2634]/70' : 'text-[#eaeaea]/65'}`}>
                         MESGA is designed with people who see the same pattern repeatedly: early founders do better when the next action is explicit, visible, and reviewable.
                     </p>
                 </div>
 
-                <div className="lg:col-span-7 grid gap-4 sm:grid-cols-3">
+                <div className="lg:col-span-7 grid gap-6 sm:grid-cols-3">
                     {DEFAULT_SOCIAL_PROOF_QUOTES.map((item, idx) => (
                         <div
                             key={item.role}
-                            className={`flex flex-col justify-between border-l-2 border-[#ffcc00] pl-5 py-2 ${
-                                isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'
+                            className={`flex flex-col justify-between rounded-2xl border p-7 backdrop-blur-xl ${
+                                isLight
+                                    ? 'border-[#1a2634]/[0.08] bg-white/60 text-[#1a2634]'
+                                    : 'border-white/[0.08] bg-white/[0.03] text-[#eaeaea]'
                             }`}
                         >
                             <div>
-                                <div className={`font-mono text-[11px] font-bold mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
-                                    0{idx + 1}
+                                <div className={`font-mono text-xs font-semibold mb-4 ${isLight ? 'text-[#203e5f]/60' : 'text-[#eaeaea]/45'}`}>
+                                    /0{idx + 1}
                                 </div>
-                                <p className={`text-sm leading-relaxed font-medium ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]/90'}`}>
+                                <p className={`text-sm leading-relaxed font-medium ${isLight ? 'text-[#1a2634]/90' : 'text-[#eaeaea]/90'}`}>
                                     “{item.quote}”
                                 </p>
                             </div>
                             <div
-                                className={`mt-6 font-mono text-[11px] font-bold uppercase tracking-wider ${
-                                    isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'
+                                className={`mt-8 pt-4 border-t font-mono text-[11px] font-semibold uppercase tracking-wider ${
+                                    isLight
+                                        ? 'border-[#1a2634]/[0.08] text-[#203e5f]'
+                                        : 'border-white/[0.08] text-[#fee5b1]/85'
                                 }`}
                             >
-                                — {item.role}
+                                {item.role}
                             </div>
                         </div>
                     ))}
@@ -328,20 +331,20 @@ function EcosystemShowcase({
     if (!hasPartners && !hasMentors) return null
 
     return (
-        <section className="mb-24">
+        <section className="mb-36 sm:mb-44">
             {hasMentors && (
                 <div>
-                    <div className="mb-6 flex items-center gap-4">
+                    <div className="mb-8 flex items-center gap-4">
                         <span
-                            className={`font-mono text-xs font-bold uppercase tracking-[0.2em] ${
-                                isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'
+                            className={`font-mono text-xs font-semibold uppercase tracking-[0.22em] ${
+                                isLight ? 'text-[#203e5f]/75' : 'text-[#eaeaea]/55'
                             }`}
                         >
                             // Ecosystem Mentors
                         </span>
-                        <div className={`h-px flex-1 ${isLight ? 'bg-[#1a2634]/15' : 'bg-[#eaeaea]/15'}`} />
+                        <div className={`h-px flex-1 ${isLight ? 'bg-[#1a2634]/10' : 'bg-white/10'}`} />
                     </div>
-                    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                         {mentors.slice(0, 6).map((mentor, index) => {
                             const initials = mentor.name
                                 .split(' ')
@@ -367,16 +370,16 @@ function EcosystemShowcase({
                                                 loading="lazy"
                                             />
                                         ) : (
-                                            <span className="text-lg font-bold text-[#ffcc00]">{initials}</span>
+                                            <span className="text-lg font-bold text-[#fee5b1]">{initials}</span>
                                         )}
                                     </div>
-                                    <div className={`text-base font-bold leading-snug ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
+                                    <div className={`text-base font-bold leading-snug ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                         {mentor.name}
                                     </div>
                                     {mentor.partnerName && (
                                         <div
-                                            className={`mt-1 font-mono text-[10px] font-bold uppercase tracking-wider ${
-                                                isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'
+                                            className={`mt-1.5 font-mono text-[10px] font-semibold uppercase tracking-wider ${
+                                                isLight ? 'text-[#203e5f]/75' : 'text-[#eaeaea]/60'
                                             }`}
                                         >
                                             {mentor.partnerName}
@@ -384,10 +387,10 @@ function EcosystemShowcase({
                                     )}
                                 </>
                             )
-                            const className = `group block rounded-lg border p-6 text-left transition-all duration-200 ${
+                            const className = `group block rounded-2xl border p-7 text-left backdrop-blur-xl transition-all duration-200 ${
                                 isLight
-                                    ? 'border-[#1a2634]/15 bg-white hover:border-[#1a2634]'
-                                    : 'border-[#eaeaea]/15 bg-[#203e5f]/35 hover:border-[#ffcc00]'
+                                    ? 'border-[#1a2634]/10 bg-white/60 hover:bg-white/85'
+                                    : 'border-white/10 bg-white/[0.03] hover:border-white/20 hover:bg-white/[0.05]'
                             }`
 
                             return mentor.linkUrl ? (
@@ -419,11 +422,13 @@ function TrackPartnerTiles({
     accentColor,
     isPlaceholder,
     trackMentors = [],
+    isLight = false,
 }: {
     partners: LandingPartner[]
     accentColor: string
     isPlaceholder?: boolean
     trackMentors?: MentorEntry[]
+    isLight?: boolean
 }) {
     const tiles = isPlaceholder ? partners : getTrackPartnerTiles(partners)
     const mentors = getLandingMentors(trackMentors)
@@ -433,28 +438,41 @@ function TrackPartnerTiles({
     const singlePartner = tiles.length === 1
 
     return (
-        <div className="flex flex-col border-t border-[#eaeaea]/12 pt-4 mt-2">
-            <div className="flex items-center gap-2 mb-2.5">
-                <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#fee5b1]">Partners</span>
+        <div className={`flex flex-col border-t pt-5 mt-3 ${isLight ? 'border-[#1a2634]/10' : 'border-white/10'}`}>
+            <div className="flex items-center gap-2.5 mb-3">
+                <span className={`font-mono text-[10px] font-semibold uppercase tracking-[0.2em] ${isLight ? 'text-[#1a2634]/60' : 'text-[#eaeaea]/55'}`}>
+                    Partners
+                </span>
                 {isPlaceholder && (
-                    <span className="font-mono text-[9px] uppercase tracking-wider px-2 py-0.5 rounded bg-[#1a2634] border border-[#eaeaea]/15 text-[#eaeaea]/60">
+                    <span
+                        className={`font-mono text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-md border ${
+                            isLight
+                                ? 'bg-white/60 border-[#1a2634]/15 text-[#1a2634]/60'
+                                : 'bg-white/[0.04] border-white/10 text-[#eaeaea]/55'
+                        }`}
+                    >
                         coming soon
                     </span>
                 )}
             </div>
             {singlePartner ? (
                 <div className="w-full max-w-[190px]">
-                    <TrackPartnerTile partner={tiles[0]} accentColor={accentColor} size="single" />
+                    <TrackPartnerTile partner={tiles[0]} accentColor={accentColor} size="single" isLight={isLight} />
                 </div>
             ) : (
-                <TrackPartnerCarousel partners={tiles} accentColor={accentColor} />
+                <TrackPartnerCarousel partners={tiles} accentColor={accentColor} isLight={isLight} />
             )}
             {mentors.length > 0 && (
                 <div className="mt-3 flex flex-wrap gap-2">
                     {mentors.map((m, idx) => (
-                        <div key={m.id ?? idx} className="inline-flex items-center gap-2 rounded-lg border border-[#eaeaea]/15 bg-[#1a2634] px-2.5 py-1.5">
+                        <div
+                            key={m.id ?? idx}
+                            className={`inline-flex items-center gap-2 rounded-lg border px-2.5 py-1.5 ${
+                                isLight ? 'border-[#1a2634]/10 bg-white/70 text-[#1a2634]' : 'border-white/10 bg-white/[0.04] text-[#eaeaea]'
+                            }`}
+                        >
                             {m.logoUrl && <img src={m.logoUrl} alt={m.name} className="max-h-8 w-full object-contain" />}
-                            <span className="text-[11px] font-semibold text-[#eaeaea]">{m.name}</span>
+                            <span className="text-[11px] font-semibold">{m.name}</span>
                         </div>
                     ))}
                 </div>
@@ -467,19 +485,25 @@ function TrackPartnerTile({
     partner,
     accentColor,
     size,
+    isLight = false,
 }: {
     partner: LandingPartner
     accentColor: string
     size: 'single' | 'carousel'
+    isLight?: boolean
 }) {
     const isSingle = size === 'single'
     const tileClasses = isSingle
-        ? 'group block rounded-xl border border-[#eaeaea]/15 bg-[#1a2634]/80 p-3.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#ffcc00]/50 hover:bg-[#1a2634]'
+        ? `group block rounded-xl border p-3.5 transition-all duration-200 hover:-translate-y-0.5 ${
+              isLight ? 'border-[#1a2634]/10 bg-white/60' : 'border-white/10 bg-white/[0.03]'
+          }`
         : 'group block'
     const content = (
         <>
             <div
-                className={`flex items-center justify-center overflow-hidden rounded-lg border border-[#eaeaea]/10 bg-[#1a2634] ${isSingle ? 'min-h-[56px] px-3 py-2' : 'min-h-[72px] px-3 py-3'}`}
+                className={`flex items-center justify-center overflow-hidden rounded-lg border ${
+                    isLight ? 'border-[#1a2634]/10 bg-[#1a2634]/90' : 'border-white/10 bg-[#1a2634]/75'
+                } ${isSingle ? 'min-h-[56px] px-3 py-2' : 'min-h-[72px] px-3 py-3'}`}
             >
                 {partner.logoUrl ? (
                     <img
@@ -493,12 +517,16 @@ function TrackPartnerTile({
                     </span>
                 )}
             </div>
-            <div className={`text-center font-semibold text-[#eaeaea] ${isSingle ? 'mt-1.5 text-[11px] leading-tight' : 'mt-2 text-[11px] leading-snug'}`}>
+            <div
+                className={`text-center font-semibold ${
+                    isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'
+                } ${isSingle ? 'mt-1.5 text-[11px] leading-tight' : 'mt-2 text-[11px] leading-snug'}`}
+            >
                 {partner.name}
             </div>
             <div
                 className={`mx-auto h-px ${isSingle ? 'mt-1.5 w-14' : 'mt-2 w-12'}`}
-                style={{ background: `linear-gradient(90deg, transparent, ${accentColor}99, transparent)` }}
+                style={{ background: `linear-gradient(90deg, transparent, ${accentColor}88, transparent)` }}
             />
         </>
     )
@@ -520,7 +548,15 @@ function TrackPartnerTile({
     )
 }
 
-function TrackPartnerCarousel({ partners, accentColor }: { partners: LandingPartner[]; accentColor: string }) {
+function TrackPartnerCarousel({
+    partners,
+    accentColor,
+    isLight = false,
+}: {
+    partners: LandingPartner[]
+    accentColor: string
+    isLight?: boolean
+}) {
     const [activeIndex, setActiveIndex] = useState(0)
     const visibleIndex = Math.min(activeIndex, Math.max(partners.length - 1, 0))
 
@@ -533,7 +569,11 @@ function TrackPartnerCarousel({ partners, accentColor }: { partners: LandingPart
     }, [partners.length])
 
     return (
-        <div className="relative w-full max-w-[190px] rounded-xl border border-[#eaeaea]/15 bg-[#1a2634]/80 p-2.5 overflow-hidden">
+        <div
+            className={`relative w-full max-w-[190px] rounded-xl border p-2.5 overflow-hidden backdrop-blur-md ${
+                isLight ? 'border-[#1a2634]/10 bg-white/50' : 'border-white/10 bg-white/[0.03]'
+            }`}
+        >
             <div className="relative" style={{ minHeight: '112px' }}>
                 {partners.map((partner, index) => (
                     <div
@@ -541,7 +581,7 @@ function TrackPartnerCarousel({ partners, accentColor }: { partners: LandingPart
                         className="absolute inset-0 transition-opacity duration-700"
                         style={{ opacity: index === visibleIndex ? 1 : 0 }}
                     >
-                        <TrackPartnerTile partner={partner} accentColor={accentColor} size="carousel" />
+                        <TrackPartnerTile partner={partner} accentColor={accentColor} size="carousel" isLight={isLight} />
                     </div>
                 ))}
             </div>
@@ -565,24 +605,34 @@ function NewTrackCard({
     const isLight = theme === 'light'
     return (
         <div
-            className={`h-full w-full rounded-xl border-2 border-dashed flex flex-col justify-between p-8 min-h-[400px] transition-colors ${
+            className={`h-full w-full rounded-2xl border border-dashed flex flex-col justify-between p-9 min-h-[420px] backdrop-blur-xl transition-colors ${
                 isLight
-                    ? 'border-[#1a2634]/25 bg-white/60 text-[#1a2634]'
-                    : 'border-[#eaeaea]/20 bg-[#203e5f]/20 text-[#eaeaea]'
+                    ? 'border-[#1a2634]/20 bg-white/45 text-[#1a2634]'
+                    : 'border-white/15 bg-white/[0.02] text-[#eaeaea]'
             }`}
         >
             <div>
-                <div className="font-mono text-xs font-bold uppercase tracking-widest text-[#ffcc00] bg-[#1a2634] inline-block px-2.5 py-1 rounded mb-4">
+                <div
+                    className={`font-mono text-xs font-semibold uppercase tracking-widest inline-block px-3 py-1 rounded-lg mb-5 border ${
+                        isLight
+                            ? 'bg-white/70 border-[#1a2634]/10 text-[#203e5f]'
+                            : 'bg-white/[0.05] border-white/10 text-[#fee5b1]'
+                    }`}
+                >
                     + EXPANSION LANE
                 </div>
-                <div className="text-2xl font-bold mb-2">{newTrackLabel}</div>
-                <div className={`text-sm leading-relaxed max-w-xs ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/70'}`}>
+                <div className="text-2xl font-bold mb-3">{newTrackLabel}</div>
+                <div className={`text-sm leading-relaxed max-w-xs ${isLight ? 'text-[#1a2634]/70' : 'text-[#eaeaea]/65'}`}>
                     {newTrackSubtitle}
                 </div>
             </div>
             <a
                 href={`mailto:${newTrackEmail}`}
-                className="inline-flex w-fit items-center gap-2 rounded-lg bg-[#1a2634] px-5 py-3 text-xs font-bold uppercase tracking-wider text-[#ffcc00] hover:bg-[#203e5f] transition-colors"
+                className={`inline-flex w-fit items-center gap-2 rounded-xl border px-5 py-3 text-xs font-bold uppercase tracking-wider transition-colors ${
+                    isLight
+                        ? 'border-[#1a2634]/15 bg-white/80 text-[#1a2634] hover:bg-[#1a2634] hover:text-white'
+                        : 'border-white/15 bg-white/[0.06] text-white hover:bg-white/[0.12]'
+                }`}
             >
                 {newTrackCta}
             </a>
@@ -601,6 +651,7 @@ interface TrackCardProps {
     challenge: { title: string; desc: string }
     hasGraphic: boolean
     isPrimaryTrack: boolean
+    theme?: 'dark' | 'light'
     onSelectPill: (pillKey: string) => void
     onOpenDetails: () => void
     onStartTrack: () => void
@@ -617,38 +668,64 @@ function TrackCard({
     startTrackBtn,
     challenge,
     hasGraphic,
+    theme = 'dark',
     onSelectPill,
     onOpenDetails,
     onStartTrack,
     onGraphicError,
 }: TrackCardProps) {
+    const isLight = theme === 'light'
     const realPartners = getTrackPartnerTiles(trackPartners)
     const isPlaceholder = realPartners.length === 0
     const renderablePartners = isPlaceholder ? PLACEHOLDER_TRACK_PARTNERS : realPartners
+    const accent = track.color || '#ffcc00'
 
     return (
-        <div className="h-full w-full flex flex-col rounded-xl border border-[#eaeaea]/15 bg-[#1a2634] text-[#eaeaea] overflow-hidden shadow-xl">
-            <div className="h-1 w-full bg-[#ffcc00]" />
+        <div
+            className={`h-full w-full flex flex-col rounded-2xl border overflow-hidden backdrop-blur-2xl transition-all ${
+                isLight
+                    ? 'border-[#1a2634]/10 bg-white/65 text-[#1a2634] shadow-lg shadow-[#1a2634]/[0.04]'
+                    : 'border-white/10 bg-white/[0.03] text-[#eaeaea] shadow-2xl shadow-black/20'
+            }`}
+        >
+            <div className="h-1 w-full opacity-85" style={{ backgroundColor: accent }} />
 
-            <div className="px-6 pt-6 pb-5 flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-8">
+            <div className="px-7 pt-7 pb-6 flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-8">
                 <div className="flex-1 flex flex-col">
-                    <div className="flex items-center justify-between gap-3 mb-3">
-                        <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#ffcc00] bg-[#203e5f] px-2.5 py-1 rounded">
+                    <div className="flex items-center justify-between gap-3 mb-4">
+                        <span
+                            className={`font-mono text-[10px] font-semibold uppercase tracking-wider px-3 py-1 rounded-lg border ${
+                                isLight
+                                    ? 'bg-[#1a2634]/[0.05] border-[#1a2634]/10 text-[#203e5f]'
+                                    : 'bg-white/[0.05] border-white/10 text-[#eaeaea]/90'
+                            }`}
+                        >
                             {track.badge}
                         </span>
-                        <span className="font-mono text-xs font-bold text-[#fee5b1]/60">{track.icon}</span>
+                        <span className={`font-mono text-xs font-semibold ${isLight ? 'text-[#1a2634]/40' : 'text-[#eaeaea]/40'}`}>
+                            /{track.icon}
+                        </span>
                     </div>
-                    <h3 className="text-2xl font-bold text-[#eaeaea] mb-1 tracking-tight">{track.name}</h3>
-                    <div className="text-xs text-[#fee5b1] mb-4">{track.tagline}</div>
+                    <h3 className={`text-2xl font-bold mb-1.5 tracking-tight ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                        {track.name}
+                    </h3>
+                    <div className={`text-xs mb-5 ${isLight ? 'text-[#203e5f]/80' : 'text-[#eaeaea]/65'}`}>
+                        {track.tagline}
+                    </div>
 
                     {renderablePartners.length > 0 && (
-                        <TrackPartnerTiles partners={renderablePartners} accentColor="#ffcc00" isPlaceholder={isPlaceholder} />
+                        <TrackPartnerTiles
+                            partners={renderablePartners}
+                            accentColor={accent}
+                            isPlaceholder={isPlaceholder}
+                            isLight={isLight}
+                        />
                     )}
                 </div>
 
                 {hasGraphic && (
                     <div className="hidden lg:flex shrink-0 w-[180px] xl:w-[200px] items-start justify-end">
-                        <div className="relative w-full overflow-hidden rounded-lg border border-[#eaeaea]/15">
+                        <div className={`relative w-full overflow-hidden rounded-xl border ${isLight ? 'border-[#1a2634]/10' : 'border-white/10'}`}>
                             <img
                                 src={track.graphicUrl!}
                                 alt={`${track.name} Graphic`}
@@ -663,25 +740,31 @@ function TrackCard({
                 )}
             </div>
 
-            <div className="mx-6 h-px bg-[#eaeaea]/10" />
+            <div className={`mx-7 h-px ${isLight ? 'bg-[#1a2634]/[0.08]' : 'bg-white/[0.08]'}`} />
 
-            <div className="px-6 pt-5 pb-6 flex flex-col flex-1">
-                <p className="text-sm text-[#eaeaea]/80 leading-relaxed mb-5">{track.desc}</p>
+            <div className="px-7 pt-6 pb-7 flex flex-col flex-1">
+                <p className={`text-sm leading-relaxed mb-6 ${isLight ? 'text-[#1a2634]/75' : 'text-[#eaeaea]/75'}`}>
+                    {track.desc}
+                </p>
 
-                <div className="font-mono text-[10px] font-bold tracking-[0.2em] uppercase text-[#fee5b1]/75 mb-2">
+                <div className={`font-mono text-[10px] font-semibold tracking-[0.2em] uppercase mb-2.5 ${isLight ? 'text-[#1a2634]/50' : 'text-[#eaeaea]/50'}`}>
                     {challengeTypeLabel}
                 </div>
-                <div className="flex flex-wrap gap-1.5 mb-4">
+                <div className="flex flex-wrap gap-2 mb-5">
                     {pills.map((pill) => {
                         const active = activePillKey === pill.key
                         return (
                             <button
                                 key={pill.key}
                                 onClick={() => onSelectPill(pill.key)}
-                                className={`text-[11px] font-bold px-3 py-1 rounded transition-colors cursor-pointer border ${
+                                className={`text-[11px] font-semibold px-3.5 py-1.5 rounded-lg transition-all cursor-pointer border ${
                                     active
-                                        ? 'border-[#ffcc00] bg-[#ffcc00] text-[#1a2634]'
-                                        : 'border-[#eaeaea]/15 bg-[#203e5f]/40 text-[#eaeaea]/75 hover:border-[#fee5b1]/40'
+                                        ? isLight
+                                            ? 'border-[#1a2634] bg-[#1a2634] text-white'
+                                            : 'border-white/30 bg-white/15 text-white'
+                                        : isLight
+                                          ? 'border-[#1a2634]/10 bg-white/50 text-[#1a2634]/70 hover:bg-white'
+                                          : 'border-white/10 bg-white/[0.03] text-[#eaeaea]/65 hover:bg-white/[0.07]'
                                 }`}
                             >
                                 {pill.label}
@@ -690,21 +773,31 @@ function TrackCard({
                     })}
                 </div>
 
-                <div className="rounded-lg p-4 mb-6 bg-[#203e5f]/45 border-l-2 border-[#ffcc00] text-sm text-[#eaeaea]/90 leading-relaxed min-h-[88px]">
-                    <span className="font-bold text-[#ffcc00]">{challenge.title}: </span>
+                <div
+                    className={`rounded-xl p-4.5 mb-7 border text-sm leading-relaxed min-h-[92px] ${
+                        isLight
+                            ? 'bg-white/60 border-[#1a2634]/[0.08] text-[#1a2634]/85'
+                            : 'bg-white/[0.03] border-white/[0.08] text-[#eaeaea]/85'
+                    }`}
+                >
+                    <span className={`font-bold ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>{challenge.title}: </span>
                     {challenge.desc}
                 </div>
 
-                <div className="mt-auto grid sm:grid-cols-2 gap-2.5">
+                <div className="mt-auto grid sm:grid-cols-2 gap-3">
                     <button
                         onClick={onOpenDetails}
-                        className="w-full rounded-lg px-4 py-2.5 text-xs font-bold uppercase tracking-wider transition-colors border border-[#eaeaea]/20 bg-transparent text-[#eaeaea] hover:border-[#fee5b1] hover:text-[#fee5b1] cursor-pointer"
+                        className={`w-full rounded-xl px-4 py-3 text-xs font-semibold uppercase tracking-wider transition-colors border cursor-pointer ${
+                            isLight
+                                ? 'border-[#1a2634]/15 bg-white/50 text-[#1a2634] hover:bg-white'
+                                : 'border-white/15 bg-white/[0.03] text-[#eaeaea] hover:bg-white/[0.08]'
+                        }`}
                     >
                         {viewDetailsBtn}
                     </button>
                     <button
                         onClick={onStartTrack}
-                        className="w-full rounded-lg px-4 py-2.5 text-xs font-extrabold uppercase tracking-wider text-[#1a2634] bg-[#ffcc00] hover:bg-[#fee5b1] transition-colors cursor-pointer"
+                        className="w-full rounded-xl px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#1a2634] bg-[#ffcc00] hover:bg-[#fee5b1] transition-colors cursor-pointer"
                     >
                         {startTrackBtn}
                     </button>
@@ -733,28 +826,31 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
 
     const tracksRaw: TrackData[] = landing.tracks?.length
         ? landing.tracks
-            .map((tr: any) => ({
-                key: tr.key || '',
-                icon: tr.icon || '01',
-                name: tr.name || '',
-                enabled: tr.enabled !== false,
-                badge: (tr.badge || '').replace(/^(Beta Cohort)/i, 'EUSPA Beta Cohort'),
-                tagline: tr.tagline || '',
-                desc: tr.desc || '',
-                color: tr.color || '#ffcc00',
-                applyUrl: tr.applyUrl || '/login?role=founder',
-                applyButtonText: tr.applyButtonText || `Apply for ${tr.name || 'this track'} →`,
-                startTrackSlug:
-                    tr.startTrack && typeof tr.startTrack === 'object' && typeof tr.startTrack.slug === 'string' && tr.startTrack.slug.trim()
-                        ? tr.startTrack.slug.trim().toLowerCase()
-                        : String(tr.key || '').trim().toLowerCase(),
-                partners: Array.isArray(tr.partners)
-                    ? (tr.partners.map((partner: any) => normalizeLandingPartner(partner)).filter(Boolean) as LandingPartner[])
-                    : [],
-                challenges: (tr.challenges || []).map((c: any) => ({ key: c.key, title: c.title, desc: c.desc })),
-                whatYouGet: (tr.whatYouGet || []).map((w: any) => ({ text: w.text })),
-                graphicUrl: tr.graphic && typeof tr.graphic === 'object' ? (tr.graphic.url ?? null) : null,
-            }))
+            .map((tr: any, idx: number) => {
+                const defaultColors = ['#ffcc00', '#38bdf8', '#34d399', '#fee5b1']
+                return {
+                    key: tr.key || '',
+                    icon: tr.icon || `0${idx + 1}`,
+                    name: tr.name || '',
+                    enabled: tr.enabled !== false,
+                    badge: (tr.badge || '').replace(/^(Beta Cohort)/i, 'EUSPA Beta Cohort'),
+                    tagline: tr.tagline || '',
+                    desc: tr.desc || '',
+                    color: tr.color || defaultColors[idx % defaultColors.length],
+                    applyUrl: tr.applyUrl || '/login?role=founder',
+                    applyButtonText: tr.applyButtonText || `Apply for ${tr.name || 'this track'} →`,
+                    startTrackSlug:
+                        tr.startTrack && typeof tr.startTrack === 'object' && typeof tr.startTrack.slug === 'string' && tr.startTrack.slug.trim()
+                            ? tr.startTrack.slug.trim().toLowerCase()
+                            : String(tr.key || '').trim().toLowerCase(),
+                    partners: Array.isArray(tr.partners)
+                        ? (tr.partners.map((partner: any) => normalizeLandingPartner(partner)).filter(Boolean) as LandingPartner[])
+                        : [],
+                    challenges: (tr.challenges || []).map((c: any) => ({ key: c.key, title: c.title, desc: c.desc })),
+                    whatYouGet: (tr.whatYouGet || []).map((w: any) => ({ text: w.text })),
+                    graphicUrl: tr.graphic && typeof tr.graphic === 'object' ? (tr.graphic.url ?? null) : null,
+                }
+            })
             .filter((track: TrackData) => track.enabled)
         : DEFAULT_FALLBACK_TRACKS
 
@@ -849,31 +945,30 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
     if (tracksRaw.length === 0) return null
 
     return (
-        <section id="tracks" className={`mb-24 border-t-2 pt-12 ${isLight ? 'border-[#1a2634]' : 'border-[#eaeaea]/20'}`}>
-            {/* Left-aligned asymmetric header */}
-            <div className="grid gap-8 lg:grid-cols-12 mb-10 items-end">
+        <section id="tracks" className={`mb-36 sm:mb-44 border-t pt-20 sm:pt-28 ${isLight ? 'border-[#1a2634]/10' : 'border-white/[0.08]'}`}>
+            <div className="grid gap-10 lg:grid-cols-12 mb-14 items-end">
                 <div className="lg:col-span-7">
-                    <div className={`font-mono text-xs font-bold uppercase tracking-[0.2em] mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                    <div className={`font-mono text-xs font-semibold uppercase tracking-[0.22em] mb-4 ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'}`}>
                         01 // {sectionLabel}
                     </div>
-                    <h2 className={`text-3xl sm:text-5xl font-bold leading-[1.08] tracking-tight ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
+                    <h2 className={`text-3xl sm:text-5xl font-bold leading-[1.08] tracking-tight ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                         {sectionTitle}{' '}
-                        <span className={isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}>
+                        <span className={isLight ? 'text-[#203e5f]/75' : 'text-[#eaeaea]/65'}>
                             {sectionHighlight}
                         </span>
                     </h2>
                 </div>
-                <div className="lg:col-span-5 flex flex-col justify-between gap-4">
-                    <p className={`text-sm leading-relaxed ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/75'}`}>
+                <div className="lg:col-span-5 flex flex-col justify-between gap-6">
+                    <p className={`text-sm sm:text-base leading-relaxed ${isLight ? 'text-[#1a2634]/70' : 'text-[#eaeaea]/65'}`}>
                         {sectionSubtitle}
                     </p>
-                    <div className="hidden md:flex items-center gap-2">
+                    <div className="hidden md:flex items-center gap-2.5">
                         <button
                             onClick={prevSlide}
-                            className={`h-10 w-10 flex items-center justify-center rounded-lg border transition-colors cursor-pointer ${
+                            className={`h-11 w-11 flex items-center justify-center rounded-xl border backdrop-blur-md transition-colors cursor-pointer ${
                                 isLight
-                                    ? 'border-[#1a2634]/25 bg-white text-[#1a2634] hover:bg-[#1a2634] hover:text-[#ffcc00]'
-                                    : 'border-[#eaeaea]/20 bg-[#203e5f]/50 text-[#eaeaea] hover:border-[#ffcc00] hover:text-[#ffcc00]'
+                                    ? 'border-[#1a2634]/15 bg-white/60 text-[#1a2634] hover:bg-white'
+                                    : 'border-white/15 bg-white/[0.04] text-[#eaeaea] hover:bg-white/[0.1]'
                             }`}
                             aria-label="Previous tracks"
                         >
@@ -881,23 +976,23 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
                         </button>
                         <button
                             onClick={nextSlide}
-                            className={`h-10 w-10 flex items-center justify-center rounded-lg border transition-colors cursor-pointer ${
+                            className={`h-11 w-11 flex items-center justify-center rounded-xl border backdrop-blur-md transition-colors cursor-pointer ${
                                 isLight
-                                    ? 'border-[#1a2634]/25 bg-white text-[#1a2634] hover:bg-[#1a2634] hover:text-[#ffcc00]'
-                                    : 'border-[#eaeaea]/20 bg-[#203e5f]/50 text-[#eaeaea] hover:border-[#ffcc00] hover:text-[#ffcc00]'
+                                    ? 'border-[#1a2634]/15 bg-white/60 text-[#1a2634] hover:bg-white'
+                                    : 'border-white/15 bg-white/[0.04] text-[#eaeaea] hover:bg-white/[0.1]'
                             }`}
                             aria-label="Next tracks"
                         >
                             →
                         </button>
-                        <span className={`ml-3 font-mono text-xs ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/60'}`}>
+                        <span className={`ml-3 font-mono text-xs ${isLight ? 'text-[#1a2634]/55' : 'text-[#eaeaea]/50'}`}>
                             {String(activeIndex + 1).padStart(2, '0')} / {String(totalSlides).padStart(2, '0')}
                         </span>
                     </div>
                 </div>
             </div>
 
-            <div className="flex flex-col gap-5 md:hidden">
+            <div className="flex flex-col gap-7 md:hidden">
                 {tracksRaw.map((track, itemIndex) => {
                     const { availablePills, activePillKey: pillKey } = getAvailablePillsAndKey(track)
                     const challenge = getChallengeForTrack(track, pillKey)
@@ -916,6 +1011,7 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
                             challenge={challenge}
                             hasGraphic={false}
                             isPrimaryTrack={itemIndex === 0}
+                            theme={theme}
                             onSelectPill={(pillKey) => setActivePill((prev) => ({ ...prev, [track.key]: pillKey }))}
                             onOpenDetails={() => setActiveModal(track.key)}
                             onStartTrack={() => handleTrackNavigation(track)}
@@ -932,7 +1028,7 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
                 />
             </div>
 
-            <div className="relative min-h-[460px] hidden items-center md:flex">
+            <div className="relative min-h-[480px] hidden items-center md:flex">
                 <div className="w-full overflow-hidden" ref={containerRef}>
                     <div
                         className="flex transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
@@ -947,7 +1043,7 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
                                 const challenge = getChallengeForTrack(track, pillKey)
                                 const trackPartners = track.partners
                                 return (
-                                    <div key={track.key} className="flex-none pr-6" style={{ width: cardWidth ? `${cardWidth}px` : '62%' }}>
+                                    <div key={track.key} className="flex-none pr-8" style={{ width: cardWidth ? `${cardWidth}px` : '62%' }}>
                                         <TrackCard
                                             track={track}
                                             trackPartners={trackPartners}
@@ -959,6 +1055,7 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
                                             challenge={challenge}
                                             hasGraphic={!!track.graphicUrl && !hiddenGraphics[track.key]}
                                             isPrimaryTrack={itemIndex === 0}
+                                            theme={theme}
                                             onSelectPill={(pillKey) => setActivePill((prev) => ({ ...prev, [track.key]: pillKey }))}
                                             onOpenDetails={() => setActiveModal(track.key)}
                                             onStartTrack={() => handleTrackNavigation(track)}
@@ -969,7 +1066,7 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
                             }
 
                             return (
-                                <div key={`new-track-${itemIndex}`} className="flex-none pr-6" style={{ width: cardWidth ? `${cardWidth}px` : '62%' }}>
+                                <div key={`new-track-${itemIndex}`} className="flex-none pr-8" style={{ width: cardWidth ? `${cardWidth}px` : '62%' }}>
                                     <NewTrackCard
                                         newTrackLabel={newTrackLabel}
                                         newTrackSubtitle={newTrackSubtitle}
@@ -987,36 +1084,36 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
             {activeModal && modalTrack && (
                 <div
                     className="fixed inset-0 z-50 flex items-center justify-center p-4"
-                    style={{ background: 'rgba(26,38,52,0.85)', backdropFilter: 'blur(6px)' }}
+                    style={{ background: 'rgba(15, 23, 34, 0.78)', backdropFilter: 'blur(12px)' }}
                     onClick={(e) => {
                         if (e.target === e.currentTarget) setActiveModal(null)
                     }}
                 >
                     <div
-                        className="relative bg-[#1a2634] border border-[#eaeaea]/20 rounded-xl w-full max-w-2xl max-h-[88vh] overflow-y-auto text-[#eaeaea] shadow-2xl"
+                        className="relative bg-[#1a2634]/95 backdrop-blur-2xl border border-white/15 rounded-2xl w-full max-w-2xl max-h-[88vh] overflow-y-auto text-[#eaeaea] shadow-2xl"
                         style={{ animation: 'tcModalIn 0.2s ease' }}
                     >
-                        <div className="h-1 bg-[#ffcc00]" />
+                        <div className="h-1" style={{ backgroundColor: modalTrack.color || '#ffcc00' }} />
 
-                        <div className="flex items-start justify-between px-8 pt-7 pb-5">
+                        <div className="flex items-start justify-between px-8 pt-8 pb-6">
                             <div>
-                                <div className="font-mono text-xs text-[#ffcc00] mb-1">{modalTrack.badge}</div>
-                                <div className="text-2xl font-bold text-[#eaeaea]">{modalTrack.name}</div>
-                                <div className="text-xs text-[#fee5b1] mt-1">{modalTrack.tagline}</div>
+                                <div className="font-mono text-xs text-[#fee5b1] mb-1.5">{modalTrack.badge}</div>
+                                <div className="text-2xl font-bold text-white">{modalTrack.name}</div>
+                                <div className="text-xs text-[#eaeaea]/65 mt-1">{modalTrack.tagline}</div>
                             </div>
                             <button
                                 onClick={() => setActiveModal(null)}
-                                className="shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-[#eaeaea]/75 hover:text-[#ffcc00] transition-colors cursor-pointer border border-[#eaeaea]/20 hover:border-[#ffcc00] bg-transparent ml-4"
+                                className="shrink-0 w-9 h-9 rounded-xl flex items-center justify-center text-[#eaeaea]/75 hover:text-white transition-colors cursor-pointer border border-white/15 hover:bg-white/10 bg-transparent ml-4"
                             >
                                 ✕
                             </button>
                         </div>
 
-                        <div className="mx-8 h-px bg-[#eaeaea]/12 mb-6" />
+                        <div className="mx-8 h-px bg-white/10 mb-7" />
 
                         <div className="px-8 pb-8 space-y-7">
                             <div>
-                                <div className="font-mono text-[10px] font-bold tracking-[2px] uppercase mb-2 text-[#ffcc00]">
+                                <div className="font-mono text-[10px] font-semibold tracking-[2px] uppercase mb-2 text-[#eaeaea]/55">
                                     About this track
                                 </div>
                                 <p className="text-sm text-[#eaeaea]/85 leading-7">{modalTrack.desc}</p>
@@ -1024,25 +1121,25 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
 
                             {getTrackPartnerTiles(modalTrackPartners).length > 0 && (
                                 <div>
-                                    <div className="font-mono text-[10px] font-bold tracking-[2px] uppercase mb-3 text-[#ffcc00]">
+                                    <div className="font-mono text-[10px] font-semibold tracking-[2px] uppercase mb-3 text-[#eaeaea]/55">
                                         Partners
                                     </div>
-                                    <TrackPartnerTiles partners={modalTrackPartners} accentColor="#ffcc00" />
+                                    <TrackPartnerTiles partners={modalTrackPartners} accentColor={modalTrack.color || '#ffcc00'} />
                                 </div>
                             )}
 
                             {modalTrack.whatYouGet.length > 0 && (
                                 <div>
-                                    <div className="font-mono text-[10px] font-bold tracking-[2px] uppercase mb-3 text-[#ffcc00]">
+                                    <div className="font-mono text-[10px] font-semibold tracking-[2px] uppercase mb-3 text-[#eaeaea]/55">
                                         What you get
                                     </div>
-                                    <div className="grid sm:grid-cols-2 gap-2.5">
+                                    <div className="grid sm:grid-cols-2 gap-3">
                                         {modalTrack.whatYouGet.map((item, i) => (
                                             <div
                                                 key={i}
-                                                className="flex items-start gap-2.5 p-3.5 rounded-lg text-xs text-[#eaeaea]/90 leading-relaxed bg-[#203e5f]/50 border border-[#eaeaea]/10"
+                                                className="flex items-start gap-2.5 p-4 rounded-xl text-xs text-[#eaeaea]/90 leading-relaxed bg-white/[0.04] border border-white/10"
                                             >
-                                                <span className="text-[#ffcc00] font-bold shrink-0">—</span>
+                                                <span className="text-emerald-400 font-bold shrink-0">✓</span>
                                                 {item.text}
                                             </div>
                                         ))}
@@ -1052,16 +1149,16 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
 
                             {modalTrack.challenges.length > 0 && (
                                 <div>
-                                    <div className="font-mono text-[10px] font-bold tracking-[2px] uppercase mb-3 text-[#ffcc00]">
+                                    <div className="font-mono text-[10px] font-semibold tracking-[2px] uppercase mb-3 text-[#eaeaea]/55">
                                         Partner challenges
                                     </div>
-                                    <div className="space-y-2.5">
+                                    <div className="space-y-3">
                                         {modalTrack.challenges.map((ch) => (
                                             <div
                                                 key={ch.key}
-                                                className="p-4 rounded-lg border border-[#eaeaea]/12 bg-[#203e5f]/35 text-sm text-[#eaeaea]/85 leading-7"
+                                                className="p-4.5 rounded-xl border border-white/10 bg-white/[0.03] text-sm text-[#eaeaea]/85 leading-7"
                                             >
-                                                <div className="font-bold text-[#ffcc00] mb-1">{ch.title}</div>
+                                                <div className="font-bold text-white mb-1">{ch.title}</div>
                                                 {ch.desc}
                                             </div>
                                         ))}
@@ -1075,7 +1172,7 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
                                     setActiveModal(null)
                                     handleTrackNavigation(modalTrack)
                                 }}
-                                className="block w-full rounded-lg px-5 py-3.5 text-xs font-extrabold uppercase tracking-wider transition-colors bg-[#ffcc00] text-[#1a2634] hover:bg-[#fee5b1] text-center cursor-pointer"
+                                className="block w-full rounded-xl px-5 py-3.5 text-xs font-bold uppercase tracking-wider transition-colors bg-[#ffcc00] text-[#1a2634] hover:bg-[#fee5b1] text-center cursor-pointer"
                             >
                                 {modalTrack.applyButtonText}
                             </button>
@@ -1418,10 +1515,29 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
 
     return (
         <div
-            className={`landing-readable relative min-h-screen font-sans selection:bg-[#ffcc00] selection:text-[#1a2634] transition-colors duration-200 ${
+            className={`landing-readable relative min-h-screen overflow-x-hidden font-sans selection:bg-[#ffcc00] selection:text-[#1a2634] transition-colors duration-300 ${
                 isLight ? 'landing-theme-light bg-[#eaeaea] text-[#1a2634]' : 'landing-theme-dark bg-[#1a2634] text-[#eaeaea]'
             }`}
         >
+            {/* Ambient background depth glows for glassmorphism */}
+            <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
+                <div
+                    className={`absolute -top-32 -left-24 h-[520px] w-[520px] rounded-full blur-[140px] ${
+                        isLight ? 'bg-[#203e5f]/12' : 'bg-[#203e5f]/55'
+                    }`}
+                />
+                <div
+                    className={`absolute top-[18%] right-[-8%] h-[460px] w-[460px] rounded-full blur-[150px] ${
+                        isLight ? 'bg-[#fee5b1]/55' : 'bg-[#38bdf8]/[0.07]'
+                    }`}
+                />
+                <div
+                    className={`absolute top-[55%] left-[12%] h-[420px] w-[420px] rounded-full blur-[150px] ${
+                        isLight ? 'bg-white/80' : 'bg-[#fee5b1]/[0.05]'
+                    }`}
+                />
+            </div>
+
             <PublicHeader
                 companyName={companyName}
                 logoUrl={logoUrl}
@@ -1431,161 +1547,212 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                 onToggleTheme={toggleTheme}
             />
 
-            <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 pt-10 md:pt-16 pb-24">
-                {/* ASYMMETRIC EDITORIAL HERO */}
-                <section className="mb-24">
-                    <div className="grid gap-12 lg:grid-cols-12 items-start">
+            <main className="relative z-10 max-w-7xl mx-auto px-5 sm:px-10 pt-14 md:pt-24 pb-28">
+                {/* ASYMMETRIC EDITORIAL HERO WITH GENEROUS BREATHING ROOM */}
+                <section className="mb-36 sm:mb-44">
+                    <div className="grid gap-16 lg:grid-cols-12 lg:gap-20 items-center">
                         {/* Left Column: Manifesto & Primary Actions */}
-                        <div className="lg:col-span-7 pt-2">
-                            <div className="inline-flex items-center gap-3 mb-6">
-                                <span className="h-px w-8 bg-[#ffcc00]" />
-                                <span
-                                    className={`font-mono text-xs font-bold uppercase tracking-[0.22em] ${
-                                        isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'
-                                    }`}
-                                >
-                                    MAKE EUROPEAN STARTUPS GREAT AGAIN
+                        <div className="lg:col-span-7">
+                            <div
+                                className={`inline-flex items-center gap-3 rounded-full border px-4 py-1.5 backdrop-blur-md mb-8 ${
+                                    isLight
+                                        ? 'border-[#1a2634]/10 bg-white/60 text-[#1a2634]/80'
+                                        : 'border-white/10 bg-white/[0.04] text-[#eaeaea]/80'
+                                }`}
+                            >
+                                <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                                <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em]">
+                                    EUROPEAN VENTURE EXECUTION SYSTEM · COHORT 2026
                                 </span>
                             </div>
 
                             <h1
-                                className={`text-4xl sm:text-6xl xl:text-[4.25rem] font-bold tracking-tight mb-6 leading-[1.03] ${
-                                    isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'
+                                className={`text-4xl sm:text-6xl xl:text-[4.35rem] font-bold tracking-tight mb-8 leading-[1.06] ${
+                                    isLight ? 'text-[#1a2634]' : 'text-white'
                                 }`}
                             >
                                 {companyName} {heroTitlePrefix}
                                 <span
-                                    className={`block mt-1 ${
-                                        isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'
+                                    className={`block mt-2 ${
+                                        isLight
+                                            ? 'text-[#203e5f]'
+                                            : 'text-transparent bg-clip-text bg-gradient-to-r from-white via-[#eaeaea] to-[#fee5b1]'
                                     }`}
                                 >
-                                    {heroTitleHighlight}.
+                                    {heroTitleHighlight}
+                                    <span className="text-[#ffcc00]">.</span>
                                 </span>
                             </h1>
 
                             <p
-                                className={`text-base sm:text-lg leading-relaxed max-w-xl mb-9 ${
-                                    isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/80'
+                                className={`text-base sm:text-lg leading-relaxed max-w-xl mb-11 ${
+                                    isLight ? 'text-[#1a2634]/75' : 'text-[#eaeaea]/75'
                                 }`}
                             >
                                 {heroSubtitle}
                             </p>
 
-                            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
+                            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                                 <Link
                                     href="/login?role=founder"
-                                    className="inline-flex items-center justify-between sm:justify-center gap-4 px-7 py-4 rounded-lg text-sm font-extrabold uppercase tracking-wider text-[#1a2634] bg-[#ffcc00] hover:bg-[#fee5b1] transition-colors"
+                                    className="inline-flex items-center justify-between sm:justify-center gap-4 px-8 py-4 rounded-xl text-sm font-bold uppercase tracking-wider text-[#1a2634] bg-[#ffcc00] hover:bg-[#fee5b1] shadow-lg shadow-[#ffcc00]/10 transition-all"
                                 >
                                     <span>{founderBtn}</span>
                                     <span>→</span>
                                 </Link>
                                 <Link
                                     href="/login?role=investor"
-                                    className={`inline-flex items-center justify-between sm:justify-center gap-3 rounded-lg border px-7 py-4 text-sm font-bold uppercase tracking-wider transition-colors ${
+                                    className={`inline-flex items-center justify-between sm:justify-center gap-3 rounded-xl border px-8 py-4 text-sm font-semibold uppercase tracking-wider backdrop-blur-md transition-all ${
                                         isLight
-                                            ? 'border-[#1a2634] text-[#1a2634] hover:bg-[#1a2634] hover:text-[#eaeaea]'
-                                            : 'border-[#eaeaea]/25 text-[#eaeaea] hover:border-[#fee5b1] hover:text-[#fee5b1]'
+                                            ? 'border-[#1a2634]/15 bg-white/55 text-[#1a2634] hover:bg-white/90'
+                                            : 'border-white/15 bg-white/[0.04] text-[#eaeaea] hover:bg-white/[0.09] hover:border-white/25'
                                     }`}
                                 >
                                     <span>{investorBtn}</span>
                                 </Link>
                             </div>
 
-                            {/* Bottom Specs Row */}
+                            {/* Bottom Specs Row — Clean, Neutral & Airy */}
                             <div
-                                className={`mt-12 pt-8 border-t grid grid-cols-3 gap-6 ${
-                                    isLight ? 'border-[#1a2634]/15' : 'border-[#eaeaea]/15'
+                                className={`mt-16 pt-10 border-t grid grid-cols-3 gap-8 ${
+                                    isLight ? 'border-[#1a2634]/10' : 'border-white/10'
                                 }`}
                             >
                                 <div>
-                                    <div className={`font-mono text-2xl sm:text-3xl font-bold ${isLight ? 'text-[#1a2634]' : 'text-[#ffcc00]'}`}>
+                                    <div className={`font-mono text-2xl sm:text-3xl font-bold ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                         100
                                     </div>
-                                    <div className={`text-xs mt-1 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/65'}`}>
+                                    <div className={`text-xs mt-1.5 leading-relaxed ${isLight ? 'text-[#1a2634]/65' : 'text-[#eaeaea]/60'}`}>
                                         Consecutive execution days
                                     </div>
                                 </div>
                                 <div>
-                                    <div className={`font-mono text-2xl sm:text-3xl font-bold ${isLight ? 'text-[#1a2634]' : 'text-[#ffcc00]'}`}>
+                                    <div className={`font-mono text-2xl sm:text-3xl font-bold ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                         05
                                     </div>
-                                    <div className={`text-xs mt-1 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/65'}`}>
+                                    <div className={`text-xs mt-1.5 leading-relaxed ${isLight ? 'text-[#1a2634]/65' : 'text-[#eaeaea]/60'}`}>
                                         Hard decision gates
                                     </div>
                                 </div>
                                 <div>
-                                    <div className={`font-mono text-2xl sm:text-3xl font-bold ${isLight ? 'text-[#1a2634]' : 'text-[#ffcc00]'}`}>
+                                    <div className={`font-mono text-2xl sm:text-3xl font-bold ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                         24h
                                     </div>
-                                    <div className={`text-xs mt-1 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/65'}`}>
+                                    <div className={`text-xs mt-1.5 leading-relaxed ${isLight ? 'text-[#1a2634]/65' : 'text-[#eaeaea]/60'}`}>
                                         Mission &amp; proof cadence
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Right Column: Live Execution Trail Dossier Mockup */}
+                        {/* Right Column: Translucent Frosted-Glass Operational Dossier */}
                         <div className="lg:col-span-5">
-                            <div className="rounded-xl border border-[#eaeaea]/15 bg-[#1a2634] text-[#eaeaea] p-6 sm:p-7 shadow-2xl">
-                                <div className="flex items-center justify-between border-b border-[#eaeaea]/12 pb-4 mb-5">
+                            <div
+                                className={`rounded-2xl border p-7 sm:p-9 backdrop-blur-2xl transition-all ${
+                                    isLight
+                                        ? 'border-[#1a2634]/10 bg-white/65 text-[#1a2634] shadow-xl shadow-[#1a2634]/[0.05]'
+                                        : 'border-white/12 bg-white/[0.035] text-[#eaeaea] shadow-2xl shadow-black/30'
+                                }`}
+                            >
+                                <div
+                                    className={`flex items-center justify-between border-b pb-5 mb-6 ${
+                                        isLight ? 'border-[#1a2634]/10' : 'border-white/10'
+                                    }`}
+                                >
                                     <div>
-                                        <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#ffcc00]">
+                                        <div className={`font-mono text-[10px] uppercase tracking-[0.2em] ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'}`}>
                                             OPERATIONAL DOSSIER // LIVE LOG
                                         </div>
-                                        <div className="text-base font-bold text-[#eaeaea] mt-0.5">
+                                        <div className={`text-base font-bold mt-1 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                             100-Day Venture Execution Trail
                                         </div>
                                     </div>
-                                    <span className="font-mono text-[10px] font-bold uppercase px-2.5 py-1 rounded bg-[#203e5f] text-[#fee5b1] border border-[#ffcc00]/30">
+                                    <span
+                                        className={`font-mono text-[10px] font-semibold uppercase px-3 py-1 rounded-full border ${
+                                            isLight
+                                                ? 'bg-emerald-500/10 text-emerald-700 border-emerald-600/20'
+                                                : 'bg-emerald-400/10 text-emerald-300 border-emerald-400/25'
+                                        }`}
+                                    >
                                         AUDIT READY
                                     </span>
                                 </div>
 
-                                <div className="space-y-3 font-mono text-xs">
-                                    <div className="rounded-lg bg-[#203e5f]/55 p-3.5 border-l-2 border-[#ffcc00]">
-                                        <div className="flex items-center justify-between text-[10px] text-[#fee5b1] mb-1">
-                                            <span>DAY 01 — HYPOTHESIS</span>
-                                            <span className="text-[#ffcc00] font-bold">PASSED ✓</span>
+                                <div className="space-y-4 font-mono text-xs">
+                                    <div
+                                        className={`rounded-xl p-4 border-l-2 border-emerald-400 transition-colors ${
+                                            isLight ? 'bg-white/75 border border-[#1a2634]/[0.06]' : 'bg-white/[0.035]'
+                                        }`}
+                                    >
+                                        <div className="flex items-center justify-between text-[10px] mb-1.5">
+                                            <span className={isLight ? 'text-[#1a2634]/60' : 'text-[#eaeaea]/60'}>DAY 01 — HYPOTHESIS</span>
+                                            <span className={isLight ? 'text-emerald-700 font-bold' : 'text-emerald-400 font-bold'}>PASSED ✓</span>
                                         </div>
-                                        <div className="font-sans text-xs text-[#eaeaea]/90">
+                                        <div className={`font-sans text-xs leading-relaxed ${isLight ? 'text-[#1a2634]/85' : 'text-[#eaeaea]/85'}`}>
                                             Problem statement + 15 target customer profiles logged in workspace.
                                         </div>
                                     </div>
 
-                                    <div className="rounded-lg bg-[#203e5f]/55 p-3.5 border-l-2 border-[#ffcc00]">
-                                        <div className="flex items-center justify-between text-[10px] text-[#fee5b1] mb-1">
-                                            <span>GATE 15 — DISCOVERY AUDIT</span>
-                                            <span className="text-[#ffcc00] font-bold">CLEARED ✓</span>
+                                    <div
+                                        className={`rounded-xl p-4 border-l-2 border-emerald-400 transition-colors ${
+                                            isLight ? 'bg-white/75 border border-[#1a2634]/[0.06]' : 'bg-white/[0.035]'
+                                        }`}
+                                    >
+                                        <div className="flex items-center justify-between text-[10px] mb-1.5">
+                                            <span className={isLight ? 'text-[#1a2634]/60' : 'text-[#eaeaea]/60'}>GATE 15 — DISCOVERY AUDIT</span>
+                                            <span className={isLight ? 'text-emerald-700 font-bold' : 'text-emerald-400 font-bold'}>CLEARED ✓</span>
                                         </div>
-                                        <div className="font-sans text-xs text-[#eaeaea]/90">
+                                        <div className={`font-sans text-xs leading-relaxed ${isLight ? 'text-[#1a2634]/85' : 'text-[#eaeaea]/85'}`}>
                                             Verified interview transcripts &amp; pain quantification reviewed by mentor.
                                         </div>
                                     </div>
 
-                                    <div className="rounded-lg bg-[#203e5f]/35 p-3.5 border border-[#ffcc00]/40">
-                                        <div className="flex items-center justify-between text-[10px] text-[#ffcc00] mb-1">
-                                            <span>DAY 34 — ACTIVE MISSION</span>
-                                            <span>IN REVIEW →</span>
+                                    <div
+                                        className={`rounded-xl p-4 border transition-colors ${
+                                            isLight
+                                                ? 'bg-[#fee5b1]/35 border-[#203e5f]/15'
+                                                : 'bg-white/[0.05] border-[#ffcc00]/30'
+                                        }`}
+                                    >
+                                        <div className="flex items-center justify-between text-[10px] mb-1.5">
+                                            <span className={isLight ? 'text-[#1a2634] font-bold' : 'text-[#fee5b1] font-bold'}>
+                                                DAY 34 — ACTIVE MISSION
+                                            </span>
+                                            <span className={isLight ? 'text-[#203e5f] font-bold' : 'text-[#ffcc00] font-bold'}>
+                                                IN REVIEW →
+                                            </span>
                                         </div>
-                                        <div className="font-sans text-xs text-[#eaeaea]">
+                                        <div className={`font-sans text-xs leading-relaxed ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                             First commercial wedge &amp; live transaction instrumentation check.
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className="mt-6 pt-5 border-t border-[#eaeaea]/12">
-                                    <div className="flex items-center justify-between font-mono text-[10px] text-[#fee5b1] mb-2">
+                                <div
+                                    className={`mt-7 pt-6 border-t ${
+                                        isLight ? 'border-[#1a2634]/10' : 'border-white/10'
+                                    }`}
+                                >
+                                    <div className={`flex items-center justify-between font-mono text-[10px] mb-3 ${isLight ? 'text-[#1a2634]/60' : 'text-[#eaeaea]/55'}`}>
                                         <span>HARD GATE SCHEDULE</span>
                                         <span>DAYS 15 · 30 · 50 · 70 · 94</span>
                                     </div>
-                                    <div className="grid grid-cols-5 gap-1.5">
+                                    <div className="grid grid-cols-5 gap-2">
                                         {['G15', 'G30', 'G50', 'G70', 'G94'].map((g, i) => (
                                             <div
                                                 key={g}
-                                                className={`py-1.5 text-center font-mono text-[10px] font-bold rounded ${
+                                                className={`py-2 text-center font-mono text-[10px] font-semibold rounded-lg border ${
                                                     i < 2
-                                                        ? 'bg-[#ffcc00] text-[#1a2634]'
-                                                        : 'bg-[#203e5f] text-[#eaeaea]/70 border border-[#eaeaea]/10'
+                                                        ? isLight
+                                                            ? 'bg-emerald-500/12 border-emerald-600/25 text-emerald-800'
+                                                            : 'bg-emerald-400/15 border-emerald-400/30 text-emerald-300'
+                                                        : i === 2
+                                                          ? isLight
+                                                              ? 'bg-[#ffcc00]/25 border-[#1a2634]/20 text-[#1a2634]'
+                                                              : 'bg-[#ffcc00]/15 border-[#ffcc00]/35 text-[#fee5b1]'
+                                                          : isLight
+                                                            ? 'bg-white/50 border-[#1a2634]/10 text-[#1a2634]/50'
+                                                            : 'bg-white/[0.03] border-white/10 text-[#eaeaea]/45'
                                                 }`}
                                             >
                                                 {g}
@@ -1606,30 +1773,37 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                 <EcosystemShowcase partners={partners} rawMentors={mentors} theme={theme} />
 
                 {/* 03 // EXECUTIVE SUMMARY — Editorial Split */}
-                <section className={`mb-24 border-t-2 pt-12 ${isLight ? 'border-[#1a2634]' : 'border-[#eaeaea]/20'}`}>
-                    <div className="grid gap-10 lg:grid-cols-12">
+                <section className={`mb-36 sm:mb-44 border-t pt-20 sm:pt-28 ${isLight ? 'border-[#1a2634]/10' : 'border-white/[0.08]'}`}>
+                    <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
                         <div className="lg:col-span-5">
-                            <div className={`font-mono text-xs font-bold uppercase tracking-[0.2em] mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                            <div className={`font-mono text-xs font-semibold uppercase tracking-[0.22em] mb-4 ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'}`}>
                                 03 // THESIS &amp; ARCHITECTURE
                             </div>
-                            <h2 className={`text-3xl sm:text-4xl font-bold leading-tight mb-4 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
+                            <h2 className={`text-3xl sm:text-4xl font-bold leading-tight mb-5 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                 {execTitle}
                             </h2>
-                            <p className={`text-base font-semibold border-l-2 border-[#ffcc00] pl-4 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
+                            <p className={`text-base font-medium border-l-2 border-[#ffcc00]/70 pl-4 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/75'}`}>
                                 {execSubtitle}
                             </p>
                         </div>
 
                         <div className="lg:col-span-7 flex flex-col justify-between">
-                            <p className={`text-base sm:text-lg leading-relaxed mb-8 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]/85'}`}>
+                            <p className={`text-base sm:text-lg leading-relaxed mb-10 ${isLight ? 'text-[#1a2634]/80' : 'text-[#eaeaea]/80'}`}>
                                 {execBody}
                             </p>
 
-                            <div className={`divide-y border-t border-b ${isLight ? 'divide-[#1a2634]/15 border-[#1a2634]/15' : 'divide-[#eaeaea]/12 border-[#eaeaea]/12'}`}>
+                            <div className="space-y-3.5">
                                 {execPoints.map((p: any, i: number) => (
-                                    <div key={i} className="py-4 flex items-start gap-4">
-                                        <span className={`font-mono text-xs font-bold pt-0.5 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
-                                            0{i + 1}
+                                    <div
+                                        key={i}
+                                        className={`p-5 rounded-2xl border backdrop-blur-xl flex items-start gap-4 ${
+                                            isLight
+                                                ? 'border-[#1a2634]/[0.08] bg-white/55'
+                                                : 'border-white/[0.08] bg-white/[0.025]'
+                                        }`}
+                                    >
+                                        <span className={`font-mono text-xs font-semibold pt-0.5 ${isLight ? 'text-[#203e5f]/65' : 'text-[#eaeaea]/45'}`}>
+                                            /0{i + 1}
                                         </span>
                                         <span className={`text-sm sm:text-base font-medium ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
                                             {p.text}
@@ -1641,35 +1815,43 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                     </div>
                 </section>
 
-                {/* 04 // WHAT IT IS / FOUNDER FIT / EXECUTION GAP — Asymmetric 3-Column Swiss Grid */}
-                <section className={`mb-24 border-t-2 pt-12 ${isLight ? 'border-[#1a2634]' : 'border-[#eaeaea]/20'}`}>
-                    <div className="mb-8">
-                        <div className={`font-mono text-xs font-bold uppercase tracking-[0.2em] ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                {/* 04 // WHAT IT IS / FOUNDER FIT / EXECUTION GAP — 3 Separate Translucent Glass Cards */}
+                <section className={`mb-36 sm:mb-44 border-t pt-20 sm:pt-28 ${isLight ? 'border-[#1a2634]/10' : 'border-white/[0.08]'}`}>
+                    <div className="mb-12">
+                        <div className={`font-mono text-xs font-semibold uppercase tracking-[0.22em] ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'}`}>
                             04 // SYSTEM SPECIFICATION
                         </div>
                     </div>
 
-                    <div
-                        className={`grid lg:grid-cols-12 border rounded-xl overflow-hidden ${
-                            isLight ? 'border-[#1a2634]/20 bg-white' : 'border-[#eaeaea]/15 bg-[#203e5f]/25'
-                        }`}
-                    >
-                        {/* Col 1: What it is */}
-                        <div className={`lg:col-span-4 p-7 sm:p-9 flex flex-col justify-between border-b lg:border-b-0 lg:border-r ${isLight ? 'border-[#1a2634]/15' : 'border-[#eaeaea]/12'}`}>
+                    <div className="grid gap-8 lg:grid-cols-3 lg:gap-10">
+                        {/* Card 1: What it is */}
+                        <div
+                            className={`rounded-2xl border p-8 sm:p-10 flex flex-col justify-between backdrop-blur-xl ${
+                                isLight
+                                    ? 'border-[#1a2634]/[0.08] bg-white/60'
+                                    : 'border-white/[0.08] bg-white/[0.025]'
+                            }`}
+                        >
                             <div>
-                                <div className={`font-mono text-[11px] font-bold uppercase tracking-wider mb-2 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
+                                <div className={`font-mono text-[11px] font-semibold uppercase tracking-wider mb-3 ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'}`}>
                                     A. OPERATING MODEL
                                 </div>
-                                <h3 className={`text-2xl font-bold mb-3 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
+                                <h3 className={`text-2xl font-bold mb-4 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                     {whatItIsTitle}
                                 </h3>
-                                <p className={`text-sm leading-relaxed mb-6 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/75'}`}>
+                                <p className={`text-sm leading-relaxed mb-7 ${isLight ? 'text-[#1a2634]/75' : 'text-[#eaeaea]/70'}`}>
                                     {whatItIsBody}
                                 </p>
-                                <ul className="space-y-3 pl-0 list-none">
+                                <ul className="space-y-3.5 pl-0 list-none">
                                     {whatItIsPoints.map((p: any, i: number) => (
-                                        <li key={i} className="flex items-center gap-3 text-sm font-semibold">
-                                            <span className="font-mono text-xs font-bold text-[#ffcc00] bg-[#1a2634] px-2 py-0.5 rounded">
+                                        <li key={i} className="flex items-center gap-3.5 text-sm font-medium">
+                                            <span
+                                                className={`font-mono text-xs font-semibold px-2.5 py-0.5 rounded-md border ${
+                                                    isLight
+                                                        ? 'bg-[#1a2634]/[0.05] border-[#1a2634]/10 text-[#1a2634]'
+                                                        : 'bg-white/[0.05] border-white/10 text-[#eaeaea]'
+                                                }`}
+                                            >
                                                 {i + 1}
                                             </span>
                                             <span>{p.text}</span>
@@ -1677,49 +1859,61 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                                     ))}
                                 </ul>
                             </div>
-                            <p className={`mt-8 pt-4 border-t text-xs font-bold uppercase tracking-wider ${isLight ? 'border-[#1a2634]/15 text-[#1a2634]' : 'border-[#eaeaea]/12 text-[#ffcc00]'}`}>
+                            <p className={`mt-10 pt-5 border-t text-xs font-semibold uppercase tracking-wider ${isLight ? 'border-[#1a2634]/10 text-[#203e5f]' : 'border-white/10 text-[#eaeaea]/65'}`}>
                                 {whatItIsFooter}
                             </p>
                         </div>
 
-                        {/* Col 2: Founder Fit (High Contrast Navy Panel) */}
-                        <div className="lg:col-span-4 p-7 sm:p-9 bg-[#1a2634] text-[#eaeaea] flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-[#eaeaea]/12">
+                        {/* Card 2: Founder Fit */}
+                        <div
+                            className={`rounded-2xl border p-8 sm:p-10 flex flex-col justify-between backdrop-blur-xl ${
+                                isLight
+                                    ? 'border-[#1a2634]/12 bg-white/80 shadow-lg shadow-[#1a2634]/[0.03]'
+                                    : 'border-white/15 bg-white/[0.05] shadow-xl shadow-black/20'
+                            }`}
+                        >
                             <div>
-                                <div className="font-mono text-[11px] font-bold uppercase tracking-wider text-[#ffcc00] mb-2">
+                                <div className={`font-mono text-[11px] font-semibold uppercase tracking-wider mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
                                     B. FOUNDER FIT
                                 </div>
-                                <h3 className="text-2xl font-bold mb-3 text-[#eaeaea]">{whoIsThisForTitle}</h3>
-                                <p className="text-sm text-[#eaeaea]/75 leading-relaxed mb-6">{whoIsThisForBody}</p>
+                                <h3 className={`text-2xl font-bold mb-4 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>{whoIsThisForTitle}</h3>
+                                <p className={`text-sm leading-relaxed mb-7 ${isLight ? 'text-[#1a2634]/75' : 'text-[#eaeaea]/75'}`}>{whoIsThisForBody}</p>
                                 <ul className="space-y-4 pl-0 list-none">
                                     {whoIsThisForBullets.map((point: any, i: number) => (
-                                        <li key={i} className="flex items-start gap-3 text-sm text-[#eaeaea]/90">
-                                            <span className="mt-1 h-2 w-2 shrink-0 bg-[#ffcc00]" />
+                                        <li key={i} className={`flex items-start gap-3.5 text-sm ${isLight ? 'text-[#1a2634]/90' : 'text-[#eaeaea]/90'}`}>
+                                            <span className="mt-1.5 h-1.5 w-1.5 rounded-full shrink-0 bg-[#ffcc00]" />
                                             <span className="leading-relaxed">{point.text}</span>
                                         </li>
                                     ))}
                                 </ul>
                             </div>
-                            <div className="mt-8 pt-4 border-t border-[#eaeaea]/12 font-mono text-[11px] text-[#fee5b1]">
+                            <div className={`mt-10 pt-5 border-t font-mono text-[11px] ${isLight ? 'border-[#1a2634]/10 text-[#203e5f]' : 'border-white/10 text-[#fee5b1]/85'}`}>
                                 COMMITMENT &gt; CREDENTIALS
                             </div>
                         </div>
 
-                        {/* Col 3: Execution Gap */}
-                        <div className="lg:col-span-4 p-7 sm:p-9 flex flex-col justify-between">
+                        {/* Card 3: Execution Gap */}
+                        <div
+                            className={`rounded-2xl border p-8 sm:p-10 flex flex-col justify-between backdrop-blur-xl ${
+                                isLight
+                                    ? 'border-[#1a2634]/[0.08] bg-white/60'
+                                    : 'border-white/[0.08] bg-white/[0.025]'
+                            }`}
+                        >
                             <div>
-                                <div className={`font-mono text-[11px] font-bold uppercase tracking-wider mb-2 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
+                                <div className={`font-mono text-[11px] font-semibold uppercase tracking-wider mb-3 ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'}`}>
                                     C. EUROPEAN REALITY
                                 </div>
-                                <h3 className={`text-2xl font-bold mb-3 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
+                                <h3 className={`text-2xl font-bold mb-4 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                     {execGapTitle}
                                 </h3>
-                                <p className={`text-sm leading-relaxed mb-6 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/75'}`}>
+                                <p className={`text-sm leading-relaxed mb-7 ${isLight ? 'text-[#1a2634]/75' : 'text-[#eaeaea]/70'}`}>
                                     {execGapBody}
                                 </p>
-                                <ul className="space-y-2.5 pl-0 list-none">
+                                <ul className="space-y-3 pl-0 list-none">
                                     {execGapPoints.map((p: any, i: number) => (
                                         <li key={i} className="flex items-center gap-3 text-sm font-medium">
-                                            <span className={`font-mono text-xs font-bold ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                                            <span className={`font-mono text-xs ${isLight ? 'text-[#203e5f]/60' : 'text-[#eaeaea]/45'}`}>
                                                 —
                                             </span>
                                             <span>{p.text}</span>
@@ -1727,51 +1921,52 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                                     ))}
                                 </ul>
                             </div>
-                            <p className={`mt-8 border-l-2 border-[#ffcc00] pl-3.5 text-xs italic leading-relaxed ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
+                            <p className={`mt-10 border-l-2 border-[#203e5f]/40 pl-4 text-xs italic leading-relaxed ${isLight ? 'text-[#1a2634]/75' : 'text-[#eaeaea]/70'}`}>
                                 {execGapQuote}
                             </p>
                         </div>
                     </div>
                 </section>
 
-                {/* 05 // HOW IT WORKS LOOP — Horizontal Pipeline Table */}
-                <section className={`mb-24 border-t-2 pt-12 ${isLight ? 'border-[#1a2634]' : 'border-[#eaeaea]/20'}`}>
-                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                {/* 05 // HOW IT WORKS LOOP — 5 Separate Translucent Cards */}
+                <section className={`mb-36 sm:mb-44 border-t pt-20 sm:pt-28 ${isLight ? 'border-[#1a2634]/10' : 'border-white/[0.08]'}`}>
+                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
                         <div>
-                            <div className={`font-mono text-xs font-bold uppercase tracking-[0.2em] mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                            <div className={`font-mono text-xs font-semibold uppercase tracking-[0.22em] mb-4 ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'}`}>
                                 05 // DAILY PROTOCOL
                             </div>
-                            <h2 className={`text-3xl sm:text-4xl font-bold tracking-tight ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
+                            <h2 className={`text-3xl sm:text-4xl font-bold tracking-tight ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                 {howItWorksTitle}
                             </h2>
                         </div>
-                        <p className={`text-sm font-medium max-w-md ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
+                        <p className={`text-sm font-medium max-w-md ${isLight ? 'text-[#1a2634]/70' : 'text-[#eaeaea]/65'}`}>
                             {howItWorksFooter}
                         </p>
                     </div>
 
-                    <div
-                        className={`grid sm:grid-cols-5 border rounded-xl overflow-hidden divide-y sm:divide-y-0 sm:divide-x ${
-                            isLight
-                                ? 'border-[#1a2634]/20 divide-[#1a2634]/15 bg-white'
-                                : 'border-[#eaeaea]/15 divide-[#eaeaea]/12 bg-[#203e5f]/30'
-                        }`}
-                    >
+                    <div className="grid gap-5 sm:grid-cols-5">
                         {howItWorksSteps.map((s: any, i: number) => (
-                            <div key={i} className="p-6 flex flex-col justify-between min-h-[160px]">
+                            <div
+                                key={i}
+                                className={`rounded-2xl border p-7 flex flex-col justify-between min-h-[180px] backdrop-blur-xl transition-all ${
+                                    isLight
+                                        ? 'border-[#1a2634]/[0.08] bg-white/60 hover:bg-white/85'
+                                        : 'border-white/[0.08] bg-white/[0.025] hover:bg-white/[0.045]'
+                                }`}
+                            >
                                 <div className="flex items-center justify-between">
-                                    <span className={`font-mono text-xs font-bold ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
-                                        STEP {String(i + 1).padStart(2, '0')}
+                                    <span className={`font-mono text-xs font-semibold ${isLight ? 'text-[#203e5f]/65' : 'text-[#eaeaea]/50'}`}>
+                                        0{i + 1}
                                     </span>
-                                    <span className={`font-mono text-xs opacity-40 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
+                                    <span className={`font-mono text-xs opacity-35 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
                                         →
                                     </span>
                                 </div>
-                                <div className="mt-6">
-                                    <h4 className={`text-xl font-bold mb-1 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
+                                <div className="mt-8">
+                                    <h4 className={`text-xl font-bold mb-1.5 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                         {s.title}
                                     </h4>
-                                    <p className={`text-xs m-0 leading-relaxed ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/70'}`}>
+                                    <p className={`text-xs m-0 leading-relaxed ${isLight ? 'text-[#1a2634]/70' : 'text-[#eaeaea]/65'}`}>
                                         {s.desc}
                                     </p>
                                 </div>
@@ -1781,27 +1976,33 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                 </section>
 
                 {/* 06 // THE 100-DAY STRUCTURE (3 PHASES) */}
-                <section className={`mb-24 border-t-2 pt-12 ${isLight ? 'border-[#1a2634]' : 'border-[#eaeaea]/20'}`}>
-                    <div className="grid gap-10 lg:grid-cols-12 mb-10 items-end">
+                <section className={`mb-36 sm:mb-44 border-t pt-20 sm:pt-28 ${isLight ? 'border-[#1a2634]/10' : 'border-white/[0.08]'}`}>
+                    <div className="grid gap-10 lg:grid-cols-12 mb-14 items-end">
                         <div className="lg:col-span-6">
-                            <div className={`font-mono text-xs font-bold uppercase tracking-[0.2em] mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                            <div className={`font-mono text-xs font-semibold uppercase tracking-[0.22em] mb-4 ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'}`}>
                                 06 // PROGRAMME TIMELINE
                             </div>
-                            <h2 className={`text-3xl sm:text-4xl font-bold tracking-tight ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
+                            <h2 className={`text-3xl sm:text-4xl font-bold tracking-tight ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                 {structTitle}
                             </h2>
                         </div>
                         <div className="lg:col-span-6">
-                            <div className="rounded-lg bg-[#1a2634] border-l-4 border-[#ffcc00] px-5 py-4 text-[#eaeaea] flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                                <span className="font-mono text-xs font-bold text-[#ffcc00] uppercase tracking-wider">
+                            <div
+                                className={`rounded-2xl border px-6 py-5 backdrop-blur-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
+                                    isLight
+                                        ? 'border-[#1a2634]/10 bg-white/60 text-[#1a2634]'
+                                        : 'border-white/10 bg-white/[0.03] text-[#eaeaea]'
+                                }`}
+                            >
+                                <span className="font-mono text-xs font-bold uppercase tracking-wider">
                                     {hardGatesTitle}
                                 </span>
-                                <span className="text-xs text-[#fee5b1]">{hardGatesDesc}</span>
+                                <span className={`text-xs ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/65'}`}>{hardGatesDesc}</span>
                             </div>
                         </div>
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-6">
+                    <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
                         {phases.map((p: any, i: number) => {
                             let targetText = p.target || ''
                             let descText = p.description || ''
@@ -1815,36 +2016,48 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                             return (
                                 <div
                                     key={i}
-                                    className={`rounded-xl border p-7 flex flex-col justify-between ${
+                                    className={`rounded-2xl border p-8 sm:p-10 flex flex-col justify-between backdrop-blur-xl ${
                                         isLight
-                                            ? 'bg-white border-[#1a2634]/20'
-                                            : 'bg-[#203e5f]/35 border-[#eaeaea]/15'
+                                            ? 'bg-white/60 border-[#1a2634]/[0.08]'
+                                            : 'bg-white/[0.025] border-white/[0.08]'
                                     }`}
                                 >
                                     <div>
-                                        <div className="flex items-center justify-between mb-4">
-                                            <span className={`font-mono text-xs font-bold uppercase tracking-wider ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                                        <div className="flex items-center justify-between mb-5">
+                                            <span className={`font-mono text-xs font-semibold uppercase tracking-wider ${isLight ? 'text-[#203e5f]/75' : 'text-[#eaeaea]/60'}`}>
                                                 {p.phase}
                                             </span>
-                                            <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-[#1a2634] text-[#fee5b1]">
+                                            <span
+                                                className={`font-mono text-xs font-semibold px-2.5 py-0.5 rounded-md border ${
+                                                    isLight
+                                                        ? 'bg-white/80 border-[#1a2634]/10 text-[#1a2634]/70'
+                                                        : 'bg-white/[0.04] border-white/10 text-[#eaeaea]/70'
+                                                }`}
+                                            >
                                                 P0{i + 1}
                                             </span>
                                         </div>
-                                        <h3 className={`text-2xl font-bold mb-5 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
+                                        <h3 className={`text-2xl font-bold mb-6 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                             {p.title}
                                         </h3>
                                         {targetText && (
-                                            <div className={`border-l-2 border-[#ffcc00] pl-3.5 py-1 mb-5`}>
-                                                <span className={`font-mono text-[10px] uppercase tracking-wider block ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
+                                            <div
+                                                className={`rounded-xl p-4 mb-6 border ${
+                                                    isLight
+                                                        ? 'bg-white/70 border-[#1a2634]/[0.06]'
+                                                        : 'bg-white/[0.03] border-white/[0.06]'
+                                                }`}
+                                            >
+                                                <span className={`font-mono text-[10px] uppercase tracking-wider block mb-1 ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/50'}`}>
                                                     Primary Objective
                                                 </span>
-                                                <span className={`text-sm font-bold ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
+                                                <span className={`text-sm font-bold ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                                     {targetText}
                                                 </span>
                                             </div>
                                         )}
                                     </div>
-                                    <p className={`text-sm m-0 leading-relaxed ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/75'}`}>
+                                    <p className={`text-sm m-0 leading-relaxed ${isLight ? 'text-[#1a2634]/75' : 'text-[#eaeaea]/70'}`}>
                                         {descText}
                                     </p>
                                 </div>
@@ -1854,44 +2067,50 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                 </section>
 
                 {/* 07 // INVESTOR REALITY & COMPARATIVE EVIDENCE */}
-                <section className={`mb-24 border-t-2 pt-12 ${isLight ? 'border-[#1a2634]' : 'border-[#eaeaea]/20'}`}>
-                    <div className="grid gap-12 lg:grid-cols-12">
+                <section className={`mb-36 sm:mb-44 border-t pt-20 sm:pt-28 ${isLight ? 'border-[#1a2634]/10' : 'border-white/[0.08]'}`}>
+                    <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
                         {/* Left Column: Comparative Evidence */}
                         <div className="lg:col-span-5 flex flex-col justify-between">
                             <div>
-                                <div className={`font-mono text-xs font-bold uppercase tracking-[0.2em] mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                                <div className={`font-mono text-xs font-semibold uppercase tracking-[0.22em] mb-4 ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'}`}>
                                     07 // CAPITAL DE-RISKING
                                 </div>
-                                <h2 className={`text-2xl sm:text-3xl font-bold leading-tight mb-4 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
+                                <h2 className={`text-2xl sm:text-3xl font-bold leading-tight mb-5 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                     {compEvidenceTitle}
                                 </h2>
-                                <p className={`text-sm mb-4 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/75'}`}>
+                                <p className={`text-sm mb-5 ${isLight ? 'text-[#1a2634]/75' : 'text-[#eaeaea]/70'}`}>
                                     {compEvidenceBody}
                                 </p>
-                                <div className="flex flex-wrap gap-2 mb-6">
+                                <div className="flex flex-wrap gap-2.5 mb-7">
                                     {compEvidencePoints.map((p: any, i: number) => (
                                         <span
                                             key={i}
-                                            className={`font-mono text-xs font-bold px-3 py-1.5 rounded border ${
+                                            className={`font-mono text-xs font-semibold px-3.5 py-1.5 rounded-lg border backdrop-blur-md ${
                                                 isLight
-                                                    ? 'border-[#1a2634]/20 bg-white text-[#1a2634]'
-                                                    : 'border-[#eaeaea]/15 bg-[#203e5f]/50 text-[#fee5b1]'
+                                                    ? 'border-[#1a2634]/10 bg-white/65 text-[#1a2634]'
+                                                    : 'border-white/10 bg-white/[0.04] text-[#eaeaea]'
                                             }`}
                                         >
                                             {p.text}
                                         </span>
                                     ))}
                                 </div>
-                                <p className={`text-sm leading-relaxed ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/80'}`}>
+                                <p className={`text-sm leading-relaxed ${isLight ? 'text-[#1a2634]/75' : 'text-[#eaeaea]/75'}`}>
                                     {compEvidenceFooter}
                                 </p>
                             </div>
 
-                            <div className="mt-8 rounded-xl bg-[#1a2634] p-6 border border-[#ffcc00]/30 text-[#eaeaea]">
-                                <div className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#ffcc00] mb-2">
+                            <div
+                                className={`mt-10 rounded-2xl p-7 border backdrop-blur-xl ${
+                                    isLight
+                                        ? 'bg-white/65 border-[#1a2634]/10 text-[#1a2634]'
+                                        : 'bg-white/[0.03] border-white/10 text-[#eaeaea]'
+                                }`}
+                            >
+                                <div className={`font-mono text-[10px] font-semibold uppercase tracking-widest mb-2 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
                                     INVESTOR OUTCOME
                                 </div>
-                                <p className="text-sm leading-relaxed m-0 text-[#eaeaea]/90">
+                                <p className={`text-sm leading-relaxed m-0 ${isLight ? 'text-[#1a2634]/85' : 'text-[#eaeaea]/85'}`}>
                                     {invFooter}
                                 </p>
                             </div>
@@ -1900,47 +2119,59 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                         {/* Right Column: Angels vs VCs */}
                         <div className="lg:col-span-7">
                             <div
-                                className={`rounded-xl border p-7 sm:p-9 h-full flex flex-col justify-between ${
-                                    isLight ? 'border-[#1a2634]/20 bg-white' : 'border-[#eaeaea]/15 bg-[#203e5f]/30'
+                                className={`rounded-2xl border p-8 sm:p-11 h-full flex flex-col justify-between backdrop-blur-xl ${
+                                    isLight ? 'border-[#1a2634]/[0.08] bg-white/60' : 'border-white/[0.08] bg-white/[0.025]'
                                 }`}
                             >
                                 <div>
-                                    <h3 className={`text-2xl sm:text-3xl font-bold mb-2 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
+                                    <h3 className={`text-2xl sm:text-3xl font-bold mb-3 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                         {invTitle}
                                     </h3>
-                                    <p className={`text-sm italic mb-8 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
+                                    <p className={`text-sm italic mb-10 ${isLight ? 'text-[#1a2634]/70' : 'text-[#eaeaea]/65'}`}>
                                         {invIntro}
                                     </p>
 
-                                    <div className="grid sm:grid-cols-2 gap-8">
+                                    <div className="grid sm:grid-cols-2 gap-10">
                                         <div>
-                                            <div className="font-mono text-xs font-bold uppercase tracking-wider text-[#ffcc00] bg-[#1a2634] inline-block px-2.5 py-1 rounded mb-4">
+                                            <div
+                                                className={`font-mono text-xs font-semibold uppercase tracking-wider inline-block px-3 py-1 rounded-lg border mb-5 ${
+                                                    isLight
+                                                        ? 'bg-white/80 border-[#1a2634]/10 text-[#203e5f]'
+                                                        : 'bg-white/[0.05] border-white/10 text-[#eaeaea]/80'
+                                                }`}
+                                            >
                                                 01 / BUSINESS ANGELS
                                             </div>
-                                            <h4 className={`text-lg font-bold mb-4 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
+                                            <h4 className={`text-lg font-bold mb-4 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                                 {angelsTitle}
                                             </h4>
-                                            <ul className="space-y-3 pl-0 list-none">
+                                            <ul className="space-y-3.5 pl-0 list-none">
                                                 {angelsPoints.map((p: any, i: number) => (
-                                                    <li key={i} className="flex items-start gap-2.5 text-sm">
-                                                        <span className="text-[#ffcc00] font-bold">—</span>
-                                                        <span className={isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/85'}>{p.text}</span>
+                                                    <li key={i} className="flex items-start gap-3 text-sm">
+                                                        <span className={isLight ? 'text-[#203e5f]/60' : 'text-[#eaeaea]/45'}>—</span>
+                                                        <span className={isLight ? 'text-[#1a2634]/80' : 'text-[#eaeaea]/80'}>{p.text}</span>
                                                     </li>
                                                 ))}
                                             </ul>
                                         </div>
 
                                         <div>
-                                            <div className="font-mono text-xs font-bold uppercase tracking-wider text-[#fee5b1] bg-[#203e5f] border border-[#ffcc00]/30 inline-block px-2.5 py-1 rounded mb-4">
+                                            <div
+                                                className={`font-mono text-xs font-semibold uppercase tracking-wider inline-block px-3 py-1 rounded-lg border mb-5 ${
+                                                    isLight
+                                                        ? 'bg-emerald-500/10 border-emerald-600/20 text-emerald-800'
+                                                        : 'bg-emerald-400/10 border-emerald-400/25 text-emerald-300'
+                                                }`}
+                                            >
                                                 02 / VENTURE CAPITAL
                                             </div>
-                                            <h4 className={`text-lg font-bold mb-4 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
+                                            <h4 className={`text-lg font-bold mb-4 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                                 {vcsTitle}
                                             </h4>
-                                            <ul className="space-y-3 pl-0 list-none">
+                                            <ul className="space-y-3.5 pl-0 list-none">
                                                 {vcsPoints.map((p: any, i: number) => (
-                                                    <li key={i} className="flex items-start gap-2.5 text-sm">
-                                                        <span className="text-[#ffcc00] font-bold">✓</span>
+                                                    <li key={i} className="flex items-start gap-3 text-sm">
+                                                        <span className={isLight ? 'text-emerald-700 font-bold' : 'text-emerald-400 font-bold'}>✓</span>
                                                         <span className={isLight ? 'text-[#1a2634] font-medium' : 'text-[#eaeaea]/90'}>{p.text}</span>
                                                     </li>
                                                 ))}
@@ -1954,52 +2185,58 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                 </section>
 
                 {/* 08 // LEARNING SCIENCE, WHY STRONG & METRICS — Editorial Ledger */}
-                <section className={`mb-24 border-t-2 pt-12 ${isLight ? 'border-[#1a2634]' : 'border-[#eaeaea]/20'}`}>
-                    <div className="grid gap-12 lg:grid-cols-12 mb-16">
+                <section className={`mb-36 sm:mb-44 border-t pt-20 sm:pt-28 ${isLight ? 'border-[#1a2634]/10' : 'border-white/[0.08]'}`}>
+                    <div className="grid gap-14 lg:grid-cols-12 lg:gap-16 mb-20">
                         <div className="lg:col-span-6">
-                            <div className={`font-mono text-xs font-bold uppercase tracking-[0.2em] mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                            <div className={`font-mono text-xs font-semibold uppercase tracking-[0.22em] mb-4 ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'}`}>
                                 08 // METHODOLOGY &amp; METRICS
                             </div>
-                            <h2 className={`text-2xl sm:text-3xl font-bold mb-3 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
+                            <h2 className={`text-2xl sm:text-3xl font-bold mb-4 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                 {sciTitle}
                             </h2>
-                            <p className={`text-sm mb-6 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/75'}`}>
+                            <p className={`text-sm mb-8 ${isLight ? 'text-[#1a2634]/75' : 'text-[#eaeaea]/70'}`}>
                                 {sciSubtitle}
                             </p>
-                            <div className={`divide-y border-t border-b ${isLight ? 'divide-[#1a2634]/15 border-[#1a2634]/15' : 'divide-[#eaeaea]/12 border-[#eaeaea]/12'}`}>
+                            <div className={`divide-y border-t border-b ${isLight ? 'divide-[#1a2634]/10 border-[#1a2634]/10' : 'divide-white/10 border-white/10'}`}>
                                 {sciPoints.map((p: any, i: number) => (
-                                    <div key={i} className="py-3 flex items-center justify-between gap-4 text-sm font-semibold">
+                                    <div key={i} className="py-4 flex items-center justify-between gap-4 text-sm font-medium">
                                         <span>{p.text}</span>
-                                        <span className={`font-mono text-xs ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                                        <span className={`font-mono text-xs ${isLight ? 'text-[#1a2634]/45' : 'text-[#eaeaea]/45'}`}>
                                             0{i + 1}
                                         </span>
                                     </div>
                                 ))}
                             </div>
-                            <p className={`mt-4 text-xs italic ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
+                            <p className={`mt-6 text-xs italic ${isLight ? 'text-[#1a2634]/70' : 'text-[#eaeaea]/60'}`}>
                                 {sciFooter}
                             </p>
                         </div>
 
-                        <div className="lg:col-span-6 flex flex-col justify-between gap-8">
+                        <div className="lg:col-span-6 flex flex-col justify-between gap-10">
                             <div>
-                                <h3 className={`text-xl font-bold mb-2 ${isLight ? 'text-[#1a2634]' : 'text-[#ffcc00]'}`}>
+                                <h3 className={`text-xl font-bold mb-3 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                     {whyStrongTitle}
                                 </h3>
-                                <p className={`text-sm mb-4 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/75'}`}>
+                                <p className={`text-sm mb-5 ${isLight ? 'text-[#1a2634]/75' : 'text-[#eaeaea]/70'}`}>
                                     {whyStrongIntro}
                                 </p>
-                                <div className="space-y-2.5">
+                                <div className="space-y-3.5">
                                     {whyStrongPoints.map((p: any, i: number) => (
                                         <div
                                             key={i}
-                                            className={`p-4 rounded-lg border flex items-start gap-3 text-sm font-medium ${
+                                            className={`p-5 rounded-2xl border backdrop-blur-xl flex items-start gap-3.5 text-sm font-medium ${
                                                 isLight
-                                                    ? 'bg-white border-[#1a2634]/15 text-[#1a2634]'
-                                                    : 'bg-[#203e5f]/40 border-[#eaeaea]/12 text-[#eaeaea]'
+                                                    ? 'bg-white/60 border-[#1a2634]/[0.08] text-[#1a2634]'
+                                                    : 'bg-white/[0.025] border-white/[0.08] text-[#eaeaea]'
                                             }`}
                                         >
-                                            <span className="font-mono text-xs font-bold text-[#ffcc00] bg-[#1a2634] px-2 py-0.5 rounded">
+                                            <span
+                                                className={`font-mono text-xs font-semibold px-2.5 py-0.5 rounded-md border ${
+                                                    isLight
+                                                        ? 'bg-white border-[#1a2634]/10 text-[#203e5f]'
+                                                        : 'bg-white/[0.05] border-white/10 text-[#eaeaea]/75'
+                                                }`}
+                                            >
                                                 0{i + 1}
                                             </span>
                                             <span>{p.text}</span>
@@ -2009,17 +2246,17 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                             </div>
 
                             <div>
-                                <h3 className={`text-xl font-bold mb-3 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
+                                <h3 className={`text-xl font-bold mb-4 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                     {whatDiffTitle}
                                 </h3>
-                                <div className="flex flex-wrap gap-2">
+                                <div className="flex flex-wrap gap-2.5">
                                     {whatDiffPoints.map((p: any, i: number) => (
                                         <div
                                             key={i}
-                                            className={`px-3.5 py-2 rounded-lg border text-xs font-bold ${
+                                            className={`px-4 py-2 rounded-xl border text-xs font-semibold backdrop-blur-md ${
                                                 isLight
-                                                    ? 'bg-[#fee5b1]/60 border-[#1a2634]/20 text-[#1a2634]'
-                                                    : 'bg-[#1a2634] border-[#ffcc00]/30 text-[#fee5b1]'
+                                                    ? 'bg-white/65 border-[#1a2634]/10 text-[#1a2634]'
+                                                    : 'bg-white/[0.04] border-white/10 text-[#eaeaea]/85'
                                             }`}
                                         >
                                             {p.text}
@@ -2030,34 +2267,34 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                         </div>
                     </div>
 
-                    {/* Core Metrics Table */}
+                    {/* Core Metrics Grid */}
                     <div
-                        className={`rounded-xl border p-7 sm:p-9 ${
-                            isLight ? 'border-[#1a2634]/20 bg-white' : 'border-[#eaeaea]/15 bg-[#203e5f]/25'
+                        className={`rounded-2xl border p-8 sm:p-11 backdrop-blur-xl ${
+                            isLight ? 'border-[#1a2634]/[0.08] bg-white/55' : 'border-white/[0.08] bg-white/[0.02]'
                         }`}
                     >
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-current/10">
-                            <h3 className={`text-2xl font-bold m-0 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-8 pb-5 border-b border-current/10">
+                            <h3 className={`text-2xl font-bold m-0 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                 {metricsTitle}
                             </h3>
-                            <span className={`font-mono text-xs font-bold uppercase ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                            <span className={`font-mono text-xs font-semibold uppercase ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'}`}>
                                 8 TELEMETRY INDICATORS
                             </span>
                         </div>
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
                             {metricsPoints.map((p: any, i: number) => (
                                 <div
                                     key={i}
-                                    className={`p-4 rounded-lg border flex flex-col justify-between ${
+                                    className={`p-5 rounded-xl border flex flex-col justify-between backdrop-blur-md ${
                                         isLight
-                                            ? 'border-[#1a2634]/12 bg-[#eaeaea]/40 text-[#1a2634]'
-                                            : 'border-[#eaeaea]/10 bg-[#1a2634]/70 text-[#eaeaea]'
+                                            ? 'border-[#1a2634]/[0.08] bg-white/70 text-[#1a2634]'
+                                            : 'border-white/[0.08] bg-white/[0.03] text-[#eaeaea]'
                                     }`}
                                 >
-                                    <span className={`font-mono text-[10px] font-bold mb-2 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                                    <span className={`font-mono text-[10px] font-semibold mb-2.5 ${isLight ? 'text-[#203e5f]/65' : 'text-[#eaeaea]/45'}`}>
                                         KPI / 0{i + 1}
                                     </span>
-                                    <span className="text-sm font-semibold leading-snug">{p.text}</span>
+                                    <span className="text-sm font-medium leading-snug">{p.text}</span>
                                 </div>
                             ))}
                         </div>
@@ -2067,41 +2304,45 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                 <FaqSection settings={settings} theme={theme} />
 
                 {/* 10 // PRICING & LEGAL — Required for PayNow / Polish e-commerce compliance */}
-                <section id="pricing" className={`mb-16 border-t-2 pt-12 ${isLight ? 'border-[#1a2634]' : 'border-[#eaeaea]/20'}`}>
-                    <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+                <section id="pricing" className={`mb-20 border-t pt-20 sm:pt-28 ${isLight ? 'border-[#1a2634]/10' : 'border-white/[0.08]'}`}>
+                    <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-6">
                         <div>
-                            <div className={`font-mono text-xs font-bold uppercase tracking-[0.2em] mb-2 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                            <div className={`font-mono text-xs font-semibold uppercase tracking-[0.22em] mb-3 ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'}`}>
                                 10 // COMMERCIAL TERMS &amp; ACCESS
                             </div>
-                            <h2 className={`text-3xl sm:text-4xl font-bold m-0 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
+                            <h2 className={`text-3xl sm:text-4xl font-bold m-0 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                 {pricing[pricingLang].sectionTitle}
                             </h2>
                         </div>
                         <div
-                            className={`inline-flex self-start items-center gap-1 border rounded-lg p-1 ${
-                                isLight ? 'bg-white border-[#1a2634]/20' : 'bg-[#203e5f]/50 border-[#eaeaea]/15'
+                            className={`inline-flex self-start items-center gap-1 border rounded-xl p-1 backdrop-blur-md ${
+                                isLight ? 'bg-white/60 border-[#1a2634]/12' : 'bg-white/[0.04] border-white/12'
                             }`}
                         >
                             <button
                                 onClick={() => setPricingLang('en')}
-                                className={`px-3.5 py-1.5 rounded text-xs font-bold transition-colors cursor-pointer ${
+                                className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-colors cursor-pointer ${
                                     pricingLang === 'en'
-                                        ? 'bg-[#ffcc00] text-[#1a2634]'
+                                        ? isLight
+                                            ? 'bg-[#1a2634] text-white'
+                                            : 'bg-white/15 text-white'
                                         : isLight
-                                          ? 'text-[#203e5f] hover:text-[#1a2634]'
-                                          : 'text-[#eaeaea]/70 hover:text-[#eaeaea]'
+                                          ? 'text-[#1a2634]/65 hover:text-[#1a2634]'
+                                          : 'text-[#eaeaea]/65 hover:text-white'
                                 }`}
                             >
                                 EN (EUR)
                             </button>
                             <button
                                 onClick={() => setPricingLang('pl')}
-                                className={`px-3.5 py-1.5 rounded text-xs font-bold transition-colors cursor-pointer ${
+                                className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-colors cursor-pointer ${
                                     pricingLang === 'pl'
-                                        ? 'bg-[#ffcc00] text-[#1a2634]'
+                                        ? isLight
+                                            ? 'bg-[#1a2634] text-white'
+                                            : 'bg-white/15 text-white'
                                         : isLight
-                                          ? 'text-[#203e5f] hover:text-[#1a2634]'
-                                          : 'text-[#eaeaea]/70 hover:text-[#eaeaea]'
+                                          ? 'text-[#1a2634]/65 hover:text-[#1a2634]'
+                                          : 'text-[#eaeaea]/65 hover:text-white'
                                 }`}
                             >
                                 PL (PLN)
@@ -2110,87 +2351,103 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                     </div>
 
                     <div
-                        className={`rounded-xl border overflow-hidden ${
+                        className={`rounded-2xl border overflow-hidden backdrop-blur-2xl ${
                             isLight
-                                ? 'bg-white border-[#1a2634]/20 shadow-lg'
-                                : 'bg-[#203e5f]/35 border-[#eaeaea]/15'
+                                ? 'bg-white/65 border-[#1a2634]/10 shadow-xl shadow-[#1a2634]/[0.04]'
+                                : 'bg-white/[0.025] border-white/10 shadow-2xl shadow-black/25'
                         }`}
                     >
-                        <div className={`grid lg:grid-cols-12 border-b ${isLight ? 'border-[#1a2634]/15' : 'border-[#eaeaea]/12'}`}>
-                            <div className="lg:col-span-7 p-8 sm:p-10 flex flex-col justify-between">
+                        <div className={`grid lg:grid-cols-12 border-b ${isLight ? 'border-[#1a2634]/10' : 'border-white/10'}`}>
+                            <div className="lg:col-span-7 p-8 sm:p-12 flex flex-col justify-between">
                                 <div>
-                                    <div className="font-mono text-xs font-bold uppercase tracking-wider text-[#ffcc00] bg-[#1a2634] inline-block px-3 py-1 rounded mb-4">
+                                    <div
+                                        className={`font-mono text-xs font-semibold uppercase tracking-wider inline-block px-3.5 py-1 rounded-lg border mb-5 ${
+                                            isLight
+                                                ? 'bg-white/80 border-[#1a2634]/10 text-[#203e5f]'
+                                                : 'bg-white/[0.05] border-white/10 text-[#fee5b1]'
+                                        }`}
+                                    >
                                         FULL 100-DAY COHORT LICENSE
                                     </div>
-                                    <h3 className={`text-2xl sm:text-3xl font-bold mb-3 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
+                                    <h3 className={`text-2xl sm:text-3xl font-bold mb-4 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                         {pricing[pricingLang].serviceName}
                                     </h3>
-                                    <p className={`text-sm leading-relaxed mb-6 max-w-xl ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/75'}`}>
+                                    <p className={`text-sm sm:text-base leading-relaxed mb-8 max-w-xl ${isLight ? 'text-[#1a2634]/75' : 'text-[#eaeaea]/70'}`}>
                                         {pricing[pricingLang].serviceDescription}
                                     </p>
-                                    <ul className="space-y-3 pl-0 list-none">
+                                    <ul className="space-y-3.5 pl-0 list-none">
                                         {pricing[pricingLang].features.map((f: any, i: number) => (
                                             <li
                                                 key={i}
-                                                className={`flex items-center gap-3 text-sm font-semibold ${
+                                                className={`flex items-center gap-3.5 text-sm font-medium ${
                                                     isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'
                                                 }`}
                                             >
-                                                <span className="h-2 w-2 bg-[#ffcc00] shrink-0" />
+                                                <span className={isLight ? 'text-emerald-700 font-bold' : 'text-emerald-400 font-bold'}>✓</span>
                                                 <span>{f.text}</span>
                                             </li>
                                         ))}
                                     </ul>
                                 </div>
 
-                                <div className={`mt-8 pt-6 border-t space-y-1 ${isLight ? 'border-[#1a2634]/12' : 'border-[#eaeaea]/10'}`}>
-                                    <p className={`text-xs ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/75'}`}>
+                                <div className={`mt-10 pt-6 border-t space-y-1.5 ${isLight ? 'border-[#1a2634]/10' : 'border-white/10'}`}>
+                                    <p className={`text-xs ${isLight ? 'text-[#1a2634]/70' : 'text-[#eaeaea]/65'}`}>
                                         {pricing[pricingLang].individualNote}
                                     </p>
-                                    <p className={`text-xs font-bold ${isLight ? 'text-[#1a2634]' : 'text-[#fee5b1]'}`}>
+                                    <p className={`text-xs font-semibold ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/85'}`}>
                                         {pricing[pricingLang].partnerNote}
                                     </p>
                                 </div>
                             </div>
 
-                            <div className="lg:col-span-5 p-8 sm:p-10 bg-[#1a2634] text-[#eaeaea] flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-[#eaeaea]/12">
+                            <div
+                                className={`lg:col-span-5 p-8 sm:p-12 flex flex-col justify-between border-t lg:border-t-0 lg:border-l backdrop-blur-xl ${
+                                    isLight
+                                        ? 'bg-white/55 border-[#1a2634]/10 text-[#1a2634]'
+                                        : 'bg-white/[0.03] border-white/10 text-[#eaeaea]'
+                                }`}
+                            >
                                 <div>
                                     <div className="flex items-center justify-between mb-4">
-                                        <span className="font-mono text-xs uppercase tracking-wider text-[#fee5b1]">
+                                        <span className={`font-mono text-xs uppercase tracking-wider ${isLight ? 'text-[#1a2634]/60' : 'text-[#eaeaea]/60'}`}>
                                             ONE-TIME FEE
                                         </span>
                                         {logoUrl && (
                                             <img src={logoUrl} alt={companyName} className="h-7 object-contain" />
                                         )}
                                     </div>
-                                    <div className="font-mono text-4xl sm:text-5xl font-bold text-[#ffcc00]">
+                                    <div className={`font-mono text-4xl sm:text-5xl font-bold ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                         {pricingLang === 'en' ? pricingPriceDisplayEur : pricingPriceDisplay}
                                     </div>
-                                    <div className="text-xs text-[#fee5b1] mt-1">
+                                    <div className={`text-xs mt-1.5 ${isLight ? 'text-[#1a2634]/65' : 'text-[#eaeaea]/60'}`}>
                                         {pricing[pricingLang].vatInfo}
                                     </div>
 
-                                    <div className="mt-6 grid gap-2.5">
+                                    <div className="mt-8 grid gap-3">
                                         <button
                                             onClick={addProductToCart}
-                                            className="w-full rounded-lg px-5 py-3.5 text-xs font-extrabold uppercase tracking-wider text-[#1a2634] bg-[#ffcc00] hover:bg-[#fee5b1] transition-colors cursor-pointer"
+                                            className="w-full rounded-xl px-5 py-4 text-xs font-bold uppercase tracking-wider text-[#1a2634] bg-[#ffcc00] hover:bg-[#fee5b1] transition-colors cursor-pointer"
                                         >
                                             {pricingLang === 'pl' ? 'Dodaj do koszyka →' : 'Add to cart →'}
                                         </button>
                                         <Link
                                             href="/cart"
-                                            className="w-full rounded-lg px-5 py-3 text-xs font-bold uppercase tracking-wider border border-[#eaeaea]/20 text-[#eaeaea] hover:border-[#ffcc00] hover:text-[#ffcc00] transition-colors text-center"
+                                            className={`w-full rounded-xl px-5 py-3.5 text-xs font-semibold uppercase tracking-wider border transition-colors text-center ${
+                                                isLight
+                                                    ? 'border-[#1a2634]/15 bg-white/60 text-[#1a2634] hover:bg-white'
+                                                    : 'border-white/15 bg-white/[0.04] text-[#eaeaea] hover:bg-white/[0.09]'
+                                            }`}
                                         >
                                             {pricingLang === 'pl' ? 'Zobacz koszyk' : 'View cart'}
                                         </Link>
                                     </div>
                                 </div>
 
-                                <div className="mt-8 pt-5 border-t border-[#eaeaea]/12">
-                                    <div className="text-[11px] text-[#eaeaea]/70">
+                                <div className={`mt-10 pt-6 border-t ${isLight ? 'border-[#1a2634]/10' : 'border-white/10'}`}>
+                                    <div className={`text-[11px] ${isLight ? 'text-[#1a2634]/70' : 'text-[#eaeaea]/65'}`}>
                                         {pricing[pricingLang].paymentMethods}
                                     </div>
-                                    <p className="text-[11px] text-[#eaeaea]/55 mt-1">
+                                    <p className={`text-[11px] mt-1 ${isLight ? 'text-[#1a2634]/55' : 'text-[#eaeaea]/50'}`}>
                                         {pricingLang === 'pl'
                                             ? 'Podmiotem świadczącym obsługę płatności online w zakresie płatności kartami jest Autopay S.A.'
                                             : 'Card payments are handled online by Autopay S.A.'}
@@ -2198,9 +2455,9 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                                     <img
                                         src="/paynow/banner-payment-methods.png"
                                         alt="Paynow, BLIK, Visa, Mastercard and Google Pay payment methods"
-                                        className="mt-3 w-full h-auto rounded-lg border border-[#eaeaea]/10"
+                                        className={`mt-3.5 w-full h-auto rounded-xl border ${isLight ? 'border-[#1a2634]/10' : 'border-white/10'}`}
                                     />
-                                    <div className="mt-3 flex items-center gap-3">
+                                    <div className="mt-3.5 flex items-center gap-3">
                                         <img
                                             src="/paynow/banner-autopay-cards.png"
                                             alt="Visa, Mastercard"
@@ -2219,30 +2476,30 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                         {/* Legal info grid */}
                         <div
                             className={`grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x ${
-                                isLight ? 'divide-[#1a2634]/12 bg-[#eaeaea]/40' : 'divide-[#eaeaea]/10 bg-[#1a2634]/40'
+                                isLight ? 'divide-[#1a2634]/10 bg-white/40' : 'divide-white/10 bg-white/[0.015]'
                             }`}
                         >
-                            <div className="p-6">
-                                <h4 className={`font-mono text-xs font-bold uppercase tracking-wider mb-2 ${isLight ? 'text-[#1a2634]' : 'text-[#ffcc00]'}`}>
+                            <div className="p-7 sm:p-8">
+                                <h4 className={`font-mono text-xs font-semibold uppercase tracking-wider mb-2 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                     {pricing[pricingLang].activationLabel}
                                 </h4>
-                                <p className={`text-xs leading-relaxed m-0 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/75'}`}>
+                                <p className={`text-xs leading-relaxed m-0 ${isLight ? 'text-[#1a2634]/70' : 'text-[#eaeaea]/65'}`}>
                                     {pricing[pricingLang].activationInfo}
                                 </p>
                             </div>
-                            <div className="p-6">
-                                <h4 className={`font-mono text-xs font-bold uppercase tracking-wider mb-2 ${isLight ? 'text-[#1a2634]' : 'text-[#ffcc00]'}`}>
+                            <div className="p-7 sm:p-8">
+                                <h4 className={`font-mono text-xs font-semibold uppercase tracking-wider mb-2 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                     {pricing[pricingLang].returnLabel}
                                 </h4>
-                                <p className={`text-xs leading-relaxed m-0 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/75'}`}>
+                                <p className={`text-xs leading-relaxed m-0 ${isLight ? 'text-[#1a2634]/70' : 'text-[#eaeaea]/65'}`}>
                                     {pricing[pricingLang].returnPolicy}
                                 </p>
                             </div>
-                            <div className="p-6">
-                                <h4 className={`font-mono text-xs font-bold uppercase tracking-wider mb-2 ${isLight ? 'text-[#1a2634]' : 'text-[#ffcc00]'}`}>
+                            <div className="p-7 sm:p-8">
+                                <h4 className={`font-mono text-xs font-semibold uppercase tracking-wider mb-2 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                     {pricing[pricingLang].complaintLabel}
                                 </h4>
-                                <p className={`text-xs leading-relaxed m-0 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/75'}`}>
+                                <p className={`text-xs leading-relaxed m-0 ${isLight ? 'text-[#1a2634]/70' : 'text-[#eaeaea]/65'}`}>
                                     {pricing[pricingLang].complaintProcedure}
                                 </p>
                             </div>
@@ -2257,8 +2514,8 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                             )
                             const text = pricingLang === 'pl' ? <>Pełna treść warunków dostępna w: </> : <>Full terms available in: </>
                             return (
-                                <div className={`px-8 py-3.5 border-t text-left flex items-center justify-between ${isLight ? 'border-[#1a2634]/12' : 'border-[#eaeaea]/10'}`}>
-                                    <p className={`text-[11px] m-0 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/65'}`}>
+                                <div className={`px-8 py-4 border-t text-left flex items-center justify-between ${isLight ? 'border-[#1a2634]/10' : 'border-white/10'}`}>
+                                    <p className={`text-[11px] m-0 ${isLight ? 'text-[#1a2634]/70' : 'text-[#eaeaea]/60'}`}>
                                         {text}
                                         {termsLink.href ? (
                                             <a
@@ -2266,7 +2523,7 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className={`font-bold underline underline-offset-2 transition-colors ${
-                                                    isLight ? 'text-[#1a2634] hover:text-[#203e5f]' : 'text-[#ffcc00] hover:text-[#fee5b1]'
+                                                    isLight ? 'text-[#1a2634] hover:text-[#203e5f]' : 'text-white hover:text-[#fee5b1]'
                                                 }`}
                                             >
                                                 {termsLink.label}
@@ -2275,8 +2532,8 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                                             <span className="font-semibold">{termsLink.label}</span>
                                         )}
                                     </p>
-                                    <span className={`font-mono text-[10px] ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/40'}`}>
-                                        MESGA // PAYNOW COMPLIant
+                                    <span className={`font-mono text-[10px] ${isLight ? 'text-[#1a2634]/45' : 'text-[#eaeaea]/40'}`}>
+                                        MESGA // PAYNOW COMPLIANT
                                     </span>
                                 </div>
                             )
