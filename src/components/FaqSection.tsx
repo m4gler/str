@@ -25,56 +25,64 @@ export default function FaqSection({ settings, variant = 'landing', theme = 'dar
     return (
         <section
             id="faq"
-            className={`not-prose ${isStandalonePage ? 'mb-0' : 'mb-36 sm:mb-48'}`}
+            className={`not-prose ${isStandalonePage ? 'mb-0' : 'mb-32 sm:mb-40'}`}
             itemScope
             itemType="https://schema.org/FAQPage"
         >
             <div
-                className={`border-t pt-16 sm:pt-24 ${
-                    isLight ? 'border-[#203e5f]/20' : 'border-[#ffcc00]/20'
+                className={`border-t-2 pt-16 sm:pt-20 ${
+                    isLight ? 'border-[#203e5f]/20' : 'border-[#203e5f]'
                 }`}
             >
-                <div className="mb-14 max-w-3xl">
-                    <div
-                        className={`text-xs font-bold uppercase tracking-widest mb-3 ${
-                            isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'
-                        }`}
-                    >
-                        {label}
+                <div className="grid gap-10 md:grid-cols-12 mb-12 items-end">
+                    <div className="md:col-span-6">
+                        <div
+                            className={`text-xs font-bold uppercase tracking-widest mb-3 ${
+                                isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'
+                            }`}
+                        >
+                            {label}
+                        </div>
+                        <h2
+                            className={`m-0 text-3xl font-bold leading-tight tracking-tight sm:text-5xl ${
+                                isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'
+                            }`}
+                        >
+                            {title}
+                        </h2>
                     </div>
-                    <h2
-                        className={`m-0 text-3xl font-bold leading-tight tracking-tight sm:text-5xl ${
-                            isLight ? 'text-[#1a2634]' : 'text-white'
-                        }`}
-                    >
-                        {title}
-                    </h2>
-                    <p
-                        className={`mt-5 text-base sm:text-lg leading-relaxed ${
-                            isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]/80'
-                        }`}
-                    >
-                        {intro}
-                    </p>
+                    <div className="md:col-span-6">
+                        <p
+                            className={`m-0 text-base leading-relaxed ${
+                                isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'
+                            }`}
+                        >
+                            {intro}
+                        </p>
+                    </div>
                 </div>
 
                 <div
-                    className={`divide-y border-t border-b ${
+                    className={`divide-y border-t-2 border-b-2 ${
                         isLight
                             ? 'divide-[#203e5f]/15 border-[#203e5f]/20'
-                            : 'divide-[#eaeaea]/12 border-[#eaeaea]/15'
+                            : 'divide-[#203e5f] border-[#203e5f]'
                     }`}
                 >
                     {faq.items.map((item, index) => (
                         <article
                             key={`${item.question}-${index}`}
-                            className="py-8 sm:py-10 grid gap-4 lg:grid-cols-12 lg:gap-12 items-baseline"
+                            className="py-7 sm:py-9 grid gap-4 md:grid-cols-12 md:gap-10 items-baseline"
                             itemProp="mainEntity"
                             itemScope
                             itemType="https://schema.org/Question"
                         >
-                            <div className="lg:col-span-5 flex items-baseline gap-4">
-                                <span className={`text-xs font-bold shrink-0 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                            <div className="md:col-span-5 flex items-baseline gap-4">
+                                <span
+                                    className={`text-xs font-bold px-2 py-0.5 rounded shrink-0 ${
+                                        isLight ? 'bg-[#203e5f] text-[#ffcc00]' : 'bg-[#203e5f] text-[#ffcc00]'
+                                    }`}
+                                >
                                     0{index + 1}
                                 </span>
                                 <h3
@@ -87,7 +95,7 @@ export default function FaqSection({ settings, variant = 'landing', theme = 'dar
                                 </h3>
                             </div>
                             <div
-                                className="lg:col-span-7"
+                                className="md:col-span-7"
                                 itemProp="acceptedAnswer"
                                 itemScope
                                 itemType="https://schema.org/Answer"
@@ -95,7 +103,7 @@ export default function FaqSection({ settings, variant = 'landing', theme = 'dar
                                 <p
                                     itemProp="text"
                                     className={`m-0 text-base leading-relaxed ${
-                                        isLight ? 'text-[#1a2634]/80' : 'text-[#eaeaea]/80'
+                                        isLight ? 'text-[#1a2634]/85' : 'text-[#eaeaea]/85'
                                     }`}
                                 >
                                     {item.answer}
@@ -106,7 +114,7 @@ export default function FaqSection({ settings, variant = 'landing', theme = 'dar
                 </div>
 
                 <div className="mt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <p className={`text-xs m-0 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]/70'}`}>
+                    <p className={`text-xs m-0 font-medium ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]/80'}`}>
                         {scope}
                     </p>
                     {!isStandalonePage && (

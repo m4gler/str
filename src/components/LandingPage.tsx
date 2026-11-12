@@ -161,8 +161,8 @@ const DEFAULT_SOCIAL_PROOF_QUOTES = [
     },
 ] as const
 
-const mentorAvatarFrameClass = 'mb-4 flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border border-[#ffcc00]/35 bg-[#1a2634]'
-const mentorLogoFrameClass = 'mb-4 flex h-14 w-28 items-center justify-center overflow-hidden rounded-lg border border-[#ffcc00]/35 bg-[#1a2634] px-3 py-2'
+const mentorAvatarFrameClass = 'mb-4 flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border-2 border-[#ffcc00] bg-[#1a2634]'
+const mentorLogoFrameClass = 'mb-4 flex h-14 w-28 items-center justify-center overflow-hidden rounded-md border border-[#ffcc00]/40 bg-[#1a2634] px-3 py-2'
 
 export interface MentorEntry {
     id?: number | string
@@ -194,21 +194,21 @@ function PartnersShowcase({ settings, partners, theme }: { settings: any; partne
             : storedSubtitle
 
     return (
-        <section className={`mb-36 sm:mb-48 border-t pt-16 sm:pt-24 ${isLight ? 'border-[#203e5f]/20' : 'border-[#ffcc00]/20'}`}>
-            <div className="grid gap-10 lg:grid-cols-12 mb-14 items-baseline">
-                <div className="lg:col-span-6">
-                    <h2 className={`text-3xl sm:text-4xl font-bold leading-tight tracking-tight ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+        <section className={`mb-32 sm:mb-40 border-t-2 pt-16 sm:pt-20 ${isLight ? 'border-[#203e5f]/20' : 'border-[#203e5f]'}`}>
+            <div className="grid gap-10 md:grid-cols-12 mb-12 items-baseline">
+                <div className="md:col-span-6">
+                    <h2 className={`text-3xl sm:text-4xl font-bold leading-tight tracking-tight ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
                         {sectionTitle}
                     </h2>
                 </div>
-                <div className="lg:col-span-6">
-                    <p className={`text-base leading-relaxed ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]/85'}`}>
+                <div className="md:col-span-6">
+                    <p className={`text-base leading-relaxed ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
                         {sectionSubtitle}
                     </p>
                 </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
+            <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4">
                 {partners.map((partner) =>
                     partner.websiteUrl ? (
                         <a
@@ -216,10 +216,10 @@ function PartnersShowcase({ settings, partners, theme }: { settings: any; partne
                             href={partner.websiteUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className={`group relative flex min-h-28 items-center justify-center overflow-hidden rounded-lg border px-6 py-5 transition-all duration-200 ${
+                            className={`group relative flex min-h-28 items-center justify-center overflow-hidden rounded-lg border px-6 py-5 transition-colors ${
                                 isLight
-                                    ? 'border-[#203e5f]/20 bg-[#1a2634] hover:border-[#ffcc00]'
-                                    : 'border-[#ffcc00]/20 bg-[#203e5f]/40 hover:border-[#ffcc00] hover:bg-[#203e5f]/65'
+                                    ? 'border-[#203e5f]/25 bg-[#1a2634] hover:border-[#ffcc00]'
+                                    : 'border-[#203e5f] bg-[#203e5f]/60 hover:border-[#ffcc00] hover:bg-[#203e5f]'
                             }`}
                             aria-label={`Open ${partner.name}`}
                         >
@@ -227,17 +227,17 @@ function PartnersShowcase({ settings, partners, theme }: { settings: any; partne
                                 <img
                                     src={partner.logoUrl}
                                     alt={partner.name}
-                                    className="max-h-14 w-full object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+                                    className="max-h-14 w-full object-contain"
                                     loading="lazy"
                                 />
                             ) : (
-                                <span className="text-sm font-semibold text-[#eaeaea]">{partner.name}</span>
+                                <span className="text-sm font-bold text-[#eaeaea]">{partner.name}</span>
                             )}
                         </a>
                     ) : (
                         <div
                             key={partner.id}
-                            className="flex min-h-28 items-center justify-center overflow-hidden rounded-lg border border-[#ffcc00]/20 bg-[#203e5f]/40 px-6 py-5"
+                            className="flex min-h-28 items-center justify-center overflow-hidden rounded-lg border border-[#203e5f] bg-[#203e5f]/60 px-6 py-5"
                             aria-label={partner.name}
                         >
                             {partner.logoUrl ? (
@@ -248,7 +248,7 @@ function PartnersShowcase({ settings, partners, theme }: { settings: any; partne
                                     loading="lazy"
                                 />
                             ) : (
-                                <span className="text-sm font-semibold text-[#eaeaea]">{partner.name}</span>
+                                <span className="text-sm font-bold text-[#eaeaea]">{partner.name}</span>
                             )}
                         </div>
                     ),
@@ -261,32 +261,37 @@ function PartnersShowcase({ settings, partners, theme }: { settings: any; partne
 function SocialProofQuotes({ theme = 'dark' }: { theme?: 'dark' | 'light' }) {
     const isLight = theme === 'light'
     return (
-        <section className={`mb-36 sm:mb-48 border-t pt-16 sm:pt-24 ${isLight ? 'border-[#203e5f]/20' : 'border-[#ffcc00]/20'}`}>
-            <div className="max-w-3xl mb-14">
-                <div className={`text-xs font-bold uppercase tracking-widest mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
-                    Ecosystem Perspective
+        <section className={`mb-32 sm:mb-40 border-t-2 pt-16 sm:pt-20 ${isLight ? 'border-[#203e5f]/20' : 'border-[#203e5f]'}`}>
+            <div className="grid gap-10 md:grid-cols-12 mb-12 items-end">
+                <div className="md:col-span-7">
+                    <div className={`text-xs font-bold uppercase tracking-widest mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                        Ecosystem Perspective
+                    </div>
+                    <h2 className={`text-3xl sm:text-4xl font-bold leading-tight tracking-tight m-0 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
+                        Backed by founders, operators, and ecosystem partners who care about execution clarity.
+                    </h2>
                 </div>
-                <h2 className={`text-3xl sm:text-4xl font-bold leading-tight tracking-tight ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
-                    Backed by founders, operators, and ecosystem partners who care about execution clarity.
-                </h2>
+                <div className="md:col-span-5">
+                    <p className={`text-sm leading-relaxed m-0 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
+                        Early founders do better when the next action is explicit, visible, and reviewable every single day.
+                    </p>
+                </div>
             </div>
 
-            <div
-                className={`divide-y border-t border-b ${
-                    isLight ? 'divide-[#203e5f]/15 border-[#203e5f]/20' : 'divide-[#eaeaea]/15 border-[#eaeaea]/15'
-                }`}
-            >
+            <div className="grid gap-8 md:grid-cols-3">
                 {DEFAULT_SOCIAL_PROOF_QUOTES.map((item) => (
                     <div
                         key={item.role}
-                        className="py-9 sm:py-11 grid gap-4 lg:grid-cols-12 items-baseline"
+                        className={`flex flex-col justify-between border-l-4 border-[#ffcc00] pl-6 py-3 ${
+                            isLight ? 'bg-white/60 pr-6 rounded-r-lg' : 'bg-[#203e5f]/40 pr-6 rounded-r-lg'
+                        }`}
                     >
-                        <div className={`lg:col-span-3 text-sm font-bold ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
-                            {item.role}
-                        </div>
-                        <blockquote className={`lg:col-span-9 m-0 text-xl sm:text-2xl font-normal leading-relaxed ${isLight ? 'text-[#1a2634]' : 'text-[#fee5b1]'}`}>
+                        <blockquote className={`m-0 text-lg font-medium leading-relaxed ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
                             “{item.quote}”
                         </blockquote>
+                        <div className={`mt-6 text-xs font-bold uppercase tracking-wider ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
+                            — {item.role}
+                        </div>
                     </div>
                 ))}
             </div>
@@ -311,13 +316,13 @@ function EcosystemShowcase({
     if (!hasPartners && !hasMentors) return null
 
     return (
-        <section className="mb-36 sm:mb-48">
+        <section className="mb-32 sm:mb-40">
             {hasMentors && (
                 <div>
                     <h3 className={`text-lg font-bold mb-8 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
                         Ecosystem Mentors
                     </h3>
-                    <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                    <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
                         {mentors.slice(0, 6).map((mentor, index) => {
                             const initials = mentor.name
                                 .split(' ')
@@ -346,12 +351,12 @@ function EcosystemShowcase({
                                             <span className="text-base font-bold text-[#ffcc00]">{initials}</span>
                                         )}
                                     </div>
-                                    <div className={`text-base font-bold leading-snug ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                                    <div className={`text-base font-bold leading-snug ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
                                         {mentor.name}
                                     </div>
                                     {mentor.partnerName && (
                                         <div
-                                            className={`mt-1 text-xs font-medium ${
+                                            className={`mt-1 text-xs font-semibold ${
                                                 isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'
                                             }`}
                                         >
@@ -360,10 +365,10 @@ function EcosystemShowcase({
                                     )}
                                 </>
                             )
-                            const className = `group block border-t pt-6 text-left transition-colors ${
+                            const className = `group block border-t-2 pt-6 text-left transition-colors ${
                                 isLight
-                                    ? 'border-[#203e5f]/20 hover:border-[#1a2634]'
-                                    : 'border-[#ffcc00]/25 hover:border-[#ffcc00]'
+                                    ? 'border-[#203e5f]/25 hover:border-[#1a2634]'
+                                    : 'border-[#203e5f] hover:border-[#ffcc00]'
                             }`
 
                             return mentor.linkUrl ? (
@@ -413,7 +418,7 @@ function TrackPartnerTiles({
     return (
         <div className={`flex flex-col border-t pt-4 mt-2 ${isLight ? 'border-[#203e5f]/15' : 'border-white/10'}`}>
             <div className="flex items-center gap-2 mb-2.5">
-                <span className={`text-xs font-semibold ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
+                <span className={`text-xs font-bold ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
                     Track partners {isPlaceholder ? '(coming soon)' : ''}
                 </span>
             </div>
@@ -430,7 +435,7 @@ function TrackPartnerTiles({
                         <div
                             key={m.id ?? idx}
                             className={`inline-flex items-center gap-2 rounded-md border px-2.5 py-1 ${
-                                isLight ? 'border-[#203e5f]/15 bg-white/70 text-[#1a2634]' : 'border-white/10 bg-[#1a2634]/60 text-[#eaeaea]'
+                                isLight ? 'border-[#203e5f]/15 bg-white text-[#1a2634]' : 'border-white/10 bg-[#1a2634] text-[#eaeaea]'
                             }`}
                         >
                             {m.logoUrl && <img src={m.logoUrl} alt={m.name} className="max-h-7 w-full object-contain" />}
@@ -456,14 +461,14 @@ function TrackPartnerTile({
     const isSingle = size === 'single'
     const tileClasses = isSingle
         ? `group block rounded-lg border p-3 transition-all duration-200 ${
-              isLight ? 'border-[#203e5f]/15 bg-white/60' : 'border-white/10 bg-[#1a2634]/60'
+              isLight ? 'border-[#203e5f]/20 bg-white' : 'border-white/15 bg-[#1a2634]'
           }`
         : 'group block'
     const content = (
         <>
             <div
                 className={`flex items-center justify-center overflow-hidden rounded-md ${
-                    isLight ? 'bg-[#1a2634]' : 'bg-[#1a2634]/90 border border-[#ffcc00]/20'
+                    isLight ? 'bg-[#1a2634]' : 'bg-[#1a2634] border border-[#203e5f]'
                 } ${isSingle ? 'min-h-[52px] px-3 py-2' : 'min-h-[64px] px-3 py-2.5'}`}
             >
                 {partner.logoUrl ? (
@@ -473,13 +478,13 @@ function TrackPartnerTile({
                         className={`w-full object-contain ${isSingle ? 'max-h-9' : 'max-h-12'}`}
                     />
                 ) : (
-                    <span className="text-center text-xs font-semibold leading-relaxed text-[#fee5b1]">
+                    <span className="text-center text-xs font-bold leading-relaxed text-[#fee5b1]">
                         {partner.name}
                     </span>
                 )}
             </div>
             <div
-                className={`text-center font-medium ${
+                className={`text-center font-semibold ${
                     isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'
                 } ${isSingle ? 'mt-1.5 text-[11px] leading-tight' : 'mt-1.5 text-[11px] leading-snug'}`}
             >
@@ -528,7 +533,7 @@ function TrackPartnerCarousel({
     return (
         <div
             className={`relative w-full max-w-[190px] rounded-lg border p-2 overflow-hidden ${
-                isLight ? 'border-[#203e5f]/15 bg-white/50' : 'border-white/10 bg-[#1a2634]/50'
+                isLight ? 'border-[#203e5f]/20 bg-white' : 'border-white/15 bg-[#1a2634]/80'
             }`}
         >
             <div className="relative" style={{ minHeight: '96px' }}>
@@ -562,10 +567,10 @@ function NewTrackCard({
     const isLight = theme === 'light'
     return (
         <div
-            className={`h-full w-full rounded-xl border-2 border-dashed flex flex-col justify-between p-9 min-h-[400px] backdrop-blur-xl transition-colors ${
+            className={`h-full w-full rounded-xl border-2 border-dashed flex flex-col justify-between p-9 min-h-[400px] transition-colors ${
                 isLight
-                    ? 'border-[#203e5f]/30 bg-white/50 text-[#1a2634]'
-                    : 'border-[#ffcc00]/30 bg-[#203e5f]/25 text-[#eaeaea]'
+                    ? 'border-[#203e5f]/35 bg-white/70 text-[#1a2634]'
+                    : 'border-[#fee5b1]/30 bg-[#203e5f]/35 text-[#eaeaea]'
             }`}
         >
             <div>
@@ -573,7 +578,7 @@ function NewTrackCard({
                     Institutional &amp; Corporate Partnerships
                 </div>
                 <div className="text-2xl font-bold mb-3">{newTrackLabel}</div>
-                <div className={`text-sm leading-relaxed max-w-xs ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]/85'}`}>
+                <div className={`text-sm leading-relaxed max-w-xs ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
                     {newTrackSubtitle}
                 </div>
             </div>
@@ -628,14 +633,12 @@ function TrackCard({
 
     return (
         <div
-            className={`h-full w-full flex flex-col rounded-xl border overflow-hidden backdrop-blur-xl transition-all ${
+            className={`h-full w-full flex flex-col rounded-xl border border-t-4 border-t-[#ffcc00] overflow-hidden backdrop-blur-md transition-all ${
                 isLight
-                    ? 'border-[#203e5f]/20 bg-white/75 text-[#1a2634] shadow-lg shadow-[#203e5f]/[0.05]'
-                    : 'border-[#ffcc00]/25 bg-[#203e5f]/40 text-[#eaeaea] shadow-2xl shadow-black/25'
+                    ? 'border-[#203e5f]/20 bg-white/85 text-[#1a2634]'
+                    : 'border-[#203e5f] bg-[#203e5f]/65 text-[#eaeaea]'
             }`}
         >
-            <div className="h-1.5 w-full bg-gradient-to-r from-[#ffcc00] via-[#fee5b1] to-[#203e5f]" />
-
             <div className="p-8 sm:p-9 flex flex-col flex-1 justify-between">
                 <div>
                     <div className="flex items-start justify-between gap-4 mb-6">
@@ -643,10 +646,10 @@ function TrackCard({
                             <div className={`text-xs font-bold uppercase tracking-wider mb-1.5 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
                                 {track.badge}
                             </div>
-                            <h3 className={`text-2xl sm:text-3xl font-bold tracking-tight ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                            <h3 className={`text-2xl sm:text-3xl font-bold tracking-tight ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
                                 {track.name}
                             </h3>
-                            <p className={`text-sm font-medium mt-1 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
+                            <p className={`text-sm font-semibold mt-1 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
                                 {track.tagline}
                             </p>
                         </div>
@@ -666,12 +669,12 @@ function TrackCard({
                         )}
                     </div>
 
-                    <p className={`text-sm leading-relaxed mb-6 ${isLight ? 'text-[#1a2634]/85' : 'text-[#eaeaea]/85'}`}>
+                    <p className={`text-sm leading-relaxed mb-6 ${isLight ? 'text-[#1a2634]/85' : 'text-[#eaeaea]/90'}`}>
                         {track.desc}
                     </p>
 
                     {pills.length > 1 && (
-                        <div className={`flex flex-wrap gap-5 border-b mb-4 ${isLight ? 'border-[#203e5f]/15' : 'border-white/15'}`}>
+                        <div className={`flex flex-wrap gap-5 border-b mb-4 ${isLight ? 'border-[#203e5f]/20' : 'border-white/15'}`}>
                             {pills.map((pill) => {
                                 const active = activePillKey === pill.key
                                 return (
@@ -685,7 +688,7 @@ function TrackCard({
                                                     : 'border-[#ffcc00] text-[#ffcc00]'
                                                 : isLight
                                                   ? 'border-transparent text-[#203e5f]/60 hover:text-[#1a2634]'
-                                                  : 'border-transparent text-[#fee5b1]/60 hover:text-white'
+                                                  : 'border-transparent text-[#fee5b1]/65 hover:text-white'
                                         }`}
                                     >
                                         {pill.label}
@@ -695,7 +698,7 @@ function TrackCard({
                         </div>
                     )}
 
-                    <div className={`text-sm leading-relaxed mb-6 ${isLight ? 'text-[#1a2634]/85' : 'text-[#eaeaea]/85'}`}>
+                    <div className={`text-sm leading-relaxed mb-6 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
                         <strong className={isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}>{challenge.title} — </strong>
                         {challenge.desc}
                     </div>
@@ -721,7 +724,7 @@ function TrackCard({
                     </button>
                     <button
                         onClick={onStartTrack}
-                        className="rounded-md px-5 py-2.5 text-xs font-bold text-[#1a2634] bg-[#ffcc00] hover:bg-[#fee5b1] transition-colors cursor-pointer"
+                        className="rounded-md px-5 py-2.5 text-xs font-extrabold text-[#1a2634] bg-[#ffcc00] hover:bg-[#fee5b1] transition-colors cursor-pointer"
                     >
                         {startTrackBtn}
                     </button>
@@ -810,7 +813,7 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
     useEffect(() => {
         const measure = () => {
             if (containerRef.current) {
-                setCardWidth(containerRef.current.offsetWidth / 1.65)
+                setCardWidth(containerRef.current.offsetWidth / 1.85)
             }
         }
         measure()
@@ -866,30 +869,30 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
     if (tracksRaw.length === 0) return null
 
     return (
-        <section id="tracks" className={`mb-36 sm:mb-48 border-t pt-16 sm:pt-24 ${isLight ? 'border-[#203e5f]/20' : 'border-[#ffcc00]/20'}`}>
-            <div className="grid gap-10 lg:grid-cols-12 mb-14 items-end">
-                <div className="lg:col-span-7">
+        <section id="tracks" className={`mb-32 sm:mb-40 border-t-2 pt-16 sm:pt-20 ${isLight ? 'border-[#203e5f]/20' : 'border-[#203e5f]'}`}>
+            <div className="grid gap-10 md:grid-cols-12 mb-12 items-end">
+                <div className="md:col-span-7">
                     <div className={`text-xs font-bold uppercase tracking-widest mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
                         {sectionLabel}
                     </div>
-                    <h2 className={`text-3xl sm:text-5xl font-bold leading-[1.08] tracking-tight ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                    <h2 className={`text-3xl sm:text-5xl font-bold leading-[1.08] tracking-tight ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
                         {sectionTitle}{' '}
                         <span className={isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}>
                             {sectionHighlight}
                         </span>
                     </h2>
                 </div>
-                <div className="lg:col-span-5 flex flex-col justify-between gap-6">
-                    <p className={`text-base leading-relaxed ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/80'}`}>
+                <div className="md:col-span-5 flex flex-col justify-between gap-6">
+                    <p className={`text-base leading-relaxed m-0 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/85'}`}>
                         {sectionSubtitle}
                     </p>
                     <div className="hidden md:flex items-center gap-3">
                         <button
                             onClick={prevSlide}
-                            className={`h-10 w-10 flex items-center justify-center rounded-md border transition-colors cursor-pointer ${
+                            className={`h-10 w-10 flex items-center justify-center rounded-md border font-bold transition-colors cursor-pointer ${
                                 isLight
-                                    ? 'border-[#203e5f]/25 bg-white/70 text-[#1a2634] hover:bg-[#203e5f] hover:text-[#ffcc00]'
-                                    : 'border-[#ffcc00]/30 bg-[#203e5f]/50 text-[#ffcc00] hover:bg-[#ffcc00] hover:text-[#1a2634]'
+                                    ? 'border-[#203e5f] bg-white text-[#1a2634] hover:bg-[#203e5f] hover:text-[#ffcc00]'
+                                    : 'border-[#fee5b1]/35 bg-[#203e5f] text-[#ffcc00] hover:bg-[#ffcc00] hover:text-[#1a2634]'
                             }`}
                             aria-label="Previous tracks"
                         >
@@ -897,16 +900,16 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
                         </button>
                         <button
                             onClick={nextSlide}
-                            className={`h-10 w-10 flex items-center justify-center rounded-md border transition-colors cursor-pointer ${
+                            className={`h-10 w-10 flex items-center justify-center rounded-md border font-bold transition-colors cursor-pointer ${
                                 isLight
-                                    ? 'border-[#203e5f]/25 bg-white/70 text-[#1a2634] hover:bg-[#203e5f] hover:text-[#ffcc00]'
-                                    : 'border-[#ffcc00]/30 bg-[#203e5f]/50 text-[#ffcc00] hover:bg-[#ffcc00] hover:text-[#1a2634]'
+                                    ? 'border-[#203e5f] bg-white text-[#1a2634] hover:bg-[#203e5f] hover:text-[#ffcc00]'
+                                    : 'border-[#fee5b1]/35 bg-[#203e5f] text-[#ffcc00] hover:bg-[#ffcc00] hover:text-[#1a2634]'
                             }`}
                             aria-label="Next tracks"
                         >
                             →
                         </button>
-                        <span className={`ml-2 text-xs font-semibold ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
+                        <span className={`ml-2 text-xs font-bold ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
                             {activeIndex + 1} / {totalSlides}
                         </span>
                     </div>
@@ -949,7 +952,7 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
                 />
             </div>
 
-            <div className="relative min-h-[440px] hidden items-center md:flex">
+            <div className="relative min-h-[430px] hidden items-center md:flex">
                 <div className="w-full overflow-hidden" ref={containerRef}>
                     <div
                         className="flex transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
@@ -964,7 +967,7 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
                                 const challenge = getChallengeForTrack(track, pillKey)
                                 const trackPartners = track.partners
                                 return (
-                                    <div key={track.key} className="flex-none pr-7" style={{ width: cardWidth ? `${cardWidth}px` : '60%' }}>
+                                    <div key={track.key} className="flex-none pr-6" style={{ width: cardWidth ? `${cardWidth}px` : '54%' }}>
                                         <TrackCard
                                             track={track}
                                             trackPartners={trackPartners}
@@ -987,7 +990,7 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
                             }
 
                             return (
-                                <div key={`new-track-${itemIndex}`} className="flex-none pr-7" style={{ width: cardWidth ? `${cardWidth}px` : '60%' }}>
+                                <div key={`new-track-${itemIndex}`} className="flex-none pr-6" style={{ width: cardWidth ? `${cardWidth}px` : '54%' }}>
                                     <NewTrackCard
                                         newTrackLabel={newTrackLabel}
                                         newTrackSubtitle={newTrackSubtitle}
@@ -1005,30 +1008,30 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
             {activeModal && modalTrack && (
                 <div
                     className="fixed inset-0 z-50 flex items-center justify-center p-4"
-                    style={{ background: 'rgba(15, 23, 34, 0.78)', backdropFilter: 'blur(10px)' }}
+                    style={{ background: 'rgba(26, 38, 52, 0.85)', backdropFilter: 'blur(8px)' }}
                     onClick={(e) => {
                         if (e.target === e.currentTarget) setActiveModal(null)
                     }}
                 >
                     <div
-                        className="relative bg-[#1a2634] border border-[#ffcc00]/30 rounded-xl w-full max-w-2xl max-h-[88vh] overflow-y-auto text-[#eaeaea] shadow-2xl p-8 sm:p-10"
+                        className="relative bg-[#1a2634] border-2 border-[#ffcc00] rounded-xl w-full max-w-2xl max-h-[88vh] overflow-y-auto text-[#eaeaea] shadow-2xl p-8 sm:p-10"
                     >
-                        <div className="flex items-start justify-between pb-6 border-b border-white/10">
+                        <div className="flex items-start justify-between pb-6 border-b border-[#203e5f]">
                             <div>
                                 <div className="text-xs font-bold text-[#ffcc00] mb-1">{modalTrack.badge}</div>
-                                <div className="text-2xl font-bold text-white">{modalTrack.name}</div>
+                                <div className="text-2xl font-bold text-[#eaeaea]">{modalTrack.name}</div>
                                 <div className="text-sm text-[#fee5b1] mt-1">{modalTrack.tagline}</div>
                             </div>
                             <button
                                 onClick={() => setActiveModal(null)}
-                                className="shrink-0 w-8 h-8 rounded-md flex items-center justify-center text-[#eaeaea]/75 hover:text-[#ffcc00] transition-colors cursor-pointer border border-white/15"
+                                className="shrink-0 w-8 h-8 rounded-md flex items-center justify-center text-[#eaeaea] hover:text-[#ffcc00] transition-colors cursor-pointer border border-[#203e5f]"
                             >
                                 ✕
                             </button>
                         </div>
 
                         <div className="pt-6 space-y-6">
-                            <p className="text-sm text-[#eaeaea]/85 leading-7">{modalTrack.desc}</p>
+                            <p className="text-sm text-[#eaeaea] leading-7">{modalTrack.desc}</p>
 
                             {getTrackPartnerTiles(modalTrackPartners).length > 0 && (
                                 <TrackPartnerTiles partners={modalTrackPartners} accentColor={modalTrack.color || '#ffcc00'} />
@@ -1041,7 +1044,7 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
                                     </h4>
                                     <ul className="space-y-2 pl-0 list-none">
                                         {modalTrack.whatYouGet.map((item, i) => (
-                                            <li key={i} className="text-sm text-[#eaeaea]/90 flex items-start gap-2.5">
+                                            <li key={i} className="text-sm text-[#eaeaea] flex items-start gap-2.5">
                                                 <span className="text-[#ffcc00] font-bold">—</span>
                                                 <span>{item.text}</span>
                                             </li>
@@ -1056,7 +1059,7 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
                                     setActiveModal(null)
                                     handleTrackNavigation(modalTrack)
                                 }}
-                                className="block w-full rounded-md px-5 py-3.5 text-xs font-bold uppercase tracking-wider transition-colors bg-[#ffcc00] text-[#1a2634] hover:bg-[#fee5b1] text-center cursor-pointer"
+                                className="block w-full rounded-md px-5 py-3.5 text-xs font-extrabold uppercase tracking-wider transition-colors bg-[#ffcc00] text-[#1a2634] hover:bg-[#fee5b1] text-center cursor-pointer"
                             >
                                 {modalTrack.applyButtonText}
                             </button>
@@ -1354,29 +1357,10 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
 
     return (
         <div
-            className={`landing-readable relative min-h-screen overflow-x-hidden font-sans selection:bg-[#ffcc00] selection:text-[#1a2634] transition-colors duration-300 ${
+            className={`landing-readable relative min-h-screen overflow-x-hidden font-sans selection:bg-[#ffcc00] selection:text-[#1a2634] transition-colors duration-200 ${
                 isLight ? 'landing-theme-light bg-[#eaeaea] text-[#1a2634]' : 'landing-theme-dark bg-[#1a2634] text-[#eaeaea]'
             }`}
         >
-            {/* Rich EU Blue & Gold atmospheric light wash */}
-            <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
-                <div
-                    className={`absolute -top-36 left-[5%] h-[580px] w-[780px] rounded-full blur-[150px] ${
-                        isLight ? 'bg-[#203e5f]/15' : 'bg-[#203e5f]/75'
-                    }`}
-                />
-                <div
-                    className={`absolute top-[15%] right-[-5%] h-[500px] w-[520px] rounded-full blur-[160px] ${
-                        isLight ? 'bg-[#fee5b1]/70' : 'bg-[#ffcc00]/[0.09]'
-                    }`}
-                />
-                <div
-                    className={`absolute top-[60%] left-[20%] h-[480px] w-[520px] rounded-full blur-[160px] ${
-                        isLight ? 'bg-[#fee5b1]/45' : 'bg-[#203e5f]/60'
-                    }`}
-                />
-            </div>
-
             <PublicHeader
                 companyName={companyName}
                 logoUrl={logoUrl}
@@ -1386,32 +1370,30 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                 onToggleTheme={toggleTheme}
             />
 
-            <main className="relative z-10 max-w-[1360px] mx-auto px-6 sm:px-12 pt-16 md:pt-24 pb-28">
-                {/* HERO — Colorful EU Headline + Translucent EU Blue Programme Syllabus Sheet */}
-                <section className="mb-36 sm:mb-48">
-                    <div className="grid gap-16 lg:grid-cols-12 lg:gap-16 items-start">
-                        {/* Left Column */}
-                        <div className="lg:col-span-7 pt-2">
+            <main className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-10 pt-12 md:pt-20 pb-28">
+                {/* HERO — Full-width 2-Column Spread (md:grid-cols-12) with Solid Flat EU Colors (Zero Gradients) */}
+                <section className="mb-28 sm:mb-36">
+                    <div className="grid gap-12 md:grid-cols-12 md:gap-12 lg:gap-16 items-start">
+                        {/* Left Column (7 cols on md+) */}
+                        <div className="md:col-span-7 pt-2">
                             <div
-                                className={`text-xs font-bold uppercase tracking-[0.18em] mb-7 pb-3 border-b-2 border-[#ffcc00] inline-block ${
+                                className={`text-xs font-bold uppercase tracking-[0.18em] mb-6 pb-2.5 border-b-2 border-[#ffcc00] inline-block ${
                                     isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'
                                 }`}
                             >
                                 Make European Startups Great Again — 2026 Cohort
                             </div>
 
-                            <h1 className="text-5xl sm:text-6xl xl:text-[4.65rem] font-extrabold tracking-[-0.03em] mb-8 leading-[1.03]">
+                            <h1 className="text-4xl sm:text-5xl lg:text-[4.25rem] font-extrabold tracking-[-0.03em] mb-7 leading-[1.04]">
                                 <span className={isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}>
                                     {companyName}
                                 </span>{' '}
-                                <span className={isLight ? 'text-[#1a2634]' : 'text-white'}>
+                                <span className={isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}>
                                     {heroTitlePrefix}
                                 </span>
                                 <span
                                     className={`block mt-2 ${
-                                        isLight
-                                            ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#203e5f] via-[#1a2634] to-[#203e5f]'
-                                            : 'text-transparent bg-clip-text bg-gradient-to-r from-[#ffcc00] via-[#fee5b1] to-[#eaeaea]'
+                                        isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'
                                     }`}
                                 >
                                     {heroTitleHighlight}
@@ -1420,27 +1402,27 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                             </h1>
 
                             <p
-                                className={`text-lg sm:text-xl leading-relaxed max-w-xl mb-12 ${
+                                className={`text-base sm:text-lg leading-relaxed max-w-2xl mb-10 ${
                                     isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/85'
                                 }`}
                             >
                                 {heroSubtitle}
                             </p>
 
-                            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                            <div className="flex flex-wrap items-center gap-4">
                                 <Link
                                     href="/login?role=founder"
-                                    className="inline-flex items-center justify-between sm:justify-center gap-4 px-8 py-4 rounded-md text-sm font-bold text-[#1a2634] bg-[#ffcc00] hover:bg-[#fee5b1] shadow-lg shadow-[#ffcc00]/15 transition-all"
+                                    className="inline-flex items-center justify-center gap-3 px-7 py-4 rounded-md text-sm font-extrabold text-[#1a2634] bg-[#ffcc00] hover:bg-[#fee5b1] transition-colors"
                                 >
                                     <span>{founderBtn}</span>
                                     <span>→</span>
                                 </Link>
                                 <Link
                                     href="/login?role=investor"
-                                    className={`inline-flex items-center justify-between sm:justify-center gap-3 rounded-md border px-8 py-4 text-sm font-semibold backdrop-blur-md transition-colors ${
+                                    className={`inline-flex items-center justify-center gap-3 rounded-md border-2 px-7 py-3.5 text-sm font-bold transition-colors ${
                                         isLight
-                                            ? 'border-[#203e5f]/30 bg-white/60 text-[#203e5f] hover:bg-[#203e5f] hover:text-white'
-                                            : 'border-[#fee5b1]/30 bg-[#203e5f]/45 text-[#fee5b1] hover:bg-[#203e5f]/80 hover:border-[#ffcc00] hover:text-[#ffcc00]'
+                                            ? 'border-[#203e5f] bg-white text-[#203e5f] hover:bg-[#203e5f] hover:text-white'
+                                            : 'border-[#fee5b1]/40 bg-[#203e5f]/70 text-[#fee5b1] hover:bg-[#203e5f] hover:border-[#ffcc00] hover:text-[#ffcc00]'
                                     }`}
                                 >
                                     <span>{investorBtn}</span>
@@ -1448,81 +1430,102 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                             </div>
                         </div>
 
-                        {/* Right Column: Translucent EU Blue & Gold Programme Syllabus */}
-                        <div className="lg:col-span-5">
+                        {/* Right Column (5 cols on md+): Solid EU Blue / Navy Syllabus Sheet */}
+                        <div className="md:col-span-5">
                             <div
-                                className={`rounded-xl border overflow-hidden backdrop-blur-xl ${
+                                className={`rounded-xl border border-t-4 border-t-[#ffcc00] p-7 sm:p-9 backdrop-blur-md ${
                                     isLight
-                                        ? 'border-[#203e5f]/20 bg-white/75 text-[#1a2634] shadow-xl shadow-[#203e5f]/[0.06]'
-                                        : 'border-[#ffcc00]/25 bg-[#203e5f]/40 text-[#eaeaea] shadow-2xl shadow-black/30'
+                                        ? 'border-[#203e5f]/25 bg-white/85 text-[#1a2634]'
+                                        : 'border-[#203e5f] bg-[#203e5f]/70 text-[#eaeaea]'
                                 }`}
                             >
-                                <div className="h-1.5 w-full bg-gradient-to-r from-[#ffcc00] via-[#fee5b1] to-[#203e5f]" />
+                                <div className="flex items-baseline justify-between mb-5">
+                                    <h2 className={`text-xs font-extrabold uppercase tracking-widest m-0 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                                        Programme Syllabus
+                                    </h2>
+                                    <span className={`text-xs font-bold ${isLight ? 'text-[#1a2634]' : 'text-[#fee5b1]'}`}>
+                                        100 consecutive days
+                                    </span>
+                                </div>
 
-                                <div className="p-8 sm:p-10">
-                                    <div className="flex items-baseline justify-between mb-6">
-                                        <h2 className={`text-sm font-bold uppercase tracking-wider m-0 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
-                                            Programme Syllabus
-                                        </h2>
-                                        <span className={`text-xs font-semibold ${isLight ? 'text-[#1a2634]' : 'text-[#fee5b1]'}`}>
-                                            100 consecutive days
+                                <div
+                                    className={`divide-y border-t border-b ${
+                                        isLight ? 'divide-[#203e5f]/15 border-[#203e5f]/20' : 'divide-white/15 border-white/15'
+                                    }`}
+                                >
+                                    {phases.map((p: any, i: number) => (
+                                        <div key={i} className="py-4 first:pt-4 last:pb-4">
+                                            <div className="flex items-baseline justify-between gap-3 mb-1">
+                                                <span className={`text-base font-bold ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
+                                                    {p.title}
+                                                </span>
+                                                <span
+                                                    className={`text-[11px] font-bold px-2.5 py-0.5 rounded shrink-0 ${
+                                                        isLight
+                                                            ? 'bg-[#fee5b1] text-[#1a2634]'
+                                                            : 'bg-[#1a2634] text-[#ffcc00]'
+                                                    }`}
+                                                >
+                                                    {p.phase}
+                                                </span>
+                                            </div>
+                                            <p className={`text-xs m-0 leading-relaxed ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/85'}`}>
+                                                {p.target ? `${p.target} ${p.description}` : p.description}
+                                            </p>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <div className="mt-6">
+                                    <div className="flex items-center justify-between text-xs mb-3">
+                                        <span className={`font-bold ${isLight ? 'text-[#1a2634]' : 'text-[#fee5b1]'}`}>
+                                            Decision Gates
+                                        </span>
+                                        <span className={`font-semibold ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                                            Pass · Revise · Stop
                                         </span>
                                     </div>
-
-                                    <div
-                                        className={`divide-y border-t border-b ${
-                                            isLight ? 'divide-[#203e5f]/15 border-[#203e5f]/15' : 'divide-white/12 border-white/12'
-                                        }`}
-                                    >
-                                        {phases.map((p: any, i: number) => (
-                                            <div key={i} className="py-5 first:pt-5 last:pb-5">
-                                                <div className="flex items-baseline justify-between gap-4 mb-1">
-                                                    <span className={`text-base font-bold ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
-                                                        {p.title}
-                                                    </span>
-                                                    <span
-                                                        className={`text-xs font-bold px-2.5 py-0.5 rounded ${
-                                                            isLight
-                                                                ? 'bg-[#fee5b1]/80 text-[#1a2634]'
-                                                                : 'bg-[#1a2634]/70 text-[#ffcc00] border border-[#ffcc00]/25'
-                                                        }`}
-                                                    >
-                                                        {p.phase}
+                                    <div className="relative pt-2">
+                                        <div className={`h-0.5 w-full ${isLight ? 'bg-[#203e5f]/30' : 'bg-[#fee5b1]/35'}`} />
+                                        <div className="flex justify-between -mt-1.5">
+                                            {['Day 15', 'Day 30', 'Day 50', 'Day 70', 'Day 94'].map((gate) => (
+                                                <div key={gate} className="flex flex-col items-center">
+                                                    <div className="h-3 w-0.5 bg-[#ffcc00]" />
+                                                    <span className={`mt-1.5 text-[11px] font-bold ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
+                                                        {gate}
                                                     </span>
                                                 </div>
-                                                <p className={`text-xs m-0 leading-relaxed ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/80'}`}>
-                                                    {p.target ? `${p.target} ${p.description}` : p.description}
-                                                </p>
-                                            </div>
-                                        ))}
-                                    </div>
-
-                                    {/* Architectural scale for the 5 hard gates */}
-                                    <div className="mt-7">
-                                        <div className="flex items-center justify-between text-xs mb-3">
-                                            <span className={`font-bold ${isLight ? 'text-[#1a2634]' : 'text-[#fee5b1]'}`}>
-                                                Decision Gates
-                                            </span>
-                                            <span className={isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}>
-                                                Pass · Revise · Stop
-                                            </span>
-                                        </div>
-                                        <div className="relative pt-3">
-                                            <div className={`h-0.5 w-full ${isLight ? 'bg-[#203e5f]/25' : 'bg-[#ffcc00]/35'}`} />
-                                            <div className="flex justify-between -mt-1.5">
-                                                {['Day 15', 'Day 30', 'Day 50', 'Day 70', 'Day 94'].map((gate) => (
-                                                    <div key={gate} className="flex flex-col items-center">
-                                                        <div className="h-3 w-0.5 bg-[#ffcc00]" />
-                                                        <span className={`mt-2 text-[11px] font-bold ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
-                                                            {gate}
-                                                        </span>
-                                                    </div>
-                                                ))}
-                                            </div>
+                                            ))}
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    {/* Full-width Architectural Key Figures Bar across the page */}
+                    <div
+                        className={`mt-14 grid grid-cols-2 md:grid-cols-4 rounded-xl border overflow-hidden divide-y md:divide-y-0 md:divide-x ${
+                            isLight
+                                ? 'bg-[#203e5f] border-[#1a2634] divide-white/15 text-[#eaeaea]'
+                                : 'bg-[#203e5f]/55 border-[#203e5f] divide-white/12 text-[#eaeaea]'
+                        }`}
+                    >
+                        <div className="p-6 sm:p-7">
+                            <div className="text-3xl sm:text-4xl font-extrabold text-[#ffcc00]">100 Days</div>
+                            <div className="text-xs font-medium text-[#fee5b1] mt-1">Structured daily execution cadence</div>
+                        </div>
+                        <div className="p-6 sm:p-7">
+                            <div className="text-3xl sm:text-4xl font-extrabold text-[#ffcc00]">5 Gates</div>
+                            <div className="text-xs font-medium text-[#fee5b1] mt-1">Mandatory pass / revise / stop reviews</div>
+                        </div>
+                        <div className="p-6 sm:p-7">
+                            <div className="text-3xl sm:text-4xl font-extrabold text-[#ffcc00]">24h Loop</div>
+                            <div className="text-xs font-medium text-[#fee5b1] mt-1">One mission, deliverable &amp; proof per day</div>
+                        </div>
+                        <div className="p-6 sm:p-7">
+                            <div className="text-3xl sm:text-4xl font-extrabold text-[#ffcc00]">4 Tracks</div>
+                            <div className="text-xs font-medium text-[#fee5b1] mt-1">General, Space, EduTech &amp; Dual Use</div>
                         </div>
                     </div>
                 </section>
@@ -1534,37 +1537,37 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                 <SocialProofQuotes theme={theme} />
                 <EcosystemShowcase partners={partners} rawMentors={mentors} theme={theme} />
 
-                {/* THESIS & ARCHITECTURE — Open Magazine Spread */}
-                <section className={`mb-36 sm:mb-48 border-t pt-16 sm:pt-24 ${isLight ? 'border-[#203e5f]/20' : 'border-[#ffcc00]/20'}`}>
-                    <div className="grid gap-12 lg:grid-cols-12 lg:gap-20">
-                        <div className="lg:col-span-5">
+                {/* THESIS & ARCHITECTURE — Full-Width 2-Column Spread */}
+                <section className={`mb-32 sm:mb-40 border-t-2 pt-16 sm:pt-20 ${isLight ? 'border-[#203e5f]/20' : 'border-[#203e5f]'}`}>
+                    <div className="grid gap-12 md:grid-cols-12 md:gap-16">
+                        <div className="md:col-span-5">
                             <div className={`text-xs font-bold uppercase tracking-widest mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
                                 Executive Summary
                             </div>
-                            <h2 className={`text-3xl sm:text-4xl font-bold leading-tight tracking-tight mb-5 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                            <h2 className={`text-3xl sm:text-4xl font-bold leading-tight tracking-tight mb-5 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
                                 {execTitle}
                             </h2>
-                            <p className={`text-lg font-medium leading-relaxed border-l-2 border-[#ffcc00] pl-4 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
+                            <p className={`text-lg font-semibold leading-relaxed border-l-4 border-[#ffcc00] pl-4 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
                                 {execSubtitle}
                             </p>
                         </div>
 
-                        <div className="lg:col-span-7">
-                            <p className={`text-base sm:text-lg leading-relaxed mb-10 ${isLight ? 'text-[#1a2634]/85' : 'text-[#eaeaea]/85'}`}>
+                        <div className="md:col-span-7">
+                            <p className={`text-base sm:text-lg leading-relaxed mb-8 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]/90'}`}>
                                 {execBody}
                             </p>
 
                             <div
-                                className={`divide-y border-t border-b ${
-                                    isLight ? 'divide-[#203e5f]/15 border-[#203e5f]/20' : 'divide-white/12 border-white/15'
+                                className={`divide-y border-t-2 border-b-2 ${
+                                    isLight ? 'divide-[#203e5f]/15 border-[#203e5f]/20' : 'divide-[#203e5f] border-[#203e5f]'
                                 }`}
                             >
                                 {execPoints.map((p: any, i: number) => (
-                                    <div key={i} className="py-5 flex items-baseline gap-6">
-                                        <span className={`text-xs font-bold w-6 shrink-0 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                                    <div key={i} className="py-4 flex items-baseline gap-5">
+                                        <span className="text-xs font-bold px-2 py-0.5 rounded bg-[#ffcc00] text-[#1a2634] shrink-0">
                                             0{i + 1}
                                         </span>
-                                        <span className={`text-base font-semibold ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                                        <span className={`text-base font-bold ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
                                             {p.text}
                                         </span>
                                     </div>
@@ -1574,141 +1577,125 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                     </div>
                 </section>
 
-                {/* OPERATING MODEL & FOUNDER FIT — Asymmetric Contrast */}
-                <section id="program" className={`mb-36 sm:mb-48 border-t pt-16 sm:pt-24 ${isLight ? 'border-[#203e5f]/20' : 'border-[#ffcc00]/20'}`}>
-                    <div className="grid gap-16 lg:grid-cols-12 lg:gap-20 items-start">
-                        {/* Left 5 cols: Open vertical specification */}
-                        <div className="lg:col-span-5">
-                            <div className={`text-xs font-bold uppercase tracking-widest mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
-                                Operating System
+                {/* OPERATING MODEL & FOUNDER FIT — Full-Width Spread with Warm Cream (#fee5b1) Contrast Block */}
+                <section id="program" className={`mb-32 sm:mb-40 border-t-2 pt-16 sm:pt-20 ${isLight ? 'border-[#203e5f]/20' : 'border-[#203e5f]'}`}>
+                    <div className="grid gap-12 md:grid-cols-12 md:gap-14 items-stretch">
+                        {/* Left 5 cols: What it is */}
+                        <div className="md:col-span-5 flex flex-col justify-between">
+                            <div>
+                                <div className={`text-xs font-bold uppercase tracking-widest mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                                    Operating System
+                                </div>
+                                <h2 className={`text-3xl sm:text-4xl font-bold tracking-tight mb-4 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
+                                    {whatItIsTitle}
+                                </h2>
+                                <p className={`text-base leading-relaxed mb-8 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
+                                    {whatItIsBody}
+                                </p>
+
+                                <ol
+                                    className={`divide-y border-t-2 border-b-2 pl-0 list-none m-0 ${
+                                        isLight ? 'divide-[#203e5f]/15 border-[#203e5f]/20' : 'divide-[#203e5f] border-[#203e5f]'
+                                    }`}
+                                >
+                                    {whatItIsPoints.map((p: any, i: number) => (
+                                        <li key={i} className="py-4 flex items-center justify-between text-base font-bold">
+                                            <span className={isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}>{p.text}</span>
+                                            <span className="text-xs font-bold px-2.5 py-0.5 rounded bg-[#203e5f] text-[#ffcc00]">
+                                                0{i + 1}
+                                            </span>
+                                        </li>
+                                    ))}
+                                </ol>
                             </div>
-                            <h2 className={`text-3xl sm:text-4xl font-bold tracking-tight mb-4 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
-                                {whatItIsTitle}
-                            </h2>
-                            <p className={`text-base leading-relaxed mb-8 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/80'}`}>
-                                {whatItIsBody}
-                            </p>
 
-                            <ol
-                                className={`divide-y border-t border-b pl-0 list-none m-0 ${
-                                    isLight ? 'divide-[#203e5f]/15 border-[#203e5f]/20' : 'divide-white/12 border-white/15'
-                                }`}
-                            >
-                                {whatItIsPoints.map((p: any, i: number) => (
-                                    <li key={i} className="py-4 flex items-center justify-between text-base font-semibold">
-                                        <span className={isLight ? 'text-[#1a2634]' : 'text-white'}>{p.text}</span>
-                                        <span
-                                            className={`text-xs font-bold px-2.5 py-0.5 rounded ${
-                                                isLight
-                                                    ? 'bg-[#fee5b1] text-[#1a2634]'
-                                                    : 'bg-[#203e5f] text-[#ffcc00]'
-                                            }`}
-                                        >
-                                            0{i + 1}
-                                        </span>
-                                    </li>
-                                ))}
-                            </ol>
-
-                            <p className={`mt-6 text-sm font-bold ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                            <p className={`mt-6 text-sm font-bold m-0 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
                                 {whatItIsFooter}
                             </p>
                         </div>
 
-                        {/* Right 7 cols: Translucent EU Blue & Gold Sheet */}
-                        <div className="lg:col-span-7">
-                            <div
-                                className={`rounded-xl border p-8 sm:p-12 backdrop-blur-xl ${
-                                    isLight
-                                        ? 'border-[#203e5f]/20 bg-white/75 text-[#1a2634]'
-                                        : 'border-[#ffcc00]/25 bg-[#203e5f]/40 text-[#eaeaea]'
-                                }`}
-                            >
-                                <div className={`pb-10 mb-10 border-b ${isLight ? 'border-[#203e5f]/15' : 'border-white/12'}`}>
-                                    <div className={`text-xs font-bold uppercase tracking-widest mb-2 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
-                                        Founder Profile
-                                    </div>
-                                    <h3 className={`text-2xl sm:text-3xl font-bold mb-4 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
-                                        {whoIsThisForTitle}
-                                    </h3>
-                                    <p className={`text-base leading-relaxed mb-6 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/85'}`}>
-                                        {whoIsThisForBody}
-                                    </p>
-                                    <ul className="space-y-3.5 pl-0 list-none m-0">
-                                        {whoIsThisForBullets.map((point: any, i: number) => (
-                                            <li key={i} className="flex items-start gap-3.5 text-base">
-                                                <span className="text-[#ffcc00] font-bold">■</span>
-                                                <span className="leading-relaxed">{point.text}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
+                        {/* Right 7 cols: Solid Warm Cream (#fee5b1) + EU Blue (#203e5f) Architectural Split */}
+                        <div className="md:col-span-7 grid gap-6">
+                            {/* Warm Cream (#fee5b1) card with Deep Navy (#1a2634) text — breaks up the dark blue */}
+                            <div className="rounded-xl bg-[#fee5b1] text-[#1a2634] p-8 sm:p-10 border-l-8 border-[#ffcc00]">
+                                <div className="text-xs font-extrabold uppercase tracking-widest text-[#203e5f] mb-2">
+                                    Founder Profile
                                 </div>
+                                <h3 className="text-2xl sm:text-3xl font-extrabold text-[#1a2634] mb-3">
+                                    {whoIsThisForTitle}
+                                </h3>
+                                <p className="text-base leading-relaxed text-[#203e5f] font-medium mb-6">
+                                    {whoIsThisForBody}
+                                </p>
+                                <ul className="space-y-3 pl-0 list-none m-0">
+                                    {whoIsThisForBullets.map((point: any, i: number) => (
+                                        <li key={i} className="flex items-start gap-3 text-sm sm:text-base font-bold text-[#1a2634]">
+                                            <span className="text-[#203e5f] font-extrabold">■</span>
+                                            <span className="leading-relaxed">{point.text}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
 
-                                <div>
-                                    <h3 className={`text-xl sm:text-2xl font-bold mb-3 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
-                                        {execGapTitle}
-                                    </h3>
-                                    <p className={`text-sm leading-relaxed mb-5 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/80'}`}>
-                                        {execGapBody}
-                                    </p>
-                                    <div className="grid sm:grid-cols-2 gap-3 mb-6">
-                                        {execGapPoints.map((p: any, i: number) => (
-                                            <div
-                                                key={i}
-                                                className={`text-sm font-semibold py-2.5 px-4 rounded-md border ${
-                                                    isLight
-                                                        ? 'border-[#203e5f]/20 bg-[#fee5b1]/45 text-[#1a2634]'
-                                                        : 'border-[#ffcc00]/20 bg-[#1a2634]/65 text-[#fee5b1]'
-                                                }`}
-                                            >
-                                                {p.text}
-                                            </div>
-                                        ))}
-                                    </div>
-                                    <p className={`text-sm italic leading-relaxed m-0 border-l-2 border-[#ffcc00] pl-4 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
-                                        {execGapQuote}
-                                    </p>
+                            {/* EU Blue (#203e5f) card for Execution Gap */}
+                            <div className="rounded-xl bg-[#203e5f] text-[#eaeaea] p-8 sm:p-10 border border-[#fee5b1]/20">
+                                <h3 className="text-xl sm:text-2xl font-bold text-[#ffcc00] mb-2">
+                                    {execGapTitle}
+                                </h3>
+                                <p className="text-sm leading-relaxed text-[#eaeaea] mb-5">
+                                    {execGapBody}
+                                </p>
+                                <div className="grid sm:grid-cols-2 gap-3 mb-5">
+                                    {execGapPoints.map((p: any, i: number) => (
+                                        <div
+                                            key={i}
+                                            className="text-sm font-bold py-2.5 px-4 rounded-md bg-[#1a2634] text-[#fee5b1] border border-[#ffcc00]/25"
+                                        >
+                                            {p.text}
+                                        </div>
+                                    ))}
                                 </div>
+                                <p className="text-xs sm:text-sm italic leading-relaxed m-0 text-[#fee5b1]">
+                                    {execGapQuote}
+                                </p>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* DAILY LOOP — Open Architectural Timeline with EU Gold & Cream Top Bars */}
-                <section className={`mb-36 sm:mb-48 border-t pt-16 sm:pt-24 ${isLight ? 'border-[#203e5f]/20' : 'border-[#ffcc00]/20'}`}>
-                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                {/* DAILY LOOP — Full-Width 5-Column Strip */}
+                <section className={`mb-32 sm:mb-40 border-t-2 pt-16 sm:pt-20 ${isLight ? 'border-[#203e5f]/20' : 'border-[#203e5f]'}`}>
+                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
                         <div>
                             <div className={`text-xs font-bold uppercase tracking-widest mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
                                 Daily Cadence
                             </div>
-                            <h2 className={`text-3xl sm:text-4xl font-bold tracking-tight m-0 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                            <h2 className={`text-3xl sm:text-4xl font-bold tracking-tight m-0 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
                                 {howItWorksTitle}
                             </h2>
                         </div>
-                        <p className={`text-base font-medium m-0 max-w-md ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
+                        <p className={`text-base font-semibold m-0 max-w-md ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
                             {howItWorksFooter}
                         </p>
                     </div>
 
-                    <div className="grid gap-10 sm:grid-cols-5">
+                    <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-5">
                         {howItWorksSteps.map((s: any, i: number) => (
                             <div
                                 key={i}
-                                className={`border-t-2 pt-6 ${
-                                    i % 2 === 0
-                                        ? 'border-[#ffcc00]'
-                                        : isLight
-                                          ? 'border-[#203e5f]'
-                                          : 'border-[#fee5b1]'
+                                className={`rounded-lg p-6 border-t-4 border-t-[#ffcc00] border ${
+                                    isLight
+                                        ? 'bg-white border-[#203e5f]/20 text-[#1a2634]'
+                                        : 'bg-[#203e5f]/60 border-[#203e5f] text-[#eaeaea]'
                                 }`}
                             >
-                                <div className={`text-xs font-bold mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
-                                    0{i + 1}
+                                <div className={`text-xs font-extrabold mb-4 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                                    STEP 0{i + 1}
                                 </div>
-                                <h3 className={`text-xl font-bold mb-2 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                                <h3 className={`text-xl font-bold mb-1.5 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
                                     {s.title}
                                 </h3>
-                                <p className={`text-sm m-0 leading-relaxed ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/75'}`}>
+                                <p className={`text-sm m-0 leading-relaxed ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
                                     {s.desc}
                                 </p>
                             </div>
@@ -1716,109 +1703,116 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                     </div>
                 </section>
 
-                {/* INVESTOR REALITY — Editorial Comparison Table */}
-                <section className={`mb-36 sm:mb-48 border-t pt-16 sm:pt-24 ${isLight ? 'border-[#203e5f]/20' : 'border-[#ffcc00]/20'}`}>
-                    <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
-                        <div className="lg:col-span-5">
+                {/* INVESTOR REALITY — Full-Width Side-by-Side Comparison */}
+                <section className={`mb-32 sm:mb-40 border-t-2 pt-16 sm:pt-20 ${isLight ? 'border-[#203e5f]/20' : 'border-[#203e5f]'}`}>
+                    <div className="grid gap-12 md:grid-cols-12 md:gap-14">
+                        <div className="md:col-span-5">
                             <div className={`text-xs font-bold uppercase tracking-widest mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
                                 Capital Readiness
                             </div>
-                            <h2 className={`text-3xl sm:text-4xl font-bold leading-tight tracking-tight mb-5 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                            <h2 className={`text-3xl sm:text-4xl font-bold leading-tight tracking-tight mb-5 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
                                 {invTitle}
                             </h2>
-                            <p className={`text-base font-medium leading-relaxed mb-6 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
+                            <p className={`text-base font-semibold leading-relaxed mb-5 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
                                 {invIntro}
                             </p>
-                            <p className={`text-sm leading-relaxed mb-6 ${isLight ? 'text-[#1a2634]/80' : 'text-[#eaeaea]/75'}`}>
+                            <p className={`text-sm leading-relaxed mb-6 ${isLight ? 'text-[#1a2634]/85' : 'text-[#eaeaea]/85'}`}>
                                 {compEvidenceFooter}
                             </p>
-                            <p className={`text-sm font-semibold leading-relaxed border-l-2 border-[#ffcc00] pl-4 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                            <div className="p-5 rounded-lg bg-[#203e5f] text-[#fee5b1] border-l-4 border-[#ffcc00] text-sm font-medium leading-relaxed">
                                 {invFooter}
-                            </p>
+                            </div>
                         </div>
 
-                        <div className="lg:col-span-7">
-                            <div className="grid sm:grid-cols-2 gap-10 sm:gap-12">
-                                <div className={`border-t-2 pt-6 ${isLight ? 'border-[#203e5f]' : 'border-[#fee5b1]'}`}>
-                                    <h3 className={`text-xl font-bold mb-6 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
-                                        {angelsTitle}
-                                    </h3>
-                                    <ul
-                                        className={`divide-y border-t border-b pl-0 list-none m-0 ${
-                                            isLight ? 'divide-[#203e5f]/15 border-[#203e5f]/20' : 'divide-white/12 border-white/15'
-                                        }`}
-                                    >
-                                        {angelsPoints.map((p: any, i: number) => (
-                                            <li key={i} className={`py-3.5 text-sm font-medium ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]/90'}`}>
-                                                {p.text}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
+                        <div className="md:col-span-7 grid sm:grid-cols-2 gap-8">
+                            <div
+                                className={`rounded-xl p-7 border-t-4 border-t-[#fee5b1] border ${
+                                    isLight ? 'bg-white border-[#203e5f]/20' : 'bg-[#203e5f]/45 border-[#203e5f]'
+                                }`}
+                            >
+                                <h3 className={`text-xl font-bold mb-5 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
+                                    {angelsTitle}
+                                </h3>
+                                <ul
+                                    className={`divide-y border-t pl-0 list-none m-0 ${
+                                        isLight ? 'divide-[#203e5f]/15 border-[#203e5f]/15' : 'divide-white/12 border-white/15'
+                                    }`}
+                                >
+                                    {angelsPoints.map((p: any, i: number) => (
+                                        <li key={i} className={`py-3.5 text-sm font-semibold ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
+                                            {p.text}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
 
-                                <div className="border-t-2 border-[#ffcc00] pt-6">
-                                    <h3 className={`text-xl font-bold mb-6 ${isLight ? 'text-[#1a2634]' : 'text-[#ffcc00]'}`}>
-                                        {vcsTitle}
-                                    </h3>
-                                    <ul
-                                        className={`divide-y border-t border-b pl-0 list-none m-0 ${
-                                            isLight ? 'divide-[#203e5f]/15 border-[#203e5f]/20' : 'divide-white/12 border-white/15'
-                                        }`}
-                                    >
-                                        {vcsPoints.map((p: any, i: number) => (
-                                            <li key={i} className={`py-3.5 text-sm font-semibold ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
-                                                {p.text}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
+                            <div
+                                className={`rounded-xl p-7 border-t-4 border-t-[#ffcc00] border ${
+                                    isLight ? 'bg-white border-[#203e5f]/20' : 'bg-[#203e5f]/75 border-[#ffcc00]/30'
+                                }`}
+                            >
+                                <h3 className={`text-xl font-bold mb-5 ${isLight ? 'text-[#1a2634]' : 'text-[#ffcc00]'}`}>
+                                    {vcsTitle}
+                                </h3>
+                                <ul
+                                    className={`divide-y border-t pl-0 list-none m-0 ${
+                                        isLight ? 'divide-[#203e5f]/15 border-[#203e5f]/15' : 'divide-white/12 border-white/15'
+                                    }`}
+                                >
+                                    {vcsPoints.map((p: any, i: number) => (
+                                        <li key={i} className={`py-3.5 text-sm font-bold flex items-center gap-2.5 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                                            <span className="text-[#ffcc00]">✓</span>
+                                            <span>{p.text}</span>
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* LEARNING SCIENCE & TELEMETRY — Clean Two-Column Index */}
-                <section className={`mb-36 sm:mb-48 border-t pt-16 sm:pt-24 ${isLight ? 'border-[#203e5f]/20' : 'border-[#ffcc00]/20'}`}>
-                    <div className="grid gap-16 lg:grid-cols-12 lg:gap-20">
-                        <div className="lg:col-span-5">
-                            <h2 className={`text-2xl sm:text-3xl font-bold tracking-tight mb-3 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                {/* LEARNING SCIENCE & TELEMETRY — Full-Width 2-Column Spread */}
+                <section className={`mb-32 sm:mb-40 border-t-2 pt-16 sm:pt-20 ${isLight ? 'border-[#203e5f]/20' : 'border-[#203e5f]'}`}>
+                    <div className="grid gap-14 md:grid-cols-12 md:gap-16">
+                        <div className="md:col-span-5">
+                            <h2 className={`text-2xl sm:text-3xl font-bold tracking-tight mb-3 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
                                 {sciTitle}
                             </h2>
-                            <p className={`text-sm leading-relaxed mb-8 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]/85'}`}>
+                            <p className={`text-sm font-medium leading-relaxed mb-7 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
                                 {sciSubtitle}
                             </p>
                             <ul
-                                className={`divide-y border-t border-b pl-0 list-none m-0 ${
-                                    isLight ? 'divide-[#203e5f]/15 border-[#203e5f]/20' : 'divide-white/12 border-white/15'
+                                className={`divide-y border-t-2 border-b-2 pl-0 list-none m-0 ${
+                                    isLight ? 'divide-[#203e5f]/15 border-[#203e5f]/20' : 'divide-[#203e5f] border-[#203e5f]'
                                 }`}
                             >
                                 {sciPoints.map((p: any, i: number) => (
-                                    <li key={i} className="py-4 text-sm font-semibold flex items-center gap-3">
-                                        <span className="text-[#ffcc00]">—</span>
+                                    <li key={i} className="py-4 text-sm font-bold flex items-center gap-3">
+                                        <span className="text-[#ffcc00]">■</span>
                                         <span>{p.text}</span>
                                     </li>
                                 ))}
                             </ul>
                         </div>
 
-                        <div className="lg:col-span-7">
-                            <h2 className={`text-2xl sm:text-3xl font-bold tracking-tight mb-3 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                        <div className="md:col-span-7">
+                            <h2 className={`text-2xl sm:text-3xl font-bold tracking-tight mb-3 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
                                 {metricsTitle}
                             </h2>
-                            <p className={`text-sm leading-relaxed mb-8 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]/85'}`}>
+                            <p className={`text-sm font-medium leading-relaxed mb-7 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
                                 Measurable programme outputs recorded across every 100-day cohort:
                             </p>
                             <div
-                                className={`grid sm:grid-cols-2 gap-x-10 divide-y border-t border-b ${
-                                    isLight ? 'divide-[#203e5f]/15 border-[#203e5f]/20' : 'divide-white/12 border-white/15'
+                                className={`grid sm:grid-cols-2 gap-x-8 divide-y border-t-2 border-b-2 ${
+                                    isLight ? 'divide-[#203e5f]/15 border-[#203e5f]/20' : 'divide-[#203e5f] border-[#203e5f]'
                                 }`}
                             >
                                 {metricsPoints.map((p: any, i: number) => (
                                     <div key={i} className="py-4 flex items-baseline gap-3.5 text-sm">
-                                        <span className={`text-xs font-bold shrink-0 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                                        <span className={`text-xs font-extrabold shrink-0 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
                                             0{i + 1}
                                         </span>
-                                        <span className={`font-medium ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>{p.text}</span>
+                                        <span className={`font-semibold ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>{p.text}</span>
                                     </div>
                                 ))}
                             </div>
@@ -1829,24 +1823,24 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                 <FaqSection settings={settings} theme={theme} />
 
                 {/* PRICING & LEGAL — Required for PayNow / Polish e-commerce compliance */}
-                <section id="pricing" className={`mb-20 border-t pt-16 sm:pt-24 ${isLight ? 'border-[#203e5f]/20' : 'border-[#ffcc00]/20'}`}>
-                    <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-6">
+                <section id="pricing" className={`mb-20 border-t-2 pt-16 sm:pt-20 ${isLight ? 'border-[#203e5f]/20' : 'border-[#203e5f]'}`}>
+                    <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-6">
                         <div>
-                            <div className={`text-xs font-bold uppercase tracking-widest mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                            <div className={`text-xs font-bold uppercase tracking-widest mb-2 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
                                 Programme Access
                             </div>
-                            <h2 className={`text-3xl sm:text-5xl font-bold tracking-tight m-0 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                            <h2 className={`text-3xl sm:text-5xl font-bold tracking-tight m-0 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
                                 {pricing[pricingLang].sectionTitle}
                             </h2>
                         </div>
                         <div
                             className={`inline-flex self-start items-center gap-1 border rounded-md p-1 ${
-                                isLight ? 'bg-white/70 border-[#203e5f]/20' : 'bg-[#203e5f]/45 border-[#ffcc00]/25'
+                                isLight ? 'bg-white border-[#203e5f]/25' : 'bg-[#203e5f] border-[#fee5b1]/25'
                             }`}
                         >
                             <button
                                 onClick={() => setPricingLang('en')}
-                                className={`px-3.5 py-1.5 rounded text-xs font-bold transition-colors cursor-pointer ${
+                                className={`px-4 py-1.5 rounded text-xs font-extrabold transition-colors cursor-pointer ${
                                     pricingLang === 'en'
                                         ? 'bg-[#ffcc00] text-[#1a2634]'
                                         : isLight
@@ -1858,7 +1852,7 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                             </button>
                             <button
                                 onClick={() => setPricingLang('pl')}
-                                className={`px-3.5 py-1.5 rounded text-xs font-bold transition-colors cursor-pointer ${
+                                className={`px-4 py-1.5 rounded text-xs font-extrabold transition-colors cursor-pointer ${
                                     pricingLang === 'pl'
                                         ? 'bg-[#ffcc00] text-[#1a2634]'
                                         : isLight
@@ -1872,18 +1866,16 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                     </div>
 
                     <div
-                        className={`rounded-xl border overflow-hidden backdrop-blur-xl ${
+                        className={`rounded-xl border border-t-4 border-t-[#ffcc00] overflow-hidden ${
                             isLight
-                                ? 'bg-white/75 border-[#203e5f]/20'
-                                : 'bg-[#203e5f]/35 border-[#ffcc00]/25'
+                                ? 'bg-white border-[#203e5f]/25'
+                                : 'bg-[#203e5f]/55 border-[#203e5f]'
                         }`}
                     >
-                        <div className="h-1.5 w-full bg-gradient-to-r from-[#ffcc00] via-[#fee5b1] to-[#203e5f]" />
-
-                        <div className={`grid lg:grid-cols-12 border-b ${isLight ? 'border-[#203e5f]/15' : 'border-white/12'}`}>
-                            <div className="lg:col-span-7 p-8 sm:p-12 flex flex-col justify-between">
+                        <div className={`grid md:grid-cols-12 border-b ${isLight ? 'border-[#203e5f]/15' : 'border-white/15'}`}>
+                            <div className="md:col-span-7 p-8 sm:p-12 flex flex-col justify-between">
                                 <div>
-                                    <h3 className={`text-2xl sm:text-3xl font-bold mb-4 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                                    <h3 className={`text-2xl sm:text-3xl font-bold mb-4 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
                                         {pricing[pricingLang].serviceName}
                                     </h3>
                                     <p className={`text-base leading-relaxed mb-8 max-w-xl ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/85'}`}>
@@ -1893,19 +1885,19 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                                         {pricing[pricingLang].features.map((f: any, i: number) => (
                                             <li
                                                 key={i}
-                                                className={`flex items-center gap-3 text-sm font-semibold ${
+                                                className={`flex items-center gap-3 text-sm font-bold ${
                                                     isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'
                                                 }`}
                                             >
-                                                <span className="text-[#ffcc00] font-bold">✓</span>
+                                                <span className="text-[#ffcc00] font-extrabold">✓</span>
                                                 <span>{f.text}</span>
                                             </li>
                                         ))}
                                     </ul>
                                 </div>
 
-                                <div className={`mt-10 pt-6 border-t space-y-1 ${isLight ? 'border-[#203e5f]/15' : 'border-white/12'}`}>
-                                    <p className={`text-xs ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/75'}`}>
+                                <div className={`mt-10 pt-6 border-t space-y-1 ${isLight ? 'border-[#203e5f]/15' : 'border-white/15'}`}>
+                                    <p className={`text-xs ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/80'}`}>
                                         {pricing[pricingLang].individualNote}
                                     </p>
                                     <p className={`text-xs font-bold ${isLight ? 'text-[#1a2634]' : 'text-[#fee5b1]'}`}>
@@ -1914,50 +1906,44 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                                 </div>
                             </div>
 
-                            <div
-                                className={`lg:col-span-5 p-8 sm:p-12 flex flex-col justify-between border-t lg:border-t-0 lg:border-l ${
-                                    isLight
-                                        ? 'bg-[#1a2634] border-[#203e5f]/20 text-[#eaeaea]'
-                                        : 'bg-[#1a2634]/75 border-white/12 text-[#eaeaea]'
-                                }`}
-                            >
+                            <div className="md:col-span-5 p-8 sm:p-12 flex flex-col justify-between border-t md:border-t-0 md:border-l bg-[#1a2634] border-white/15 text-[#eaeaea]">
                                 <div>
                                     <div className="flex items-center justify-between mb-3">
-                                        <span className="text-xs font-semibold text-[#fee5b1]">
+                                        <span className="text-xs font-bold text-[#fee5b1]">
                                             Programme access fee
                                         </span>
                                         {logoUrl && (
                                             <img src={logoUrl} alt={companyName} className="h-6 object-contain" />
                                         )}
                                     </div>
-                                    <div className="text-4xl sm:text-5xl font-bold tracking-tight text-[#ffcc00]">
+                                    <div className="text-4xl sm:text-5xl font-extrabold tracking-tight text-[#ffcc00]">
                                         {pricingLang === 'en' ? pricingPriceDisplayEur : pricingPriceDisplay}
                                     </div>
-                                    <div className="text-xs mt-1.5 text-[#fee5b1]/80">
+                                    <div className="text-xs mt-1.5 text-[#fee5b1]">
                                         {pricing[pricingLang].vatInfo}
                                     </div>
 
                                     <div className="mt-8 grid gap-3">
                                         <button
                                             onClick={addProductToCart}
-                                            className="w-full rounded-md px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-[#1a2634] bg-[#ffcc00] hover:bg-[#fee5b1] transition-colors cursor-pointer"
+                                            className="w-full rounded-md px-5 py-3.5 text-xs font-extrabold uppercase tracking-wider text-[#1a2634] bg-[#ffcc00] hover:bg-[#fee5b1] transition-colors cursor-pointer"
                                         >
                                             {pricingLang === 'pl' ? 'Dodaj do koszyka →' : 'Add to cart →'}
                                         </button>
                                         <Link
                                             href="/cart"
-                                            className="w-full rounded-md px-5 py-3 text-xs font-semibold uppercase tracking-wider border border-[#fee5b1]/30 bg-white/[0.03] text-[#fee5b1] hover:border-[#ffcc00] hover:text-[#ffcc00] transition-colors text-center"
+                                            className="w-full rounded-md px-5 py-3 text-xs font-bold uppercase tracking-wider border border-[#fee5b1]/35 bg-[#203e5f]/60 text-[#fee5b1] hover:border-[#ffcc00] hover:text-[#ffcc00] transition-colors text-center"
                                         >
                                             {pricingLang === 'pl' ? 'Zobacz koszyk' : 'View cart'}
                                         </Link>
                                     </div>
                                 </div>
 
-                                <div className="mt-10 pt-6 border-t border-white/12">
-                                    <div className="text-[11px] text-[#eaeaea]/75">
+                                <div className="mt-10 pt-6 border-t border-white/15">
+                                    <div className="text-[11px] text-[#eaeaea]/80">
                                         {pricing[pricingLang].paymentMethods}
                                     </div>
-                                    <p className="text-[11px] mt-1 text-[#eaeaea]/55">
+                                    <p className="text-[11px] mt-1 text-[#eaeaea]/60">
                                         {pricingLang === 'pl'
                                             ? 'Podmiotem świadczącym obsługę płatności online w zakresie płatności kartami jest Autopay S.A.'
                                             : 'Card payments are handled online by Autopay S.A.'}
@@ -1965,7 +1951,7 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                                     <img
                                         src="/paynow/banner-payment-methods.png"
                                         alt="Paynow, BLIK, Visa, Mastercard and Google Pay payment methods"
-                                        className="mt-3 w-full h-auto rounded-md border border-white/10"
+                                        className="mt-3 w-full h-auto rounded-md border border-white/15"
                                     />
                                     <div className="mt-3 flex items-center gap-3">
                                         <img
@@ -1986,14 +1972,14 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                         {/* Legal info grid */}
                         <div
                             className={`grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x ${
-                                isLight ? 'divide-[#203e5f]/15 bg-[#fee5b1]/25' : 'divide-white/10 bg-[#1a2634]/50'
+                                isLight ? 'divide-[#203e5f]/15 bg-[#fee5b1]/35' : 'divide-white/15 bg-[#1a2634]/70'
                             }`}
                         >
                             <div className="p-7 sm:p-8">
                                 <h4 className={`text-xs font-bold mb-1.5 ${isLight ? 'text-[#1a2634]' : 'text-[#ffcc00]'}`}>
                                     {pricing[pricingLang].activationLabel}
                                 </h4>
-                                <p className={`text-xs leading-relaxed m-0 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/75'}`}>
+                                <p className={`text-xs leading-relaxed m-0 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/85'}`}>
                                     {pricing[pricingLang].activationInfo}
                                 </p>
                             </div>
@@ -2001,7 +1987,7 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                                 <h4 className={`text-xs font-bold mb-1.5 ${isLight ? 'text-[#1a2634]' : 'text-[#ffcc00]'}`}>
                                     {pricing[pricingLang].returnLabel}
                                 </h4>
-                                <p className={`text-xs leading-relaxed m-0 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/75'}`}>
+                                <p className={`text-xs leading-relaxed m-0 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/85'}`}>
                                     {pricing[pricingLang].returnPolicy}
                                 </p>
                             </div>
@@ -2009,7 +1995,7 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                                 <h4 className={`text-xs font-bold mb-1.5 ${isLight ? 'text-[#1a2634]' : 'text-[#ffcc00]'}`}>
                                     {pricing[pricingLang].complaintLabel}
                                 </h4>
-                                <p className={`text-xs leading-relaxed m-0 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/75'}`}>
+                                <p className={`text-xs leading-relaxed m-0 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/85'}`}>
                                     {pricing[pricingLang].complaintProcedure}
                                 </p>
                             </div>
@@ -2024,8 +2010,8 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                             )
                             const text = pricingLang === 'pl' ? <>Pełna treść warunków dostępna w: </> : <>Full terms available in: </>
                             return (
-                                <div className={`px-8 py-4 border-t text-left flex items-center justify-between ${isLight ? 'border-[#203e5f]/15' : 'border-white/10'}`}>
-                                    <p className={`text-xs m-0 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/70'}`}>
+                                <div className={`px-8 py-4 border-t text-left flex items-center justify-between ${isLight ? 'border-[#203e5f]/15' : 'border-white/15'}`}>
+                                    <p className={`text-xs m-0 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/75'}`}>
                                         {text}
                                         {termsLink.href ? (
                                             <a
