@@ -30,64 +30,74 @@ export default function PublicHeader({
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full border-b transition-colors duration-300 backdrop-blur-xl ${
+      className={`sticky top-0 z-50 w-full transition-colors duration-300 backdrop-blur-xl ${
         isLight
-          ? 'border-[#1a2634]/[0.08] bg-[#eaeaea]/70 text-[#1a2634]'
-          : 'border-white/[0.08] bg-[#1a2634]/60 text-[#eaeaea]'
+          ? 'bg-[#eaeaea]/80 text-[#1a2634] border-b border-[#203e5f]/15'
+          : 'bg-[#1a2634]/75 text-[#eaeaea] border-b border-[#ffcc00]/15'
       }`}
     >
-      <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-6 px-5 py-4 sm:px-10 sm:py-5">
-        <div className="flex items-center gap-10 lg:gap-14">
+      <div className="mx-auto flex w-full max-w-[1360px] items-center justify-between gap-6 px-6 py-5 sm:px-12">
+        <div className="flex items-center gap-12">
           <Link href="/" className="group flex items-center">
             <div
-              className={`transition-all ${
+              className={
                 isLight
-                  ? 'rounded-xl bg-[#1a2634]/90 backdrop-blur-md px-3.5 py-1.5 shadow-sm'
+                  ? 'rounded-lg bg-[#1a2634] px-3 py-1.5 shadow-sm'
                   : ''
-              }`}
+              }
             >
               <MesgaHorizontalLogo
                 companyName={companyName}
                 logoUrl={logoUrl}
                 size="compact"
-                className="transition-opacity group-hover:opacity-90"
+                className="transition-opacity group-hover:opacity-85"
               />
             </div>
           </Link>
 
           <nav
-            className="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-[0.18em]"
+            className="hidden lg:flex items-center gap-9 text-[13px] font-semibold"
             aria-label="Public navigation"
           >
+            <a
+              href="#tracks"
+              className={`transition-colors ${
+                isLight
+                  ? 'text-[#203e5f] hover:text-[#1a2634]'
+                  : 'text-[#fee5b1]/80 hover:text-[#ffcc00]'
+              }`}
+            >
+              Tracks
+            </a>
+            <a
+              href="#program"
+              className={`transition-colors ${
+                isLight
+                  ? 'text-[#203e5f] hover:text-[#1a2634]'
+                  : 'text-[#fee5b1]/80 hover:text-[#ffcc00]'
+              }`}
+            >
+              100-Day Structure
+            </a>
             {HEADER_MARKETING_NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`py-1 transition-colors ${
+                className={`transition-colors ${
                   isLight
-                    ? 'text-[#1a2634]/70 hover:text-[#1a2634]'
-                    : 'text-[#eaeaea]/65 hover:text-white'
+                    ? 'text-[#203e5f] hover:text-[#1a2634]'
+                    : 'text-[#fee5b1]/80 hover:text-[#ffcc00]'
                 }`}
               >
                 {link.label}
               </Link>
             ))}
             <a
-              href="#tracks"
-              className={`py-1 transition-colors ${
-                isLight
-                  ? 'text-[#1a2634]/70 hover:text-[#1a2634]'
-                  : 'text-[#eaeaea]/65 hover:text-white'
-              }`}
-            >
-              Tracks
-            </a>
-            <a
               href="#pricing"
-              className={`py-1 transition-colors ${
+              className={`transition-colors ${
                 isLight
-                  ? 'text-[#1a2634]/70 hover:text-[#1a2634]'
-                  : 'text-[#eaeaea]/65 hover:text-white'
+                  ? 'text-[#203e5f] hover:text-[#1a2634]'
+                  : 'text-[#fee5b1]/80 hover:text-[#ffcc00]'
               }`}
             >
               Pricing
@@ -95,23 +105,19 @@ export default function PublicHeader({
           </nav>
         </div>
 
-        <div className="flex items-center gap-3 sm:gap-3.5">
+        <div className="flex items-center gap-4 sm:gap-5">
           {onToggleTheme && (
             <button
               type="button"
               onClick={onToggleTheme}
               aria-label={isLight ? 'Przełącz na tryb ciemny' : 'Przełącz na tryb jasny'}
-              className={`inline-flex items-center gap-2 rounded-xl border px-3.5 py-2 text-xs font-semibold tracking-wider transition-all backdrop-blur-md cursor-pointer ${
+              className={`inline-flex items-center gap-2 text-xs font-semibold px-3.5 py-2 rounded-md border transition-colors cursor-pointer ${
                 isLight
-                  ? 'border-[#1a2634]/12 bg-white/60 text-[#1a2634] hover:bg-white/90'
-                  : 'border-white/12 bg-white/[0.05] text-[#eaeaea]/90 hover:bg-white/[0.1] hover:text-white'
+                  ? 'border-[#203e5f]/25 bg-white/60 text-[#203e5f] hover:bg-[#fee5b1]/60 hover:text-[#1a2634]'
+                  : 'border-[#ffcc00]/30 bg-[#203e5f]/45 text-[#fee5b1] hover:bg-[#203e5f]/80 hover:text-[#ffcc00]'
               }`}
             >
-              <span
-                className={`h-2 w-2 rounded-full ${
-                  isLight ? 'bg-[#203e5f]' : 'bg-[#fee5b1]'
-                }`}
-              />
+              <span className={`h-2 w-2 rounded-full ${isLight ? 'bg-[#203e5f]' : 'bg-[#ffcc00]'}`} />
               <span>{isLight ? 'Dark' : 'Light'}</span>
             </button>
           )}
@@ -119,8 +125,8 @@ export default function PublicHeader({
           <div
             className={
               isLight
-                ? '[&_button]:rounded-xl! [&_button]:border-[#1a2634]/12! [&_button]:bg-white/60! [&_button]:text-[#1a2634]! [&_button]:backdrop-blur-md!'
-                : '[&_button]:rounded-xl! [&_button]:border-white/12! [&_button]:bg-white/[0.05]! [&_button]:backdrop-blur-md!'
+                ? '[&_button]:rounded-md! [&_button]:border-[#203e5f]/20! [&_button]:bg-white/60! [&_button]:text-[#1a2634]!'
+                : '[&_button]:rounded-md! [&_button]:border-[#eaeaea]/15! [&_button]:bg-[#203e5f]/40!'
             }
           >
             <LanguageSwitcher />
@@ -128,10 +134,10 @@ export default function PublicHeader({
 
           <Link
             href={investorHref}
-            className={`hidden sm:inline-flex items-center justify-center rounded-xl border px-4 py-2 text-xs font-semibold tracking-wide transition-all backdrop-blur-md ${
+            className={`hidden sm:inline-flex items-center rounded-md border px-4 py-2 text-[13px] font-semibold transition-colors ${
               isLight
-                ? 'border-[#1a2634]/15 bg-white/50 text-[#1a2634] hover:bg-white/85'
-                : 'border-white/15 bg-white/[0.04] text-[#eaeaea] hover:bg-white/[0.1] hover:border-white/25'
+                ? 'border-[#203e5f]/25 bg-white/50 text-[#203e5f] hover:bg-[#203e5f] hover:text-white'
+                : 'border-[#fee5b1]/25 bg-[#203e5f]/35 text-[#fee5b1] hover:border-[#ffcc00] hover:text-[#ffcc00]'
             }`}
           >
             {investorButtonText}
@@ -139,7 +145,7 @@ export default function PublicHeader({
 
           <Link
             href={founderHref}
-            className="inline-flex items-center justify-center rounded-xl bg-[#ffcc00] px-4.5 py-2 text-xs font-bold tracking-wide text-[#1a2634] shadow-sm transition-all hover:bg-[#fee5b1]"
+            className="inline-flex items-center justify-center rounded-md bg-[#ffcc00] px-4.5 py-2 text-[13px] font-bold text-[#1a2634] transition-colors hover:bg-[#fee5b1]"
           >
             {founderButtonText}
           </Link>

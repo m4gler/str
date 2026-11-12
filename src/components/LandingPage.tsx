@@ -79,7 +79,7 @@ const DEFAULT_FALLBACK_TRACKS = [
         badge: 'EUSPA Beta Cohort · Now Open',
         tagline: 'Satellite data. Everyday life. Your idea.',
         desc: "You don't need to build a rocket. This track is for founders using satellite imagery, geolocation data, and Earth observation to solve real urban, civic, agricultural, or consumer problems.",
-        color: '#38bdf8',
+        color: '#fee5b1',
         applyUrl: '/login?role=founder',
         applyButtonText: 'Apply for Space & the City →',
         startTrackSlug: 'satc',
@@ -105,7 +105,7 @@ const DEFAULT_FALLBACK_TRACKS = [
         badge: 'Sponsored by TechniSchool',
         tagline: 'Build the future of learning — in 100 days.',
         desc: 'Transform education through technology. K–12, higher education, workforce learning, and corporate training. With TechniSchool as anchor sponsor, get direct access to school networks and a real testbed from Day 1.',
-        color: '#34d399',
+        color: '#ffcc00',
         applyUrl: '/login?role=founder',
         applyButtonText: 'Apply for EduTech Track →',
         startTrackSlug: 'edutech',
@@ -161,8 +161,8 @@ const DEFAULT_SOCIAL_PROOF_QUOTES = [
     },
 ] as const
 
-const mentorAvatarFrameClass = 'mb-4 flex h-16 w-16 items-center justify-center overflow-hidden rounded-full border border-white/15 bg-[#1a2634]/80'
-const mentorLogoFrameClass = 'mb-4 flex h-16 w-28 items-center justify-center overflow-hidden rounded-xl border border-white/15 bg-[#1a2634]/80 px-3 py-2'
+const mentorAvatarFrameClass = 'mb-4 flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border border-[#ffcc00]/35 bg-[#1a2634]'
+const mentorLogoFrameClass = 'mb-4 flex h-14 w-28 items-center justify-center overflow-hidden rounded-lg border border-[#ffcc00]/35 bg-[#1a2634] px-3 py-2'
 
 export interface MentorEntry {
     id?: number | string
@@ -186,7 +186,6 @@ function PartnersShowcase({ settings, partners, theme }: { settings: any; partne
 
     if (partners.length === 0) return null
 
-    const sectionLabel = t('partnersSectionLabel', landing.partnersSectionLabel || 'Ecosystem Partners')
     const sectionTitle = t('partnersSectionTitle', landing.partnersSectionTitle || 'Built with operators, institutions, and corporates who move markets.')
     const storedSubtitle = typeof landing.partnersSectionSubtitle === 'string' ? landing.partnersSectionSubtitle.trim() : ''
     const sectionSubtitle =
@@ -195,24 +194,21 @@ function PartnersShowcase({ settings, partners, theme }: { settings: any; partne
             : storedSubtitle
 
     return (
-        <section className={`mb-36 sm:mb-44 border-t pt-20 sm:pt-28 ${isLight ? 'border-[#1a2634]/10' : 'border-white/[0.08]'}`}>
-            <div className="grid gap-12 lg:grid-cols-12 mb-14">
-                <div className="lg:col-span-5">
-                    <div className={`font-mono text-xs font-semibold uppercase tracking-[0.22em] mb-4 ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'}`}>
-                        // {sectionLabel}
-                    </div>
-                    <h2 className={`text-3xl sm:text-4xl font-bold leading-tight ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+        <section className={`mb-36 sm:mb-48 border-t pt-16 sm:pt-24 ${isLight ? 'border-[#203e5f]/20' : 'border-[#ffcc00]/20'}`}>
+            <div className="grid gap-10 lg:grid-cols-12 mb-14 items-baseline">
+                <div className="lg:col-span-6">
+                    <h2 className={`text-3xl sm:text-4xl font-bold leading-tight tracking-tight ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                         {sectionTitle}
                     </h2>
                 </div>
-                <div className="lg:col-span-7 flex items-end">
-                    <p className={`text-base leading-relaxed max-w-2xl ${isLight ? 'text-[#1a2634]/75' : 'text-[#eaeaea]/70'}`}>
+                <div className="lg:col-span-6">
+                    <p className={`text-base leading-relaxed ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]/85'}`}>
                         {sectionSubtitle}
                     </p>
                 </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
+            <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
                 {partners.map((partner) =>
                     partner.websiteUrl ? (
                         <a
@@ -220,10 +216,10 @@ function PartnersShowcase({ settings, partners, theme }: { settings: any; partne
                             href={partner.websiteUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className={`group relative flex min-h-32 items-center justify-center overflow-hidden rounded-2xl border px-6 py-5 backdrop-blur-xl transition-all duration-200 ${
+                            className={`group relative flex min-h-28 items-center justify-center overflow-hidden rounded-lg border px-6 py-5 transition-all duration-200 ${
                                 isLight
-                                    ? 'border-[#1a2634]/10 bg-[#1a2634]/85 hover:bg-[#1a2634]'
-                                    : 'border-white/10 bg-white/[0.03] hover:border-white/25 hover:bg-white/[0.06]'
+                                    ? 'border-[#203e5f]/20 bg-[#1a2634] hover:border-[#ffcc00]'
+                                    : 'border-[#ffcc00]/20 bg-[#203e5f]/40 hover:border-[#ffcc00] hover:bg-[#203e5f]/65'
                             }`}
                             aria-label={`Open ${partner.name}`}
                         >
@@ -231,28 +227,28 @@ function PartnersShowcase({ settings, partners, theme }: { settings: any; partne
                                 <img
                                     src={partner.logoUrl}
                                     alt={partner.name}
-                                    className="max-h-16 w-full object-contain transition-transform duration-200 group-hover:scale-[1.03]"
+                                    className="max-h-14 w-full object-contain transition-transform duration-200 group-hover:scale-[1.02]"
                                     loading="lazy"
                                 />
                             ) : (
-                                <span className="text-sm font-bold text-[#eaeaea]">{partner.name}</span>
+                                <span className="text-sm font-semibold text-[#eaeaea]">{partner.name}</span>
                             )}
                         </a>
                     ) : (
                         <div
                             key={partner.id}
-                            className="flex min-h-32 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl px-6 py-5"
+                            className="flex min-h-28 items-center justify-center overflow-hidden rounded-lg border border-[#ffcc00]/20 bg-[#203e5f]/40 px-6 py-5"
                             aria-label={partner.name}
                         >
                             {partner.logoUrl ? (
                                 <img
                                     src={partner.logoUrl}
                                     alt={partner.name}
-                                    className="max-h-16 w-full object-contain"
+                                    className="max-h-14 w-full object-contain"
                                     loading="lazy"
                                 />
                             ) : (
-                                <span className="text-sm font-bold text-[#eaeaea]">{partner.name}</span>
+                                <span className="text-sm font-semibold text-[#eaeaea]">{partner.name}</span>
                             )}
                         </div>
                     ),
@@ -265,50 +261,34 @@ function PartnersShowcase({ settings, partners, theme }: { settings: any; partne
 function SocialProofQuotes({ theme = 'dark' }: { theme?: 'dark' | 'light' }) {
     const isLight = theme === 'light'
     return (
-        <section className={`mb-36 sm:mb-44 border-t pt-20 sm:pt-28 ${isLight ? 'border-[#1a2634]/10' : 'border-white/[0.08]'}`}>
-            <div className="grid gap-14 lg:grid-cols-12 lg:gap-16 items-start">
-                <div className="lg:col-span-5 space-y-5">
-                    <div className={`font-mono text-xs font-semibold uppercase tracking-[0.22em] ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'}`}>
-                        02 // FIELD PERSPECTIVE
-                    </div>
-                    <h2 className={`text-3xl sm:text-4xl font-bold leading-tight ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
-                        Backed by founders, operators, and ecosystem partners who care about execution clarity.
-                    </h2>
-                    <p className={`text-base leading-relaxed ${isLight ? 'text-[#1a2634]/70' : 'text-[#eaeaea]/65'}`}>
-                        MESGA is designed with people who see the same pattern repeatedly: early founders do better when the next action is explicit, visible, and reviewable.
-                    </p>
+        <section className={`mb-36 sm:mb-48 border-t pt-16 sm:pt-24 ${isLight ? 'border-[#203e5f]/20' : 'border-[#ffcc00]/20'}`}>
+            <div className="max-w-3xl mb-14">
+                <div className={`text-xs font-bold uppercase tracking-widest mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                    Ecosystem Perspective
                 </div>
+                <h2 className={`text-3xl sm:text-4xl font-bold leading-tight tracking-tight ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                    Backed by founders, operators, and ecosystem partners who care about execution clarity.
+                </h2>
+            </div>
 
-                <div className="lg:col-span-7 grid gap-6 sm:grid-cols-3">
-                    {DEFAULT_SOCIAL_PROOF_QUOTES.map((item, idx) => (
-                        <div
-                            key={item.role}
-                            className={`flex flex-col justify-between rounded-2xl border p-7 backdrop-blur-xl ${
-                                isLight
-                                    ? 'border-[#1a2634]/[0.08] bg-white/60 text-[#1a2634]'
-                                    : 'border-white/[0.08] bg-white/[0.03] text-[#eaeaea]'
-                            }`}
-                        >
-                            <div>
-                                <div className={`font-mono text-xs font-semibold mb-4 ${isLight ? 'text-[#203e5f]/60' : 'text-[#eaeaea]/45'}`}>
-                                    /0{idx + 1}
-                                </div>
-                                <p className={`text-sm leading-relaxed font-medium ${isLight ? 'text-[#1a2634]/90' : 'text-[#eaeaea]/90'}`}>
-                                    “{item.quote}”
-                                </p>
-                            </div>
-                            <div
-                                className={`mt-8 pt-4 border-t font-mono text-[11px] font-semibold uppercase tracking-wider ${
-                                    isLight
-                                        ? 'border-[#1a2634]/[0.08] text-[#203e5f]'
-                                        : 'border-white/[0.08] text-[#fee5b1]/85'
-                                }`}
-                            >
-                                {item.role}
-                            </div>
+            <div
+                className={`divide-y border-t border-b ${
+                    isLight ? 'divide-[#203e5f]/15 border-[#203e5f]/20' : 'divide-[#eaeaea]/15 border-[#eaeaea]/15'
+                }`}
+            >
+                {DEFAULT_SOCIAL_PROOF_QUOTES.map((item) => (
+                    <div
+                        key={item.role}
+                        className="py-9 sm:py-11 grid gap-4 lg:grid-cols-12 items-baseline"
+                    >
+                        <div className={`lg:col-span-3 text-sm font-bold ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                            {item.role}
                         </div>
-                    ))}
-                </div>
+                        <blockquote className={`lg:col-span-9 m-0 text-xl sm:text-2xl font-normal leading-relaxed ${isLight ? 'text-[#1a2634]' : 'text-[#fee5b1]'}`}>
+                            “{item.quote}”
+                        </blockquote>
+                    </div>
+                ))}
             </div>
         </section>
     )
@@ -331,20 +311,13 @@ function EcosystemShowcase({
     if (!hasPartners && !hasMentors) return null
 
     return (
-        <section className="mb-36 sm:mb-44">
+        <section className="mb-36 sm:mb-48">
             {hasMentors && (
                 <div>
-                    <div className="mb-8 flex items-center gap-4">
-                        <span
-                            className={`font-mono text-xs font-semibold uppercase tracking-[0.22em] ${
-                                isLight ? 'text-[#203e5f]/75' : 'text-[#eaeaea]/55'
-                            }`}
-                        >
-                            // Ecosystem Mentors
-                        </span>
-                        <div className={`h-px flex-1 ${isLight ? 'bg-[#1a2634]/10' : 'bg-white/10'}`} />
-                    </div>
-                    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    <h3 className={`text-lg font-bold mb-8 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                        Ecosystem Mentors
+                    </h3>
+                    <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
                         {mentors.slice(0, 6).map((mentor, index) => {
                             const initials = mentor.name
                                 .split(' ')
@@ -359,7 +332,7 @@ function EcosystemShowcase({
                                             <img
                                                 src={mentor.logoUrl}
                                                 alt={mentor.name}
-                                                className="max-h-10 w-full object-contain transition-transform duration-200 group-hover:scale-[1.03]"
+                                                className="max-h-9 w-full object-contain"
                                                 loading="lazy"
                                             />
                                         ) : mentor.avatarUrl ? (
@@ -370,7 +343,7 @@ function EcosystemShowcase({
                                                 loading="lazy"
                                             />
                                         ) : (
-                                            <span className="text-lg font-bold text-[#fee5b1]">{initials}</span>
+                                            <span className="text-base font-bold text-[#ffcc00]">{initials}</span>
                                         )}
                                     </div>
                                     <div className={`text-base font-bold leading-snug ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
@@ -378,8 +351,8 @@ function EcosystemShowcase({
                                     </div>
                                     {mentor.partnerName && (
                                         <div
-                                            className={`mt-1.5 font-mono text-[10px] font-semibold uppercase tracking-wider ${
-                                                isLight ? 'text-[#203e5f]/75' : 'text-[#eaeaea]/60'
+                                            className={`mt-1 text-xs font-medium ${
+                                                isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'
                                             }`}
                                         >
                                             {mentor.partnerName}
@@ -387,10 +360,10 @@ function EcosystemShowcase({
                                     )}
                                 </>
                             )
-                            const className = `group block rounded-2xl border p-7 text-left backdrop-blur-xl transition-all duration-200 ${
+                            const className = `group block border-t pt-6 text-left transition-colors ${
                                 isLight
-                                    ? 'border-[#1a2634]/10 bg-white/60 hover:bg-white/85'
-                                    : 'border-white/10 bg-white/[0.03] hover:border-white/20 hover:bg-white/[0.05]'
+                                    ? 'border-[#203e5f]/20 hover:border-[#1a2634]'
+                                    : 'border-[#ffcc00]/25 hover:border-[#ffcc00]'
                             }`
 
                             return mentor.linkUrl ? (
@@ -438,22 +411,11 @@ function TrackPartnerTiles({
     const singlePartner = tiles.length === 1
 
     return (
-        <div className={`flex flex-col border-t pt-5 mt-3 ${isLight ? 'border-[#1a2634]/10' : 'border-white/10'}`}>
-            <div className="flex items-center gap-2.5 mb-3">
-                <span className={`font-mono text-[10px] font-semibold uppercase tracking-[0.2em] ${isLight ? 'text-[#1a2634]/60' : 'text-[#eaeaea]/55'}`}>
-                    Partners
+        <div className={`flex flex-col border-t pt-4 mt-2 ${isLight ? 'border-[#203e5f]/15' : 'border-white/10'}`}>
+            <div className="flex items-center gap-2 mb-2.5">
+                <span className={`text-xs font-semibold ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
+                    Track partners {isPlaceholder ? '(coming soon)' : ''}
                 </span>
-                {isPlaceholder && (
-                    <span
-                        className={`font-mono text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-md border ${
-                            isLight
-                                ? 'bg-white/60 border-[#1a2634]/15 text-[#1a2634]/60'
-                                : 'bg-white/[0.04] border-white/10 text-[#eaeaea]/55'
-                        }`}
-                    >
-                        coming soon
-                    </span>
-                )}
             </div>
             {singlePartner ? (
                 <div className="w-full max-w-[190px]">
@@ -467,12 +429,12 @@ function TrackPartnerTiles({
                     {mentors.map((m, idx) => (
                         <div
                             key={m.id ?? idx}
-                            className={`inline-flex items-center gap-2 rounded-lg border px-2.5 py-1.5 ${
-                                isLight ? 'border-[#1a2634]/10 bg-white/70 text-[#1a2634]' : 'border-white/10 bg-white/[0.04] text-[#eaeaea]'
+                            className={`inline-flex items-center gap-2 rounded-md border px-2.5 py-1 ${
+                                isLight ? 'border-[#203e5f]/15 bg-white/70 text-[#1a2634]' : 'border-white/10 bg-[#1a2634]/60 text-[#eaeaea]'
                             }`}
                         >
-                            {m.logoUrl && <img src={m.logoUrl} alt={m.name} className="max-h-8 w-full object-contain" />}
-                            <span className="text-[11px] font-semibold">{m.name}</span>
+                            {m.logoUrl && <img src={m.logoUrl} alt={m.name} className="max-h-7 w-full object-contain" />}
+                            <span className="text-[11px] font-medium">{m.name}</span>
                         </div>
                     ))}
                 </div>
@@ -483,7 +445,6 @@ function TrackPartnerTiles({
 
 function TrackPartnerTile({
     partner,
-    accentColor,
     size,
     isLight = false,
 }: {
@@ -494,40 +455,36 @@ function TrackPartnerTile({
 }) {
     const isSingle = size === 'single'
     const tileClasses = isSingle
-        ? `group block rounded-xl border p-3.5 transition-all duration-200 hover:-translate-y-0.5 ${
-              isLight ? 'border-[#1a2634]/10 bg-white/60' : 'border-white/10 bg-white/[0.03]'
+        ? `group block rounded-lg border p-3 transition-all duration-200 ${
+              isLight ? 'border-[#203e5f]/15 bg-white/60' : 'border-white/10 bg-[#1a2634]/60'
           }`
         : 'group block'
     const content = (
         <>
             <div
-                className={`flex items-center justify-center overflow-hidden rounded-lg border ${
-                    isLight ? 'border-[#1a2634]/10 bg-[#1a2634]/90' : 'border-white/10 bg-[#1a2634]/75'
-                } ${isSingle ? 'min-h-[56px] px-3 py-2' : 'min-h-[72px] px-3 py-3'}`}
+                className={`flex items-center justify-center overflow-hidden rounded-md ${
+                    isLight ? 'bg-[#1a2634]' : 'bg-[#1a2634]/90 border border-[#ffcc00]/20'
+                } ${isSingle ? 'min-h-[52px] px-3 py-2' : 'min-h-[64px] px-3 py-2.5'}`}
             >
                 {partner.logoUrl ? (
                     <img
                         src={partner.logoUrl}
                         alt={partner.name}
-                        className={`w-full object-contain transition-transform duration-200 group-hover:scale-[1.03] ${isSingle ? 'max-h-10' : 'max-h-14'}`}
+                        className={`w-full object-contain ${isSingle ? 'max-h-9' : 'max-h-12'}`}
                     />
                 ) : (
-                    <span className="text-center text-xs font-semibold leading-relaxed text-[#eaeaea]">
+                    <span className="text-center text-xs font-semibold leading-relaxed text-[#fee5b1]">
                         {partner.name}
                     </span>
                 )}
             </div>
             <div
-                className={`text-center font-semibold ${
+                className={`text-center font-medium ${
                     isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'
-                } ${isSingle ? 'mt-1.5 text-[11px] leading-tight' : 'mt-2 text-[11px] leading-snug'}`}
+                } ${isSingle ? 'mt-1.5 text-[11px] leading-tight' : 'mt-1.5 text-[11px] leading-snug'}`}
             >
                 {partner.name}
             </div>
-            <div
-                className={`mx-auto h-px ${isSingle ? 'mt-1.5 w-14' : 'mt-2 w-12'}`}
-                style={{ background: `linear-gradient(90deg, transparent, ${accentColor}88, transparent)` }}
-            />
         </>
     )
 
@@ -570,11 +527,11 @@ function TrackPartnerCarousel({
 
     return (
         <div
-            className={`relative w-full max-w-[190px] rounded-xl border p-2.5 overflow-hidden backdrop-blur-md ${
-                isLight ? 'border-[#1a2634]/10 bg-white/50' : 'border-white/10 bg-white/[0.03]'
+            className={`relative w-full max-w-[190px] rounded-lg border p-2 overflow-hidden ${
+                isLight ? 'border-[#203e5f]/15 bg-white/50' : 'border-white/10 bg-[#1a2634]/50'
             }`}
         >
-            <div className="relative" style={{ minHeight: '112px' }}>
+            <div className="relative" style={{ minHeight: '96px' }}>
                 {partners.map((partner, index) => (
                     <div
                         key={partner.id}
@@ -605,34 +562,24 @@ function NewTrackCard({
     const isLight = theme === 'light'
     return (
         <div
-            className={`h-full w-full rounded-2xl border border-dashed flex flex-col justify-between p-9 min-h-[420px] backdrop-blur-xl transition-colors ${
+            className={`h-full w-full rounded-xl border-2 border-dashed flex flex-col justify-between p-9 min-h-[400px] backdrop-blur-xl transition-colors ${
                 isLight
-                    ? 'border-[#1a2634]/20 bg-white/45 text-[#1a2634]'
-                    : 'border-white/15 bg-white/[0.02] text-[#eaeaea]'
+                    ? 'border-[#203e5f]/30 bg-white/50 text-[#1a2634]'
+                    : 'border-[#ffcc00]/30 bg-[#203e5f]/25 text-[#eaeaea]'
             }`}
         >
             <div>
-                <div
-                    className={`font-mono text-xs font-semibold uppercase tracking-widest inline-block px-3 py-1 rounded-lg mb-5 border ${
-                        isLight
-                            ? 'bg-white/70 border-[#1a2634]/10 text-[#203e5f]'
-                            : 'bg-white/[0.05] border-white/10 text-[#fee5b1]'
-                    }`}
-                >
-                    + EXPANSION LANE
+                <div className={`text-xs font-bold uppercase tracking-wider mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                    Institutional &amp; Corporate Partnerships
                 </div>
                 <div className="text-2xl font-bold mb-3">{newTrackLabel}</div>
-                <div className={`text-sm leading-relaxed max-w-xs ${isLight ? 'text-[#1a2634]/70' : 'text-[#eaeaea]/65'}`}>
+                <div className={`text-sm leading-relaxed max-w-xs ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]/85'}`}>
                     {newTrackSubtitle}
                 </div>
             </div>
             <a
                 href={`mailto:${newTrackEmail}`}
-                className={`inline-flex w-fit items-center gap-2 rounded-xl border px-5 py-3 text-xs font-bold uppercase tracking-wider transition-colors ${
-                    isLight
-                        ? 'border-[#1a2634]/15 bg-white/80 text-[#1a2634] hover:bg-[#1a2634] hover:text-white'
-                        : 'border-white/15 bg-white/[0.06] text-white hover:bg-white/[0.12]'
-                }`}
+                className="inline-flex w-fit items-center gap-2 rounded-md bg-[#ffcc00] px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-[#1a2634] hover:bg-[#fee5b1] transition-colors"
             >
                 {newTrackCta}
             </a>
@@ -663,7 +610,6 @@ function TrackCard({
     trackPartners,
     pills,
     activePillKey,
-    challengeTypeLabel,
     viewDetailsBtn,
     startTrackBtn,
     challenge,
@@ -682,35 +628,76 @@ function TrackCard({
 
     return (
         <div
-            className={`h-full w-full flex flex-col rounded-2xl border overflow-hidden backdrop-blur-2xl transition-all ${
+            className={`h-full w-full flex flex-col rounded-xl border overflow-hidden backdrop-blur-xl transition-all ${
                 isLight
-                    ? 'border-[#1a2634]/10 bg-white/65 text-[#1a2634] shadow-lg shadow-[#1a2634]/[0.04]'
-                    : 'border-white/10 bg-white/[0.03] text-[#eaeaea] shadow-2xl shadow-black/20'
+                    ? 'border-[#203e5f]/20 bg-white/75 text-[#1a2634] shadow-lg shadow-[#203e5f]/[0.05]'
+                    : 'border-[#ffcc00]/25 bg-[#203e5f]/40 text-[#eaeaea] shadow-2xl shadow-black/25'
             }`}
         >
-            <div className="h-1 w-full opacity-85" style={{ backgroundColor: accent }} />
+            <div className="h-1.5 w-full bg-gradient-to-r from-[#ffcc00] via-[#fee5b1] to-[#203e5f]" />
 
-            <div className="px-7 pt-7 pb-6 flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-8">
-                <div className="flex-1 flex flex-col">
-                    <div className="flex items-center justify-between gap-3 mb-4">
-                        <span
-                            className={`font-mono text-[10px] font-semibold uppercase tracking-wider px-3 py-1 rounded-lg border ${
-                                isLight
-                                    ? 'bg-[#1a2634]/[0.05] border-[#1a2634]/10 text-[#203e5f]'
-                                    : 'bg-white/[0.05] border-white/10 text-[#eaeaea]/90'
-                            }`}
-                        >
-                            {track.badge}
-                        </span>
-                        <span className={`font-mono text-xs font-semibold ${isLight ? 'text-[#1a2634]/40' : 'text-[#eaeaea]/40'}`}>
-                            /{track.icon}
-                        </span>
+            <div className="p-8 sm:p-9 flex flex-col flex-1 justify-between">
+                <div>
+                    <div className="flex items-start justify-between gap-4 mb-6">
+                        <div>
+                            <div className={`text-xs font-bold uppercase tracking-wider mb-1.5 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                                {track.badge}
+                            </div>
+                            <h3 className={`text-2xl sm:text-3xl font-bold tracking-tight ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                                {track.name}
+                            </h3>
+                            <p className={`text-sm font-medium mt-1 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
+                                {track.tagline}
+                            </p>
+                        </div>
+
+                        {hasGraphic && (
+                            <div className="hidden lg:block shrink-0 w-28 overflow-hidden rounded-md">
+                                <img
+                                    src={track.graphicUrl!}
+                                    alt={`${track.name}`}
+                                    className="block w-full h-auto object-cover"
+                                    onError={(e) => {
+                                        e.currentTarget.onerror = null
+                                        onGraphicError()
+                                    }}
+                                />
+                            </div>
+                        )}
                     </div>
-                    <h3 className={`text-2xl font-bold mb-1.5 tracking-tight ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
-                        {track.name}
-                    </h3>
-                    <div className={`text-xs mb-5 ${isLight ? 'text-[#203e5f]/80' : 'text-[#eaeaea]/65'}`}>
-                        {track.tagline}
+
+                    <p className={`text-sm leading-relaxed mb-6 ${isLight ? 'text-[#1a2634]/85' : 'text-[#eaeaea]/85'}`}>
+                        {track.desc}
+                    </p>
+
+                    {pills.length > 1 && (
+                        <div className={`flex flex-wrap gap-5 border-b mb-4 ${isLight ? 'border-[#203e5f]/15' : 'border-white/15'}`}>
+                            {pills.map((pill) => {
+                                const active = activePillKey === pill.key
+                                return (
+                                    <button
+                                        key={pill.key}
+                                        onClick={() => onSelectPill(pill.key)}
+                                        className={`pb-2.5 text-xs font-bold transition-colors cursor-pointer border-b-2 -mb-px ${
+                                            active
+                                                ? isLight
+                                                    ? 'border-[#203e5f] text-[#1a2634]'
+                                                    : 'border-[#ffcc00] text-[#ffcc00]'
+                                                : isLight
+                                                  ? 'border-transparent text-[#203e5f]/60 hover:text-[#1a2634]'
+                                                  : 'border-transparent text-[#fee5b1]/60 hover:text-white'
+                                        }`}
+                                    >
+                                        {pill.label}
+                                    </button>
+                                )
+                            })}
+                        </div>
+                    )}
+
+                    <div className={`text-sm leading-relaxed mb-6 ${isLight ? 'text-[#1a2634]/85' : 'text-[#eaeaea]/85'}`}>
+                        <strong className={isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}>{challenge.title} — </strong>
+                        {challenge.desc}
                     </div>
 
                     {renderablePartners.length > 0 && (
@@ -723,81 +710,18 @@ function TrackCard({
                     )}
                 </div>
 
-                {hasGraphic && (
-                    <div className="hidden lg:flex shrink-0 w-[180px] xl:w-[200px] items-start justify-end">
-                        <div className={`relative w-full overflow-hidden rounded-xl border ${isLight ? 'border-[#1a2634]/10' : 'border-white/10'}`}>
-                            <img
-                                src={track.graphicUrl!}
-                                alt={`${track.name} Graphic`}
-                                className="block w-full h-auto object-cover"
-                                onError={(e) => {
-                                    e.currentTarget.onerror = null
-                                    onGraphicError()
-                                }}
-                            />
-                        </div>
-                    </div>
-                )}
-            </div>
-
-            <div className={`mx-7 h-px ${isLight ? 'bg-[#1a2634]/[0.08]' : 'bg-white/[0.08]'}`} />
-
-            <div className="px-7 pt-6 pb-7 flex flex-col flex-1">
-                <p className={`text-sm leading-relaxed mb-6 ${isLight ? 'text-[#1a2634]/75' : 'text-[#eaeaea]/75'}`}>
-                    {track.desc}
-                </p>
-
-                <div className={`font-mono text-[10px] font-semibold tracking-[0.2em] uppercase mb-2.5 ${isLight ? 'text-[#1a2634]/50' : 'text-[#eaeaea]/50'}`}>
-                    {challengeTypeLabel}
-                </div>
-                <div className="flex flex-wrap gap-2 mb-5">
-                    {pills.map((pill) => {
-                        const active = activePillKey === pill.key
-                        return (
-                            <button
-                                key={pill.key}
-                                onClick={() => onSelectPill(pill.key)}
-                                className={`text-[11px] font-semibold px-3.5 py-1.5 rounded-lg transition-all cursor-pointer border ${
-                                    active
-                                        ? isLight
-                                            ? 'border-[#1a2634] bg-[#1a2634] text-white'
-                                            : 'border-white/30 bg-white/15 text-white'
-                                        : isLight
-                                          ? 'border-[#1a2634]/10 bg-white/50 text-[#1a2634]/70 hover:bg-white'
-                                          : 'border-white/10 bg-white/[0.03] text-[#eaeaea]/65 hover:bg-white/[0.07]'
-                                }`}
-                            >
-                                {pill.label}
-                            </button>
-                        )
-                    })}
-                </div>
-
-                <div
-                    className={`rounded-xl p-4.5 mb-7 border text-sm leading-relaxed min-h-[92px] ${
-                        isLight
-                            ? 'bg-white/60 border-[#1a2634]/[0.08] text-[#1a2634]/85'
-                            : 'bg-white/[0.03] border-white/[0.08] text-[#eaeaea]/85'
-                    }`}
-                >
-                    <span className={`font-bold ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>{challenge.title}: </span>
-                    {challenge.desc}
-                </div>
-
-                <div className="mt-auto grid sm:grid-cols-2 gap-3">
+                <div className={`mt-8 pt-6 border-t flex flex-wrap items-center justify-between gap-4 ${isLight ? 'border-[#203e5f]/15' : 'border-white/15'}`}>
                     <button
                         onClick={onOpenDetails}
-                        className={`w-full rounded-xl px-4 py-3 text-xs font-semibold uppercase tracking-wider transition-colors border cursor-pointer ${
-                            isLight
-                                ? 'border-[#1a2634]/15 bg-white/50 text-[#1a2634] hover:bg-white'
-                                : 'border-white/15 bg-white/[0.03] text-[#eaeaea] hover:bg-white/[0.08]'
+                        className={`text-xs font-bold underline decoration-[#ffcc00] decoration-2 underline-offset-4 transition-colors cursor-pointer ${
+                            isLight ? 'text-[#1a2634] hover:text-[#203e5f]' : 'text-[#fee5b1] hover:text-[#ffcc00]'
                         }`}
                     >
                         {viewDetailsBtn}
                     </button>
                     <button
                         onClick={onStartTrack}
-                        className="w-full rounded-xl px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#1a2634] bg-[#ffcc00] hover:bg-[#fee5b1] transition-colors cursor-pointer"
+                        className="rounded-md px-5 py-2.5 text-xs font-bold text-[#1a2634] bg-[#ffcc00] hover:bg-[#fee5b1] transition-colors cursor-pointer"
                     >
                         {startTrackBtn}
                     </button>
@@ -826,31 +750,28 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
 
     const tracksRaw: TrackData[] = landing.tracks?.length
         ? landing.tracks
-            .map((tr: any, idx: number) => {
-                const defaultColors = ['#ffcc00', '#38bdf8', '#34d399', '#fee5b1']
-                return {
-                    key: tr.key || '',
-                    icon: tr.icon || `0${idx + 1}`,
-                    name: tr.name || '',
-                    enabled: tr.enabled !== false,
-                    badge: (tr.badge || '').replace(/^(Beta Cohort)/i, 'EUSPA Beta Cohort'),
-                    tagline: tr.tagline || '',
-                    desc: tr.desc || '',
-                    color: tr.color || defaultColors[idx % defaultColors.length],
-                    applyUrl: tr.applyUrl || '/login?role=founder',
-                    applyButtonText: tr.applyButtonText || `Apply for ${tr.name || 'this track'} →`,
-                    startTrackSlug:
-                        tr.startTrack && typeof tr.startTrack === 'object' && typeof tr.startTrack.slug === 'string' && tr.startTrack.slug.trim()
-                            ? tr.startTrack.slug.trim().toLowerCase()
-                            : String(tr.key || '').trim().toLowerCase(),
-                    partners: Array.isArray(tr.partners)
-                        ? (tr.partners.map((partner: any) => normalizeLandingPartner(partner)).filter(Boolean) as LandingPartner[])
-                        : [],
-                    challenges: (tr.challenges || []).map((c: any) => ({ key: c.key, title: c.title, desc: c.desc })),
-                    whatYouGet: (tr.whatYouGet || []).map((w: any) => ({ text: w.text })),
-                    graphicUrl: tr.graphic && typeof tr.graphic === 'object' ? (tr.graphic.url ?? null) : null,
-                }
-            })
+            .map((tr: any, idx: number) => ({
+                key: tr.key || '',
+                icon: tr.icon || `0${idx + 1}`,
+                name: tr.name || '',
+                enabled: tr.enabled !== false,
+                badge: (tr.badge || '').replace(/^(Beta Cohort)/i, 'EUSPA Beta Cohort'),
+                tagline: tr.tagline || '',
+                desc: tr.desc || '',
+                color: tr.color || '#ffcc00',
+                applyUrl: tr.applyUrl || '/login?role=founder',
+                applyButtonText: tr.applyButtonText || `Apply for ${tr.name || 'this track'} →`,
+                startTrackSlug:
+                    tr.startTrack && typeof tr.startTrack === 'object' && typeof tr.startTrack.slug === 'string' && tr.startTrack.slug.trim()
+                        ? tr.startTrack.slug.trim().toLowerCase()
+                        : String(tr.key || '').trim().toLowerCase(),
+                partners: Array.isArray(tr.partners)
+                    ? (tr.partners.map((partner: any) => normalizeLandingPartner(partner)).filter(Boolean) as LandingPartner[])
+                    : [],
+                challenges: (tr.challenges || []).map((c: any) => ({ key: c.key, title: c.title, desc: c.desc })),
+                whatYouGet: (tr.whatYouGet || []).map((w: any) => ({ text: w.text })),
+                graphicUrl: tr.graphic && typeof tr.graphic === 'object' ? (tr.graphic.url ?? null) : null,
+            }))
             .filter((track: TrackData) => track.enabled)
         : DEFAULT_FALLBACK_TRACKS
 
@@ -889,7 +810,7 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
     useEffect(() => {
         const measure = () => {
             if (containerRef.current) {
-                setCardWidth(containerRef.current.offsetWidth / 1.55)
+                setCardWidth(containerRef.current.offsetWidth / 1.65)
             }
         }
         measure()
@@ -945,30 +866,30 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
     if (tracksRaw.length === 0) return null
 
     return (
-        <section id="tracks" className={`mb-36 sm:mb-44 border-t pt-20 sm:pt-28 ${isLight ? 'border-[#1a2634]/10' : 'border-white/[0.08]'}`}>
+        <section id="tracks" className={`mb-36 sm:mb-48 border-t pt-16 sm:pt-24 ${isLight ? 'border-[#203e5f]/20' : 'border-[#ffcc00]/20'}`}>
             <div className="grid gap-10 lg:grid-cols-12 mb-14 items-end">
                 <div className="lg:col-span-7">
-                    <div className={`font-mono text-xs font-semibold uppercase tracking-[0.22em] mb-4 ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'}`}>
-                        01 // {sectionLabel}
+                    <div className={`text-xs font-bold uppercase tracking-widest mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                        {sectionLabel}
                     </div>
                     <h2 className={`text-3xl sm:text-5xl font-bold leading-[1.08] tracking-tight ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                         {sectionTitle}{' '}
-                        <span className={isLight ? 'text-[#203e5f]/75' : 'text-[#eaeaea]/65'}>
+                        <span className={isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}>
                             {sectionHighlight}
                         </span>
                     </h2>
                 </div>
                 <div className="lg:col-span-5 flex flex-col justify-between gap-6">
-                    <p className={`text-sm sm:text-base leading-relaxed ${isLight ? 'text-[#1a2634]/70' : 'text-[#eaeaea]/65'}`}>
+                    <p className={`text-base leading-relaxed ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/80'}`}>
                         {sectionSubtitle}
                     </p>
-                    <div className="hidden md:flex items-center gap-2.5">
+                    <div className="hidden md:flex items-center gap-3">
                         <button
                             onClick={prevSlide}
-                            className={`h-11 w-11 flex items-center justify-center rounded-xl border backdrop-blur-md transition-colors cursor-pointer ${
+                            className={`h-10 w-10 flex items-center justify-center rounded-md border transition-colors cursor-pointer ${
                                 isLight
-                                    ? 'border-[#1a2634]/15 bg-white/60 text-[#1a2634] hover:bg-white'
-                                    : 'border-white/15 bg-white/[0.04] text-[#eaeaea] hover:bg-white/[0.1]'
+                                    ? 'border-[#203e5f]/25 bg-white/70 text-[#1a2634] hover:bg-[#203e5f] hover:text-[#ffcc00]'
+                                    : 'border-[#ffcc00]/30 bg-[#203e5f]/50 text-[#ffcc00] hover:bg-[#ffcc00] hover:text-[#1a2634]'
                             }`}
                             aria-label="Previous tracks"
                         >
@@ -976,23 +897,23 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
                         </button>
                         <button
                             onClick={nextSlide}
-                            className={`h-11 w-11 flex items-center justify-center rounded-xl border backdrop-blur-md transition-colors cursor-pointer ${
+                            className={`h-10 w-10 flex items-center justify-center rounded-md border transition-colors cursor-pointer ${
                                 isLight
-                                    ? 'border-[#1a2634]/15 bg-white/60 text-[#1a2634] hover:bg-white'
-                                    : 'border-white/15 bg-white/[0.04] text-[#eaeaea] hover:bg-white/[0.1]'
+                                    ? 'border-[#203e5f]/25 bg-white/70 text-[#1a2634] hover:bg-[#203e5f] hover:text-[#ffcc00]'
+                                    : 'border-[#ffcc00]/30 bg-[#203e5f]/50 text-[#ffcc00] hover:bg-[#ffcc00] hover:text-[#1a2634]'
                             }`}
                             aria-label="Next tracks"
                         >
                             →
                         </button>
-                        <span className={`ml-3 font-mono text-xs ${isLight ? 'text-[#1a2634]/55' : 'text-[#eaeaea]/50'}`}>
-                            {String(activeIndex + 1).padStart(2, '0')} / {String(totalSlides).padStart(2, '0')}
+                        <span className={`ml-2 text-xs font-semibold ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
+                            {activeIndex + 1} / {totalSlides}
                         </span>
                     </div>
                 </div>
             </div>
 
-            <div className="flex flex-col gap-7 md:hidden">
+            <div className="flex flex-col gap-6 md:hidden">
                 {tracksRaw.map((track, itemIndex) => {
                     const { availablePills, activePillKey: pillKey } = getAvailablePillsAndKey(track)
                     const challenge = getChallengeForTrack(track, pillKey)
@@ -1028,7 +949,7 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
                 />
             </div>
 
-            <div className="relative min-h-[480px] hidden items-center md:flex">
+            <div className="relative min-h-[440px] hidden items-center md:flex">
                 <div className="w-full overflow-hidden" ref={containerRef}>
                     <div
                         className="flex transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
@@ -1043,7 +964,7 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
                                 const challenge = getChallengeForTrack(track, pillKey)
                                 const trackPartners = track.partners
                                 return (
-                                    <div key={track.key} className="flex-none pr-8" style={{ width: cardWidth ? `${cardWidth}px` : '62%' }}>
+                                    <div key={track.key} className="flex-none pr-7" style={{ width: cardWidth ? `${cardWidth}px` : '60%' }}>
                                         <TrackCard
                                             track={track}
                                             trackPartners={trackPartners}
@@ -1066,7 +987,7 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
                             }
 
                             return (
-                                <div key={`new-track-${itemIndex}`} className="flex-none pr-8" style={{ width: cardWidth ? `${cardWidth}px` : '62%' }}>
+                                <div key={`new-track-${itemIndex}`} className="flex-none pr-7" style={{ width: cardWidth ? `${cardWidth}px` : '60%' }}>
                                     <NewTrackCard
                                         newTrackLabel={newTrackLabel}
                                         newTrackSubtitle={newTrackSubtitle}
@@ -1084,85 +1005,48 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
             {activeModal && modalTrack && (
                 <div
                     className="fixed inset-0 z-50 flex items-center justify-center p-4"
-                    style={{ background: 'rgba(15, 23, 34, 0.78)', backdropFilter: 'blur(12px)' }}
+                    style={{ background: 'rgba(15, 23, 34, 0.78)', backdropFilter: 'blur(10px)' }}
                     onClick={(e) => {
                         if (e.target === e.currentTarget) setActiveModal(null)
                     }}
                 >
                     <div
-                        className="relative bg-[#1a2634]/95 backdrop-blur-2xl border border-white/15 rounded-2xl w-full max-w-2xl max-h-[88vh] overflow-y-auto text-[#eaeaea] shadow-2xl"
-                        style={{ animation: 'tcModalIn 0.2s ease' }}
+                        className="relative bg-[#1a2634] border border-[#ffcc00]/30 rounded-xl w-full max-w-2xl max-h-[88vh] overflow-y-auto text-[#eaeaea] shadow-2xl p-8 sm:p-10"
                     >
-                        <div className="h-1" style={{ backgroundColor: modalTrack.color || '#ffcc00' }} />
-
-                        <div className="flex items-start justify-between px-8 pt-8 pb-6">
+                        <div className="flex items-start justify-between pb-6 border-b border-white/10">
                             <div>
-                                <div className="font-mono text-xs text-[#fee5b1] mb-1.5">{modalTrack.badge}</div>
+                                <div className="text-xs font-bold text-[#ffcc00] mb-1">{modalTrack.badge}</div>
                                 <div className="text-2xl font-bold text-white">{modalTrack.name}</div>
-                                <div className="text-xs text-[#eaeaea]/65 mt-1">{modalTrack.tagline}</div>
+                                <div className="text-sm text-[#fee5b1] mt-1">{modalTrack.tagline}</div>
                             </div>
                             <button
                                 onClick={() => setActiveModal(null)}
-                                className="shrink-0 w-9 h-9 rounded-xl flex items-center justify-center text-[#eaeaea]/75 hover:text-white transition-colors cursor-pointer border border-white/15 hover:bg-white/10 bg-transparent ml-4"
+                                className="shrink-0 w-8 h-8 rounded-md flex items-center justify-center text-[#eaeaea]/75 hover:text-[#ffcc00] transition-colors cursor-pointer border border-white/15"
                             >
                                 ✕
                             </button>
                         </div>
 
-                        <div className="mx-8 h-px bg-white/10 mb-7" />
-
-                        <div className="px-8 pb-8 space-y-7">
-                            <div>
-                                <div className="font-mono text-[10px] font-semibold tracking-[2px] uppercase mb-2 text-[#eaeaea]/55">
-                                    About this track
-                                </div>
-                                <p className="text-sm text-[#eaeaea]/85 leading-7">{modalTrack.desc}</p>
-                            </div>
+                        <div className="pt-6 space-y-6">
+                            <p className="text-sm text-[#eaeaea]/85 leading-7">{modalTrack.desc}</p>
 
                             {getTrackPartnerTiles(modalTrackPartners).length > 0 && (
-                                <div>
-                                    <div className="font-mono text-[10px] font-semibold tracking-[2px] uppercase mb-3 text-[#eaeaea]/55">
-                                        Partners
-                                    </div>
-                                    <TrackPartnerTiles partners={modalTrackPartners} accentColor={modalTrack.color || '#ffcc00'} />
-                                </div>
+                                <TrackPartnerTiles partners={modalTrackPartners} accentColor={modalTrack.color || '#ffcc00'} />
                             )}
 
                             {modalTrack.whatYouGet.length > 0 && (
                                 <div>
-                                    <div className="font-mono text-[10px] font-semibold tracking-[2px] uppercase mb-3 text-[#eaeaea]/55">
-                                        What you get
-                                    </div>
-                                    <div className="grid sm:grid-cols-2 gap-3">
+                                    <h4 className="text-xs font-bold uppercase tracking-wider text-[#ffcc00] mb-3">
+                                        What is included
+                                    </h4>
+                                    <ul className="space-y-2 pl-0 list-none">
                                         {modalTrack.whatYouGet.map((item, i) => (
-                                            <div
-                                                key={i}
-                                                className="flex items-start gap-2.5 p-4 rounded-xl text-xs text-[#eaeaea]/90 leading-relaxed bg-white/[0.04] border border-white/10"
-                                            >
-                                                <span className="text-emerald-400 font-bold shrink-0">✓</span>
-                                                {item.text}
-                                            </div>
+                                            <li key={i} className="text-sm text-[#eaeaea]/90 flex items-start gap-2.5">
+                                                <span className="text-[#ffcc00] font-bold">—</span>
+                                                <span>{item.text}</span>
+                                            </li>
                                         ))}
-                                    </div>
-                                </div>
-                            )}
-
-                            {modalTrack.challenges.length > 0 && (
-                                <div>
-                                    <div className="font-mono text-[10px] font-semibold tracking-[2px] uppercase mb-3 text-[#eaeaea]/55">
-                                        Partner challenges
-                                    </div>
-                                    <div className="space-y-3">
-                                        {modalTrack.challenges.map((ch) => (
-                                            <div
-                                                key={ch.key}
-                                                className="p-4.5 rounded-xl border border-white/10 bg-white/[0.03] text-sm text-[#eaeaea]/85 leading-7"
-                                            >
-                                                <div className="font-bold text-white mb-1">{ch.title}</div>
-                                                {ch.desc}
-                                            </div>
-                                        ))}
-                                    </div>
+                                    </ul>
                                 </div>
                             )}
 
@@ -1172,7 +1056,7 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
                                     setActiveModal(null)
                                     handleTrackNavigation(modalTrack)
                                 }}
-                                className="block w-full rounded-xl px-5 py-3.5 text-xs font-bold uppercase tracking-wider transition-colors bg-[#ffcc00] text-[#1a2634] hover:bg-[#fee5b1] text-center cursor-pointer"
+                                className="block w-full rounded-md px-5 py-3.5 text-xs font-bold uppercase tracking-wider transition-colors bg-[#ffcc00] text-[#1a2634] hover:bg-[#fee5b1] text-center cursor-pointer"
                             >
                                 {modalTrack.applyButtonText}
                             </button>
@@ -1180,13 +1064,6 @@ function TracksCarousel({ settings, theme = 'dark' }: { settings: any; theme?: '
                     </div>
                 </div>
             )}
-
-            <style>{`
-                @keyframes tcModalIn {
-                    from { opacity:0; transform:translateY(12px) scale(0.98); }
-                    to   { opacity:1; transform:translateY(0) scale(1); }
-                }
-            `}</style>
         </section>
     )
 }
@@ -1243,8 +1120,8 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
     const founderBtn = t('founderLoginBtn', landing.founderLoginBtn || 'Login dla Startup / Founder')
     const investorBtn = t('investorLoginBtn', landing.investorLoginBtn || 'Login dla Inwestora')
 
-    const execTitle = t('execSummaryTitle', landing.execSummaryTitle || 'Executive Summary: Architecture of Success')
-    const execSubtitle = t('execSummarySubtitle', landing.execSummarySubtitle || 'From incubation to acceleration \u2014 and now to execution systems.')
+    const execTitle = t('execSummaryTitle', landing.execSummaryTitle || 'Architecture of Venture Execution')
+    const execSubtitle = t('execSummarySubtitle', landing.execSummarySubtitle || 'From passive incubation to structured daily cadence.')
     const execBody = t(
         'execSummaryBody',
         landing.execSummaryBody ||
@@ -1311,45 +1188,32 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
         landing.howItWorksFooter || 'This creates an auditable execution trail (the thing investors actually trust).',
     )
 
-    const structTitle = t('structureTitle', landing.structureTitle || 'The 100-day structure (3 phases)')
     const defaultPhases = [
         {
-            phase: 'Phase 1 — Days 1–30',
+            phase: 'Days 01–30',
             title: 'Validation',
             target: 'Prove the pain is real.',
             description: 'Customer discovery dominates. Evidence first.',
         },
         {
-            phase: 'Phase 2 — Days 31–70',
+            phase: 'Days 31–70',
             title: 'Build & Launch',
-            target: 'First activation / first transaction.',
+            target: 'First activation & transaction.',
             description: 'MVP + instrumentation + live experiments.',
         },
         {
-            phase: 'Phase 3 — Days 71–100',
+            phase: 'Days 71–100',
             title: 'Growth & Capital',
-            target: 'Unit economics + investor readiness.',
+            target: 'Unit economics & readiness.',
             description: 'GTM system + data room + fundraising workflow.',
         },
     ]
     const phases = landing.phases && landing.phases.length > 0 ? landing.phases : defaultPhases
-    const hardGatesTitle = t('hardGatesTitle', landing.hardGatesTitle || 'Hard gates: Days 15 / 30 / 50 / 70 / 94')
-    const hardGatesDesc = t('hardGatesDesc', landing.hardGatesDesc || 'Each gate forces a decision: pass / revise / stop.')
 
-    const compEvidenceTitle = t(
-        'compEvidenceTitle',
-        landing.compEvidenceTitle || 'Comparative evidence: what accelerators optimize for (and where MESGA goes further)',
-    )
-    const compEvidenceBody = t('compEvidenceBody', landing.compEvidenceBody || 'Modern accelerators share three primitives:')
-    const compEvidencePoints = landing.compEvidencePoints || [
-        { text: 'Fixed term' },
-        { text: 'Cohort dynamics' },
-        { text: 'Mentorship + feedback loops' },
-    ]
     const compEvidenceFooter = t(
         'compEvidenceFooter',
         landing.compEvidenceFooter ||
-            'However, their effectiveness varies dramatically depending on density of support and operational discipline. The success driver for first-time founders is often not the largest network \u2014 it\u2019s support density + operational precision. MESGA is designed to behave like a \u201chigh-density accelerator\u201d by turning mentorship into a scalable daily proof + feedback system.',
+            'The success driver for first-time founders is often not the largest network \u2014 it\u2019s support density + operational precision. MESGA is designed to behave like a high-density accelerator by turning mentorship into a scalable daily proof + feedback system.',
     )
 
     const invTitle = t('investorTitle', landing.investorTitle || 'Investor reality: Angels vs Venture Capital')
@@ -1364,7 +1228,7 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
         { text: 'Credible selection filters' },
         { text: 'A deal flow pipeline they can trust' },
     ]
-    const vcsTitle = t('vcsTitle', landing.vcsTitle || 'What VCs require (\u201cinvestment readiness\u201d)')
+    const vcsTitle = t('vcsTitle', landing.vcsTitle || 'What VCs require')
     const vcsPoints = landing.vcsPoints || [
         { text: 'Product + proof' },
         { text: 'Cap table hygiene' },
@@ -1375,60 +1239,35 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
     const invFooter = t(
         'investorFooter',
         landing.investorFooter ||
-            'MESGA integrates \u201ccorporate hygiene\u201d and \u201ccapital readiness\u201d tasks directly into the OS, so teams leave with an investor-grade proof package, not just a pitch.',
+            'MESGA integrates corporate hygiene and capital readiness tasks directly into the OS, so teams leave with an investor-grade proof package, not just a pitch.',
     )
 
     const sciTitle = t(
         'learningScienceTitle',
-        landing.learningScienceTitle || 'Adult learning science: why daily task-based systems work',
+        landing.learningScienceTitle || 'Why daily task-based systems work',
     )
     const sciSubtitle = t(
         'learningScienceSubtitle',
-        landing.learningScienceSubtitle || 'MESGA is designed to match what is consistently shown to outperform passive education for adults:',
+        landing.learningScienceSubtitle || 'Designed around what consistently outperforms passive education for founders:',
     )
     const sciPoints = landing.learningSciencePoints || [
-        { text: 'Learning by doing > consuming content' },
-        { text: 'Fast feedback loops outperform delayed workshops' },
-        { text: 'Spacing + repetition improve retention and skill transfer' },
-        { text: 'Reducing cognitive load helps novices execute' },
-        { text: 'Microlearning fits founders\u2019 real time constraints' },
-    ]
-    const sciFooter = t(
-        'learningScienceFooter',
-        landing.learningScienceFooter ||
-            'Founders operate under constant information overload. A \u201cone task per day\u201d system reduces paralysis and turns progress into a habit.',
-    )
-
-    const whyStrongTitle = t('whyStrongTitle', landing.whyStrongTitle || 'Why MESGA is especially strong for first-time founders')
-    const whyStrongIntro = t(
-        'whyStrongIntro',
-        landing.whyStrongIntro || 'A task-based acceleration OS is disproportionately valuable for founders at the start because it:',
-    )
-    const whyStrongPoints = landing.whyStrongPoints || [
-        { text: 'Eliminates decision paralysis (forces the right priority each day)' },
-        { text: 'Creates VC-grade credibility (a 100-day evidence trail)' },
-        { text: 'Scales support efficiently (standardized review reduces mentor overhead)' },
+        { text: 'Learning by doing over consuming content' },
+        { text: 'Fast feedback loops over delayed workshops' },
+        { text: 'Spacing and repetition for skill transfer' },
+        { text: 'Reduced cognitive load so novices execute' },
+        { text: 'Micro-cadence that fits real founder time constraints' },
     ]
 
-    const whatDiffTitle = t('whatDiffTitle', landing.whatDiffTitle || 'What makes it different')
-    const whatDiffPoints = landing.whatDiffPoints || [
-        { text: 'Daily cadence (not weekly check-ins)' },
-        { text: 'Evidence-first submissions (not opinions)' },
-        { text: 'Milestone gates that force decisions (not endless iteration)' },
-        { text: 'Mentor feedback that scales (standardized, reviewable)' },
-        { text: 'Ecosystem map + intro requests built in (distribution starts early)' },
-    ]
-
-    const metricsTitle = t('metricsTitle', landing.metricsTitle || 'Core metrics we track (so progress is real)')
+    const metricsTitle = t('metricsTitle', landing.metricsTitle || 'Core metrics we track')
     const metricsPoints = landing.metricsPoints || [
         { text: 'Daily evidence completion rate' },
         { text: 'Median mentor review time + SLA hit rate' },
         { text: 'Gate on-time pass rate + revise cycles' },
-        { text: 'Customer evidence throughput (with quality proxies)' },
+        { text: 'Customer evidence throughput' },
         { text: 'Time-to-MVP + time-to-activation' },
-        { text: 'Ecosystem readiness (map completeness and weekly delta)' },
-        { text: 'Intro pipeline conversion (requests \u2192 meetings \u2192 follow-ups)' },
-        { text: 'Post-program outcomes (pilots, LOIs, revenue, investor meetings)' },
+        { text: 'Ecosystem readiness & weekly delta' },
+        { text: 'Intro pipeline conversion' },
+        { text: 'Post-program pilots, LOIs & investor meetings' },
     ]
 
     const pricing = {
@@ -1519,21 +1358,21 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                 isLight ? 'landing-theme-light bg-[#eaeaea] text-[#1a2634]' : 'landing-theme-dark bg-[#1a2634] text-[#eaeaea]'
             }`}
         >
-            {/* Ambient background depth glows for glassmorphism */}
+            {/* Rich EU Blue & Gold atmospheric light wash */}
             <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
                 <div
-                    className={`absolute -top-32 -left-24 h-[520px] w-[520px] rounded-full blur-[140px] ${
-                        isLight ? 'bg-[#203e5f]/12' : 'bg-[#203e5f]/55'
+                    className={`absolute -top-36 left-[5%] h-[580px] w-[780px] rounded-full blur-[150px] ${
+                        isLight ? 'bg-[#203e5f]/15' : 'bg-[#203e5f]/75'
                     }`}
                 />
                 <div
-                    className={`absolute top-[18%] right-[-8%] h-[460px] w-[460px] rounded-full blur-[150px] ${
-                        isLight ? 'bg-[#fee5b1]/55' : 'bg-[#38bdf8]/[0.07]'
+                    className={`absolute top-[15%] right-[-5%] h-[500px] w-[520px] rounded-full blur-[160px] ${
+                        isLight ? 'bg-[#fee5b1]/70' : 'bg-[#ffcc00]/[0.09]'
                     }`}
                 />
                 <div
-                    className={`absolute top-[55%] left-[12%] h-[420px] w-[420px] rounded-full blur-[150px] ${
-                        isLight ? 'bg-white/80' : 'bg-[#fee5b1]/[0.05]'
+                    className={`absolute top-[60%] left-[20%] h-[480px] w-[520px] rounded-full blur-[160px] ${
+                        isLight ? 'bg-[#fee5b1]/45' : 'bg-[#203e5f]/60'
                     }`}
                 />
             </div>
@@ -1547,36 +1386,32 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                 onToggleTheme={toggleTheme}
             />
 
-            <main className="relative z-10 max-w-7xl mx-auto px-5 sm:px-10 pt-14 md:pt-24 pb-28">
-                {/* ASYMMETRIC EDITORIAL HERO WITH GENEROUS BREATHING ROOM */}
-                <section className="mb-36 sm:mb-44">
-                    <div className="grid gap-16 lg:grid-cols-12 lg:gap-20 items-center">
-                        {/* Left Column: Manifesto & Primary Actions */}
-                        <div className="lg:col-span-7">
+            <main className="relative z-10 max-w-[1360px] mx-auto px-6 sm:px-12 pt-16 md:pt-24 pb-28">
+                {/* HERO — Colorful EU Headline + Translucent EU Blue Programme Syllabus Sheet */}
+                <section className="mb-36 sm:mb-48">
+                    <div className="grid gap-16 lg:grid-cols-12 lg:gap-16 items-start">
+                        {/* Left Column */}
+                        <div className="lg:col-span-7 pt-2">
                             <div
-                                className={`inline-flex items-center gap-3 rounded-full border px-4 py-1.5 backdrop-blur-md mb-8 ${
-                                    isLight
-                                        ? 'border-[#1a2634]/10 bg-white/60 text-[#1a2634]/80'
-                                        : 'border-white/10 bg-white/[0.04] text-[#eaeaea]/80'
+                                className={`text-xs font-bold uppercase tracking-[0.18em] mb-7 pb-3 border-b-2 border-[#ffcc00] inline-block ${
+                                    isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'
                                 }`}
                             >
-                                <span className="h-2 w-2 rounded-full bg-emerald-400" />
-                                <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em]">
-                                    EUROPEAN VENTURE EXECUTION SYSTEM · COHORT 2026
-                                </span>
+                                Make European Startups Great Again — 2026 Cohort
                             </div>
 
-                            <h1
-                                className={`text-4xl sm:text-6xl xl:text-[4.35rem] font-bold tracking-tight mb-8 leading-[1.06] ${
-                                    isLight ? 'text-[#1a2634]' : 'text-white'
-                                }`}
-                            >
-                                {companyName} {heroTitlePrefix}
+                            <h1 className="text-5xl sm:text-6xl xl:text-[4.65rem] font-extrabold tracking-[-0.03em] mb-8 leading-[1.03]">
+                                <span className={isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}>
+                                    {companyName}
+                                </span>{' '}
+                                <span className={isLight ? 'text-[#1a2634]' : 'text-white'}>
+                                    {heroTitlePrefix}
+                                </span>
                                 <span
                                     className={`block mt-2 ${
                                         isLight
-                                            ? 'text-[#203e5f]'
-                                            : 'text-transparent bg-clip-text bg-gradient-to-r from-white via-[#eaeaea] to-[#fee5b1]'
+                                            ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#203e5f] via-[#1a2634] to-[#203e5f]'
+                                            : 'text-transparent bg-clip-text bg-gradient-to-r from-[#ffcc00] via-[#fee5b1] to-[#eaeaea]'
                                     }`}
                                 >
                                     {heroTitleHighlight}
@@ -1585,8 +1420,8 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                             </h1>
 
                             <p
-                                className={`text-base sm:text-lg leading-relaxed max-w-xl mb-11 ${
-                                    isLight ? 'text-[#1a2634]/75' : 'text-[#eaeaea]/75'
+                                className={`text-lg sm:text-xl leading-relaxed max-w-xl mb-12 ${
+                                    isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/85'
                                 }`}
                             >
                                 {heroSubtitle}
@@ -1595,169 +1430,96 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                                 <Link
                                     href="/login?role=founder"
-                                    className="inline-flex items-center justify-between sm:justify-center gap-4 px-8 py-4 rounded-xl text-sm font-bold uppercase tracking-wider text-[#1a2634] bg-[#ffcc00] hover:bg-[#fee5b1] shadow-lg shadow-[#ffcc00]/10 transition-all"
+                                    className="inline-flex items-center justify-between sm:justify-center gap-4 px-8 py-4 rounded-md text-sm font-bold text-[#1a2634] bg-[#ffcc00] hover:bg-[#fee5b1] shadow-lg shadow-[#ffcc00]/15 transition-all"
                                 >
                                     <span>{founderBtn}</span>
                                     <span>→</span>
                                 </Link>
                                 <Link
                                     href="/login?role=investor"
-                                    className={`inline-flex items-center justify-between sm:justify-center gap-3 rounded-xl border px-8 py-4 text-sm font-semibold uppercase tracking-wider backdrop-blur-md transition-all ${
+                                    className={`inline-flex items-center justify-between sm:justify-center gap-3 rounded-md border px-8 py-4 text-sm font-semibold backdrop-blur-md transition-colors ${
                                         isLight
-                                            ? 'border-[#1a2634]/15 bg-white/55 text-[#1a2634] hover:bg-white/90'
-                                            : 'border-white/15 bg-white/[0.04] text-[#eaeaea] hover:bg-white/[0.09] hover:border-white/25'
+                                            ? 'border-[#203e5f]/30 bg-white/60 text-[#203e5f] hover:bg-[#203e5f] hover:text-white'
+                                            : 'border-[#fee5b1]/30 bg-[#203e5f]/45 text-[#fee5b1] hover:bg-[#203e5f]/80 hover:border-[#ffcc00] hover:text-[#ffcc00]'
                                     }`}
                                 >
                                     <span>{investorBtn}</span>
                                 </Link>
                             </div>
-
-                            {/* Bottom Specs Row — Clean, Neutral & Airy */}
-                            <div
-                                className={`mt-16 pt-10 border-t grid grid-cols-3 gap-8 ${
-                                    isLight ? 'border-[#1a2634]/10' : 'border-white/10'
-                                }`}
-                            >
-                                <div>
-                                    <div className={`font-mono text-2xl sm:text-3xl font-bold ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
-                                        100
-                                    </div>
-                                    <div className={`text-xs mt-1.5 leading-relaxed ${isLight ? 'text-[#1a2634]/65' : 'text-[#eaeaea]/60'}`}>
-                                        Consecutive execution days
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className={`font-mono text-2xl sm:text-3xl font-bold ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
-                                        05
-                                    </div>
-                                    <div className={`text-xs mt-1.5 leading-relaxed ${isLight ? 'text-[#1a2634]/65' : 'text-[#eaeaea]/60'}`}>
-                                        Hard decision gates
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className={`font-mono text-2xl sm:text-3xl font-bold ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
-                                        24h
-                                    </div>
-                                    <div className={`text-xs mt-1.5 leading-relaxed ${isLight ? 'text-[#1a2634]/65' : 'text-[#eaeaea]/60'}`}>
-                                        Mission &amp; proof cadence
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
-                        {/* Right Column: Translucent Frosted-Glass Operational Dossier */}
+                        {/* Right Column: Translucent EU Blue & Gold Programme Syllabus */}
                         <div className="lg:col-span-5">
                             <div
-                                className={`rounded-2xl border p-7 sm:p-9 backdrop-blur-2xl transition-all ${
+                                className={`rounded-xl border overflow-hidden backdrop-blur-xl ${
                                     isLight
-                                        ? 'border-[#1a2634]/10 bg-white/65 text-[#1a2634] shadow-xl shadow-[#1a2634]/[0.05]'
-                                        : 'border-white/12 bg-white/[0.035] text-[#eaeaea] shadow-2xl shadow-black/30'
+                                        ? 'border-[#203e5f]/20 bg-white/75 text-[#1a2634] shadow-xl shadow-[#203e5f]/[0.06]'
+                                        : 'border-[#ffcc00]/25 bg-[#203e5f]/40 text-[#eaeaea] shadow-2xl shadow-black/30'
                                 }`}
                             >
-                                <div
-                                    className={`flex items-center justify-between border-b pb-5 mb-6 ${
-                                        isLight ? 'border-[#1a2634]/10' : 'border-white/10'
-                                    }`}
-                                >
-                                    <div>
-                                        <div className={`font-mono text-[10px] uppercase tracking-[0.2em] ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'}`}>
-                                            OPERATIONAL DOSSIER // LIVE LOG
-                                        </div>
-                                        <div className={`text-base font-bold mt-1 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
-                                            100-Day Venture Execution Trail
-                                        </div>
-                                    </div>
-                                    <span
-                                        className={`font-mono text-[10px] font-semibold uppercase px-3 py-1 rounded-full border ${
-                                            isLight
-                                                ? 'bg-emerald-500/10 text-emerald-700 border-emerald-600/20'
-                                                : 'bg-emerald-400/10 text-emerald-300 border-emerald-400/25'
-                                        }`}
-                                    >
-                                        AUDIT READY
-                                    </span>
-                                </div>
+                                <div className="h-1.5 w-full bg-gradient-to-r from-[#ffcc00] via-[#fee5b1] to-[#203e5f]" />
 
-                                <div className="space-y-4 font-mono text-xs">
-                                    <div
-                                        className={`rounded-xl p-4 border-l-2 border-emerald-400 transition-colors ${
-                                            isLight ? 'bg-white/75 border border-[#1a2634]/[0.06]' : 'bg-white/[0.035]'
-                                        }`}
-                                    >
-                                        <div className="flex items-center justify-between text-[10px] mb-1.5">
-                                            <span className={isLight ? 'text-[#1a2634]/60' : 'text-[#eaeaea]/60'}>DAY 01 — HYPOTHESIS</span>
-                                            <span className={isLight ? 'text-emerald-700 font-bold' : 'text-emerald-400 font-bold'}>PASSED ✓</span>
-                                        </div>
-                                        <div className={`font-sans text-xs leading-relaxed ${isLight ? 'text-[#1a2634]/85' : 'text-[#eaeaea]/85'}`}>
-                                            Problem statement + 15 target customer profiles logged in workspace.
-                                        </div>
+                                <div className="p-8 sm:p-10">
+                                    <div className="flex items-baseline justify-between mb-6">
+                                        <h2 className={`text-sm font-bold uppercase tracking-wider m-0 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                                            Programme Syllabus
+                                        </h2>
+                                        <span className={`text-xs font-semibold ${isLight ? 'text-[#1a2634]' : 'text-[#fee5b1]'}`}>
+                                            100 consecutive days
+                                        </span>
                                     </div>
 
                                     <div
-                                        className={`rounded-xl p-4 border-l-2 border-emerald-400 transition-colors ${
-                                            isLight ? 'bg-white/75 border border-[#1a2634]/[0.06]' : 'bg-white/[0.035]'
+                                        className={`divide-y border-t border-b ${
+                                            isLight ? 'divide-[#203e5f]/15 border-[#203e5f]/15' : 'divide-white/12 border-white/12'
                                         }`}
                                     >
-                                        <div className="flex items-center justify-between text-[10px] mb-1.5">
-                                            <span className={isLight ? 'text-[#1a2634]/60' : 'text-[#eaeaea]/60'}>GATE 15 — DISCOVERY AUDIT</span>
-                                            <span className={isLight ? 'text-emerald-700 font-bold' : 'text-emerald-400 font-bold'}>CLEARED ✓</span>
-                                        </div>
-                                        <div className={`font-sans text-xs leading-relaxed ${isLight ? 'text-[#1a2634]/85' : 'text-[#eaeaea]/85'}`}>
-                                            Verified interview transcripts &amp; pain quantification reviewed by mentor.
-                                        </div>
-                                    </div>
-
-                                    <div
-                                        className={`rounded-xl p-4 border transition-colors ${
-                                            isLight
-                                                ? 'bg-[#fee5b1]/35 border-[#203e5f]/15'
-                                                : 'bg-white/[0.05] border-[#ffcc00]/30'
-                                        }`}
-                                    >
-                                        <div className="flex items-center justify-between text-[10px] mb-1.5">
-                                            <span className={isLight ? 'text-[#1a2634] font-bold' : 'text-[#fee5b1] font-bold'}>
-                                                DAY 34 — ACTIVE MISSION
-                                            </span>
-                                            <span className={isLight ? 'text-[#203e5f] font-bold' : 'text-[#ffcc00] font-bold'}>
-                                                IN REVIEW →
-                                            </span>
-                                        </div>
-                                        <div className={`font-sans text-xs leading-relaxed ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
-                                            First commercial wedge &amp; live transaction instrumentation check.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div
-                                    className={`mt-7 pt-6 border-t ${
-                                        isLight ? 'border-[#1a2634]/10' : 'border-white/10'
-                                    }`}
-                                >
-                                    <div className={`flex items-center justify-between font-mono text-[10px] mb-3 ${isLight ? 'text-[#1a2634]/60' : 'text-[#eaeaea]/55'}`}>
-                                        <span>HARD GATE SCHEDULE</span>
-                                        <span>DAYS 15 · 30 · 50 · 70 · 94</span>
-                                    </div>
-                                    <div className="grid grid-cols-5 gap-2">
-                                        {['G15', 'G30', 'G50', 'G70', 'G94'].map((g, i) => (
-                                            <div
-                                                key={g}
-                                                className={`py-2 text-center font-mono text-[10px] font-semibold rounded-lg border ${
-                                                    i < 2
-                                                        ? isLight
-                                                            ? 'bg-emerald-500/12 border-emerald-600/25 text-emerald-800'
-                                                            : 'bg-emerald-400/15 border-emerald-400/30 text-emerald-300'
-                                                        : i === 2
-                                                          ? isLight
-                                                              ? 'bg-[#ffcc00]/25 border-[#1a2634]/20 text-[#1a2634]'
-                                                              : 'bg-[#ffcc00]/15 border-[#ffcc00]/35 text-[#fee5b1]'
-                                                          : isLight
-                                                            ? 'bg-white/50 border-[#1a2634]/10 text-[#1a2634]/50'
-                                                            : 'bg-white/[0.03] border-white/10 text-[#eaeaea]/45'
-                                                }`}
-                                            >
-                                                {g}
+                                        {phases.map((p: any, i: number) => (
+                                            <div key={i} className="py-5 first:pt-5 last:pb-5">
+                                                <div className="flex items-baseline justify-between gap-4 mb-1">
+                                                    <span className={`text-base font-bold ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                                                        {p.title}
+                                                    </span>
+                                                    <span
+                                                        className={`text-xs font-bold px-2.5 py-0.5 rounded ${
+                                                            isLight
+                                                                ? 'bg-[#fee5b1]/80 text-[#1a2634]'
+                                                                : 'bg-[#1a2634]/70 text-[#ffcc00] border border-[#ffcc00]/25'
+                                                        }`}
+                                                    >
+                                                        {p.phase}
+                                                    </span>
+                                                </div>
+                                                <p className={`text-xs m-0 leading-relaxed ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/80'}`}>
+                                                    {p.target ? `${p.target} ${p.description}` : p.description}
+                                                </p>
                                             </div>
                                         ))}
+                                    </div>
+
+                                    {/* Architectural scale for the 5 hard gates */}
+                                    <div className="mt-7">
+                                        <div className="flex items-center justify-between text-xs mb-3">
+                                            <span className={`font-bold ${isLight ? 'text-[#1a2634]' : 'text-[#fee5b1]'}`}>
+                                                Decision Gates
+                                            </span>
+                                            <span className={isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}>
+                                                Pass · Revise · Stop
+                                            </span>
+                                        </div>
+                                        <div className="relative pt-3">
+                                            <div className={`h-0.5 w-full ${isLight ? 'bg-[#203e5f]/25' : 'bg-[#ffcc00]/35'}`} />
+                                            <div className="flex justify-between -mt-1.5">
+                                                {['Day 15', 'Day 30', 'Day 50', 'Day 70', 'Day 94'].map((gate) => (
+                                                    <div key={gate} className="flex flex-col items-center">
+                                                        <div className="h-3 w-0.5 bg-[#ffcc00]" />
+                                                        <span className={`mt-2 text-[11px] font-bold ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
+                                                            {gate}
+                                                        </span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1772,40 +1534,37 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                 <SocialProofQuotes theme={theme} />
                 <EcosystemShowcase partners={partners} rawMentors={mentors} theme={theme} />
 
-                {/* 03 // EXECUTIVE SUMMARY — Editorial Split */}
-                <section className={`mb-36 sm:mb-44 border-t pt-20 sm:pt-28 ${isLight ? 'border-[#1a2634]/10' : 'border-white/[0.08]'}`}>
-                    <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
+                {/* THESIS & ARCHITECTURE — Open Magazine Spread */}
+                <section className={`mb-36 sm:mb-48 border-t pt-16 sm:pt-24 ${isLight ? 'border-[#203e5f]/20' : 'border-[#ffcc00]/20'}`}>
+                    <div className="grid gap-12 lg:grid-cols-12 lg:gap-20">
                         <div className="lg:col-span-5">
-                            <div className={`font-mono text-xs font-semibold uppercase tracking-[0.22em] mb-4 ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'}`}>
-                                03 // THESIS &amp; ARCHITECTURE
+                            <div className={`text-xs font-bold uppercase tracking-widest mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                                Executive Summary
                             </div>
-                            <h2 className={`text-3xl sm:text-4xl font-bold leading-tight mb-5 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                            <h2 className={`text-3xl sm:text-4xl font-bold leading-tight tracking-tight mb-5 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                 {execTitle}
                             </h2>
-                            <p className={`text-base font-medium border-l-2 border-[#ffcc00]/70 pl-4 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/75'}`}>
+                            <p className={`text-lg font-medium leading-relaxed border-l-2 border-[#ffcc00] pl-4 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
                                 {execSubtitle}
                             </p>
                         </div>
 
-                        <div className="lg:col-span-7 flex flex-col justify-between">
-                            <p className={`text-base sm:text-lg leading-relaxed mb-10 ${isLight ? 'text-[#1a2634]/80' : 'text-[#eaeaea]/80'}`}>
+                        <div className="lg:col-span-7">
+                            <p className={`text-base sm:text-lg leading-relaxed mb-10 ${isLight ? 'text-[#1a2634]/85' : 'text-[#eaeaea]/85'}`}>
                                 {execBody}
                             </p>
 
-                            <div className="space-y-3.5">
+                            <div
+                                className={`divide-y border-t border-b ${
+                                    isLight ? 'divide-[#203e5f]/15 border-[#203e5f]/20' : 'divide-white/12 border-white/15'
+                                }`}
+                            >
                                 {execPoints.map((p: any, i: number) => (
-                                    <div
-                                        key={i}
-                                        className={`p-5 rounded-2xl border backdrop-blur-xl flex items-start gap-4 ${
-                                            isLight
-                                                ? 'border-[#1a2634]/[0.08] bg-white/55'
-                                                : 'border-white/[0.08] bg-white/[0.025]'
-                                        }`}
-                                    >
-                                        <span className={`font-mono text-xs font-semibold pt-0.5 ${isLight ? 'text-[#203e5f]/65' : 'text-[#eaeaea]/45'}`}>
-                                            /0{i + 1}
+                                    <div key={i} className="py-5 flex items-baseline gap-6">
+                                        <span className={`text-xs font-bold w-6 shrink-0 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                                            0{i + 1}
                                         </span>
-                                        <span className={`text-sm sm:text-base font-medium ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
+                                        <span className={`text-base font-semibold ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                             {p.text}
                                         </span>
                                     </div>
@@ -1815,639 +1574,390 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                     </div>
                 </section>
 
-                {/* 04 // WHAT IT IS / FOUNDER FIT / EXECUTION GAP — 3 Separate Translucent Glass Cards */}
-                <section className={`mb-36 sm:mb-44 border-t pt-20 sm:pt-28 ${isLight ? 'border-[#1a2634]/10' : 'border-white/[0.08]'}`}>
-                    <div className="mb-12">
-                        <div className={`font-mono text-xs font-semibold uppercase tracking-[0.22em] ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'}`}>
-                            04 // SYSTEM SPECIFICATION
-                        </div>
-                    </div>
-
-                    <div className="grid gap-8 lg:grid-cols-3 lg:gap-10">
-                        {/* Card 1: What it is */}
-                        <div
-                            className={`rounded-2xl border p-8 sm:p-10 flex flex-col justify-between backdrop-blur-xl ${
-                                isLight
-                                    ? 'border-[#1a2634]/[0.08] bg-white/60'
-                                    : 'border-white/[0.08] bg-white/[0.025]'
-                            }`}
-                        >
-                            <div>
-                                <div className={`font-mono text-[11px] font-semibold uppercase tracking-wider mb-3 ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'}`}>
-                                    A. OPERATING MODEL
-                                </div>
-                                <h3 className={`text-2xl font-bold mb-4 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
-                                    {whatItIsTitle}
-                                </h3>
-                                <p className={`text-sm leading-relaxed mb-7 ${isLight ? 'text-[#1a2634]/75' : 'text-[#eaeaea]/70'}`}>
-                                    {whatItIsBody}
-                                </p>
-                                <ul className="space-y-3.5 pl-0 list-none">
-                                    {whatItIsPoints.map((p: any, i: number) => (
-                                        <li key={i} className="flex items-center gap-3.5 text-sm font-medium">
-                                            <span
-                                                className={`font-mono text-xs font-semibold px-2.5 py-0.5 rounded-md border ${
-                                                    isLight
-                                                        ? 'bg-[#1a2634]/[0.05] border-[#1a2634]/10 text-[#1a2634]'
-                                                        : 'bg-white/[0.05] border-white/10 text-[#eaeaea]'
-                                                }`}
-                                            >
-                                                {i + 1}
-                                            </span>
-                                            <span>{p.text}</span>
-                                        </li>
-                                    ))}
-                                </ul>
+                {/* OPERATING MODEL & FOUNDER FIT — Asymmetric Contrast */}
+                <section id="program" className={`mb-36 sm:mb-48 border-t pt-16 sm:pt-24 ${isLight ? 'border-[#203e5f]/20' : 'border-[#ffcc00]/20'}`}>
+                    <div className="grid gap-16 lg:grid-cols-12 lg:gap-20 items-start">
+                        {/* Left 5 cols: Open vertical specification */}
+                        <div className="lg:col-span-5">
+                            <div className={`text-xs font-bold uppercase tracking-widest mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                                Operating System
                             </div>
-                            <p className={`mt-10 pt-5 border-t text-xs font-semibold uppercase tracking-wider ${isLight ? 'border-[#1a2634]/10 text-[#203e5f]' : 'border-white/10 text-[#eaeaea]/65'}`}>
+                            <h2 className={`text-3xl sm:text-4xl font-bold tracking-tight mb-4 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                                {whatItIsTitle}
+                            </h2>
+                            <p className={`text-base leading-relaxed mb-8 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/80'}`}>
+                                {whatItIsBody}
+                            </p>
+
+                            <ol
+                                className={`divide-y border-t border-b pl-0 list-none m-0 ${
+                                    isLight ? 'divide-[#203e5f]/15 border-[#203e5f]/20' : 'divide-white/12 border-white/15'
+                                }`}
+                            >
+                                {whatItIsPoints.map((p: any, i: number) => (
+                                    <li key={i} className="py-4 flex items-center justify-between text-base font-semibold">
+                                        <span className={isLight ? 'text-[#1a2634]' : 'text-white'}>{p.text}</span>
+                                        <span
+                                            className={`text-xs font-bold px-2.5 py-0.5 rounded ${
+                                                isLight
+                                                    ? 'bg-[#fee5b1] text-[#1a2634]'
+                                                    : 'bg-[#203e5f] text-[#ffcc00]'
+                                            }`}
+                                        >
+                                            0{i + 1}
+                                        </span>
+                                    </li>
+                                ))}
+                            </ol>
+
+                            <p className={`mt-6 text-sm font-bold ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
                                 {whatItIsFooter}
                             </p>
                         </div>
 
-                        {/* Card 2: Founder Fit */}
-                        <div
-                            className={`rounded-2xl border p-8 sm:p-10 flex flex-col justify-between backdrop-blur-xl ${
-                                isLight
-                                    ? 'border-[#1a2634]/12 bg-white/80 shadow-lg shadow-[#1a2634]/[0.03]'
-                                    : 'border-white/15 bg-white/[0.05] shadow-xl shadow-black/20'
-                            }`}
-                        >
-                            <div>
-                                <div className={`font-mono text-[11px] font-semibold uppercase tracking-wider mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
-                                    B. FOUNDER FIT
+                        {/* Right 7 cols: Translucent EU Blue & Gold Sheet */}
+                        <div className="lg:col-span-7">
+                            <div
+                                className={`rounded-xl border p-8 sm:p-12 backdrop-blur-xl ${
+                                    isLight
+                                        ? 'border-[#203e5f]/20 bg-white/75 text-[#1a2634]'
+                                        : 'border-[#ffcc00]/25 bg-[#203e5f]/40 text-[#eaeaea]'
+                                }`}
+                            >
+                                <div className={`pb-10 mb-10 border-b ${isLight ? 'border-[#203e5f]/15' : 'border-white/12'}`}>
+                                    <div className={`text-xs font-bold uppercase tracking-widest mb-2 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                                        Founder Profile
+                                    </div>
+                                    <h3 className={`text-2xl sm:text-3xl font-bold mb-4 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                                        {whoIsThisForTitle}
+                                    </h3>
+                                    <p className={`text-base leading-relaxed mb-6 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/85'}`}>
+                                        {whoIsThisForBody}
+                                    </p>
+                                    <ul className="space-y-3.5 pl-0 list-none m-0">
+                                        {whoIsThisForBullets.map((point: any, i: number) => (
+                                            <li key={i} className="flex items-start gap-3.5 text-base">
+                                                <span className="text-[#ffcc00] font-bold">■</span>
+                                                <span className="leading-relaxed">{point.text}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
                                 </div>
-                                <h3 className={`text-2xl font-bold mb-4 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>{whoIsThisForTitle}</h3>
-                                <p className={`text-sm leading-relaxed mb-7 ${isLight ? 'text-[#1a2634]/75' : 'text-[#eaeaea]/75'}`}>{whoIsThisForBody}</p>
-                                <ul className="space-y-4 pl-0 list-none">
-                                    {whoIsThisForBullets.map((point: any, i: number) => (
-                                        <li key={i} className={`flex items-start gap-3.5 text-sm ${isLight ? 'text-[#1a2634]/90' : 'text-[#eaeaea]/90'}`}>
-                                            <span className="mt-1.5 h-1.5 w-1.5 rounded-full shrink-0 bg-[#ffcc00]" />
-                                            <span className="leading-relaxed">{point.text}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                            <div className={`mt-10 pt-5 border-t font-mono text-[11px] ${isLight ? 'border-[#1a2634]/10 text-[#203e5f]' : 'border-white/10 text-[#fee5b1]/85'}`}>
-                                COMMITMENT &gt; CREDENTIALS
-                            </div>
-                        </div>
 
-                        {/* Card 3: Execution Gap */}
-                        <div
-                            className={`rounded-2xl border p-8 sm:p-10 flex flex-col justify-between backdrop-blur-xl ${
-                                isLight
-                                    ? 'border-[#1a2634]/[0.08] bg-white/60'
-                                    : 'border-white/[0.08] bg-white/[0.025]'
-                            }`}
-                        >
-                            <div>
-                                <div className={`font-mono text-[11px] font-semibold uppercase tracking-wider mb-3 ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'}`}>
-                                    C. EUROPEAN REALITY
+                                <div>
+                                    <h3 className={`text-xl sm:text-2xl font-bold mb-3 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                                        {execGapTitle}
+                                    </h3>
+                                    <p className={`text-sm leading-relaxed mb-5 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/80'}`}>
+                                        {execGapBody}
+                                    </p>
+                                    <div className="grid sm:grid-cols-2 gap-3 mb-6">
+                                        {execGapPoints.map((p: any, i: number) => (
+                                            <div
+                                                key={i}
+                                                className={`text-sm font-semibold py-2.5 px-4 rounded-md border ${
+                                                    isLight
+                                                        ? 'border-[#203e5f]/20 bg-[#fee5b1]/45 text-[#1a2634]'
+                                                        : 'border-[#ffcc00]/20 bg-[#1a2634]/65 text-[#fee5b1]'
+                                                }`}
+                                            >
+                                                {p.text}
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <p className={`text-sm italic leading-relaxed m-0 border-l-2 border-[#ffcc00] pl-4 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
+                                        {execGapQuote}
+                                    </p>
                                 </div>
-                                <h3 className={`text-2xl font-bold mb-4 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
-                                    {execGapTitle}
-                                </h3>
-                                <p className={`text-sm leading-relaxed mb-7 ${isLight ? 'text-[#1a2634]/75' : 'text-[#eaeaea]/70'}`}>
-                                    {execGapBody}
-                                </p>
-                                <ul className="space-y-3 pl-0 list-none">
-                                    {execGapPoints.map((p: any, i: number) => (
-                                        <li key={i} className="flex items-center gap-3 text-sm font-medium">
-                                            <span className={`font-mono text-xs ${isLight ? 'text-[#203e5f]/60' : 'text-[#eaeaea]/45'}`}>
-                                                —
-                                            </span>
-                                            <span>{p.text}</span>
-                                        </li>
-                                    ))}
-                                </ul>
                             </div>
-                            <p className={`mt-10 border-l-2 border-[#203e5f]/40 pl-4 text-xs italic leading-relaxed ${isLight ? 'text-[#1a2634]/75' : 'text-[#eaeaea]/70'}`}>
-                                {execGapQuote}
-                            </p>
                         </div>
                     </div>
                 </section>
 
-                {/* 05 // HOW IT WORKS LOOP — 5 Separate Translucent Cards */}
-                <section className={`mb-36 sm:mb-44 border-t pt-20 sm:pt-28 ${isLight ? 'border-[#1a2634]/10' : 'border-white/[0.08]'}`}>
-                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+                {/* DAILY LOOP — Open Architectural Timeline with EU Gold & Cream Top Bars */}
+                <section className={`mb-36 sm:mb-48 border-t pt-16 sm:pt-24 ${isLight ? 'border-[#203e5f]/20' : 'border-[#ffcc00]/20'}`}>
+                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
                         <div>
-                            <div className={`font-mono text-xs font-semibold uppercase tracking-[0.22em] mb-4 ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'}`}>
-                                05 // DAILY PROTOCOL
+                            <div className={`text-xs font-bold uppercase tracking-widest mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                                Daily Cadence
                             </div>
-                            <h2 className={`text-3xl sm:text-4xl font-bold tracking-tight ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                            <h2 className={`text-3xl sm:text-4xl font-bold tracking-tight m-0 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                 {howItWorksTitle}
                             </h2>
                         </div>
-                        <p className={`text-sm font-medium max-w-md ${isLight ? 'text-[#1a2634]/70' : 'text-[#eaeaea]/65'}`}>
+                        <p className={`text-base font-medium m-0 max-w-md ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
                             {howItWorksFooter}
                         </p>
                     </div>
 
-                    <div className="grid gap-5 sm:grid-cols-5">
+                    <div className="grid gap-10 sm:grid-cols-5">
                         {howItWorksSteps.map((s: any, i: number) => (
                             <div
                                 key={i}
-                                className={`rounded-2xl border p-7 flex flex-col justify-between min-h-[180px] backdrop-blur-xl transition-all ${
-                                    isLight
-                                        ? 'border-[#1a2634]/[0.08] bg-white/60 hover:bg-white/85'
-                                        : 'border-white/[0.08] bg-white/[0.025] hover:bg-white/[0.045]'
+                                className={`border-t-2 pt-6 ${
+                                    i % 2 === 0
+                                        ? 'border-[#ffcc00]'
+                                        : isLight
+                                          ? 'border-[#203e5f]'
+                                          : 'border-[#fee5b1]'
                                 }`}
                             >
-                                <div className="flex items-center justify-between">
-                                    <span className={`font-mono text-xs font-semibold ${isLight ? 'text-[#203e5f]/65' : 'text-[#eaeaea]/50'}`}>
-                                        0{i + 1}
-                                    </span>
-                                    <span className={`font-mono text-xs opacity-35 ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>
-                                        →
-                                    </span>
+                                <div className={`text-xs font-bold mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                                    0{i + 1}
                                 </div>
-                                <div className="mt-8">
-                                    <h4 className={`text-xl font-bold mb-1.5 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
-                                        {s.title}
-                                    </h4>
-                                    <p className={`text-xs m-0 leading-relaxed ${isLight ? 'text-[#1a2634]/70' : 'text-[#eaeaea]/65'}`}>
-                                        {s.desc}
-                                    </p>
-                                </div>
+                                <h3 className={`text-xl font-bold mb-2 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                                    {s.title}
+                                </h3>
+                                <p className={`text-sm m-0 leading-relaxed ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/75'}`}>
+                                    {s.desc}
+                                </p>
                             </div>
                         ))}
                     </div>
                 </section>
 
-                {/* 06 // THE 100-DAY STRUCTURE (3 PHASES) */}
-                <section className={`mb-36 sm:mb-44 border-t pt-20 sm:pt-28 ${isLight ? 'border-[#1a2634]/10' : 'border-white/[0.08]'}`}>
-                    <div className="grid gap-10 lg:grid-cols-12 mb-14 items-end">
-                        <div className="lg:col-span-6">
-                            <div className={`font-mono text-xs font-semibold uppercase tracking-[0.22em] mb-4 ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'}`}>
-                                06 // PROGRAMME TIMELINE
+                {/* INVESTOR REALITY — Editorial Comparison Table */}
+                <section className={`mb-36 sm:mb-48 border-t pt-16 sm:pt-24 ${isLight ? 'border-[#203e5f]/20' : 'border-[#ffcc00]/20'}`}>
+                    <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
+                        <div className="lg:col-span-5">
+                            <div className={`text-xs font-bold uppercase tracking-widest mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                                Capital Readiness
                             </div>
-                            <h2 className={`text-3xl sm:text-4xl font-bold tracking-tight ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
-                                {structTitle}
+                            <h2 className={`text-3xl sm:text-4xl font-bold leading-tight tracking-tight mb-5 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                                {invTitle}
                             </h2>
-                        </div>
-                        <div className="lg:col-span-6">
-                            <div
-                                className={`rounded-2xl border px-6 py-5 backdrop-blur-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
-                                    isLight
-                                        ? 'border-[#1a2634]/10 bg-white/60 text-[#1a2634]'
-                                        : 'border-white/10 bg-white/[0.03] text-[#eaeaea]'
-                                }`}
-                            >
-                                <span className="font-mono text-xs font-bold uppercase tracking-wider">
-                                    {hardGatesTitle}
-                                </span>
-                                <span className={`text-xs ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/65'}`}>{hardGatesDesc}</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
-                        {phases.map((p: any, i: number) => {
-                            let targetText = p.target || ''
-                            let descText = p.description || ''
-                            if (!targetText && descText) {
-                                const match = descText.match(/^Target:\s*(.+?)\.\s*(.+)$/)
-                                if (match) {
-                                    targetText = match[1] + '.'
-                                    descText = match[2]
-                                }
-                            }
-                            return (
-                                <div
-                                    key={i}
-                                    className={`rounded-2xl border p-8 sm:p-10 flex flex-col justify-between backdrop-blur-xl ${
-                                        isLight
-                                            ? 'bg-white/60 border-[#1a2634]/[0.08]'
-                                            : 'bg-white/[0.025] border-white/[0.08]'
-                                    }`}
-                                >
-                                    <div>
-                                        <div className="flex items-center justify-between mb-5">
-                                            <span className={`font-mono text-xs font-semibold uppercase tracking-wider ${isLight ? 'text-[#203e5f]/75' : 'text-[#eaeaea]/60'}`}>
-                                                {p.phase}
-                                            </span>
-                                            <span
-                                                className={`font-mono text-xs font-semibold px-2.5 py-0.5 rounded-md border ${
-                                                    isLight
-                                                        ? 'bg-white/80 border-[#1a2634]/10 text-[#1a2634]/70'
-                                                        : 'bg-white/[0.04] border-white/10 text-[#eaeaea]/70'
-                                                }`}
-                                            >
-                                                P0{i + 1}
-                                            </span>
-                                        </div>
-                                        <h3 className={`text-2xl font-bold mb-6 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
-                                            {p.title}
-                                        </h3>
-                                        {targetText && (
-                                            <div
-                                                className={`rounded-xl p-4 mb-6 border ${
-                                                    isLight
-                                                        ? 'bg-white/70 border-[#1a2634]/[0.06]'
-                                                        : 'bg-white/[0.03] border-white/[0.06]'
-                                                }`}
-                                            >
-                                                <span className={`font-mono text-[10px] uppercase tracking-wider block mb-1 ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/50'}`}>
-                                                    Primary Objective
-                                                </span>
-                                                <span className={`text-sm font-bold ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
-                                                    {targetText}
-                                                </span>
-                                            </div>
-                                        )}
-                                    </div>
-                                    <p className={`text-sm m-0 leading-relaxed ${isLight ? 'text-[#1a2634]/75' : 'text-[#eaeaea]/70'}`}>
-                                        {descText}
-                                    </p>
-                                </div>
-                            )
-                        })}
-                    </div>
-                </section>
-
-                {/* 07 // INVESTOR REALITY & COMPARATIVE EVIDENCE */}
-                <section className={`mb-36 sm:mb-44 border-t pt-20 sm:pt-28 ${isLight ? 'border-[#1a2634]/10' : 'border-white/[0.08]'}`}>
-                    <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
-                        {/* Left Column: Comparative Evidence */}
-                        <div className="lg:col-span-5 flex flex-col justify-between">
-                            <div>
-                                <div className={`font-mono text-xs font-semibold uppercase tracking-[0.22em] mb-4 ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'}`}>
-                                    07 // CAPITAL DE-RISKING
-                                </div>
-                                <h2 className={`text-2xl sm:text-3xl font-bold leading-tight mb-5 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
-                                    {compEvidenceTitle}
-                                </h2>
-                                <p className={`text-sm mb-5 ${isLight ? 'text-[#1a2634]/75' : 'text-[#eaeaea]/70'}`}>
-                                    {compEvidenceBody}
-                                </p>
-                                <div className="flex flex-wrap gap-2.5 mb-7">
-                                    {compEvidencePoints.map((p: any, i: number) => (
-                                        <span
-                                            key={i}
-                                            className={`font-mono text-xs font-semibold px-3.5 py-1.5 rounded-lg border backdrop-blur-md ${
-                                                isLight
-                                                    ? 'border-[#1a2634]/10 bg-white/65 text-[#1a2634]'
-                                                    : 'border-white/10 bg-white/[0.04] text-[#eaeaea]'
-                                            }`}
-                                        >
-                                            {p.text}
-                                        </span>
-                                    ))}
-                                </div>
-                                <p className={`text-sm leading-relaxed ${isLight ? 'text-[#1a2634]/75' : 'text-[#eaeaea]/75'}`}>
-                                    {compEvidenceFooter}
-                                </p>
-                            </div>
-
-                            <div
-                                className={`mt-10 rounded-2xl p-7 border backdrop-blur-xl ${
-                                    isLight
-                                        ? 'bg-white/65 border-[#1a2634]/10 text-[#1a2634]'
-                                        : 'bg-white/[0.03] border-white/10 text-[#eaeaea]'
-                                }`}
-                            >
-                                <div className={`font-mono text-[10px] font-semibold uppercase tracking-widest mb-2 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
-                                    INVESTOR OUTCOME
-                                </div>
-                                <p className={`text-sm leading-relaxed m-0 ${isLight ? 'text-[#1a2634]/85' : 'text-[#eaeaea]/85'}`}>
-                                    {invFooter}
-                                </p>
-                            </div>
+                            <p className={`text-base font-medium leading-relaxed mb-6 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
+                                {invIntro}
+                            </p>
+                            <p className={`text-sm leading-relaxed mb-6 ${isLight ? 'text-[#1a2634]/80' : 'text-[#eaeaea]/75'}`}>
+                                {compEvidenceFooter}
+                            </p>
+                            <p className={`text-sm font-semibold leading-relaxed border-l-2 border-[#ffcc00] pl-4 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                                {invFooter}
+                            </p>
                         </div>
 
-                        {/* Right Column: Angels vs VCs */}
                         <div className="lg:col-span-7">
-                            <div
-                                className={`rounded-2xl border p-8 sm:p-11 h-full flex flex-col justify-between backdrop-blur-xl ${
-                                    isLight ? 'border-[#1a2634]/[0.08] bg-white/60' : 'border-white/[0.08] bg-white/[0.025]'
-                                }`}
-                            >
-                                <div>
-                                    <h3 className={`text-2xl sm:text-3xl font-bold mb-3 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
-                                        {invTitle}
+                            <div className="grid sm:grid-cols-2 gap-10 sm:gap-12">
+                                <div className={`border-t-2 pt-6 ${isLight ? 'border-[#203e5f]' : 'border-[#fee5b1]'}`}>
+                                    <h3 className={`text-xl font-bold mb-6 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]'}`}>
+                                        {angelsTitle}
                                     </h3>
-                                    <p className={`text-sm italic mb-10 ${isLight ? 'text-[#1a2634]/70' : 'text-[#eaeaea]/65'}`}>
-                                        {invIntro}
-                                    </p>
+                                    <ul
+                                        className={`divide-y border-t border-b pl-0 list-none m-0 ${
+                                            isLight ? 'divide-[#203e5f]/15 border-[#203e5f]/20' : 'divide-white/12 border-white/15'
+                                        }`}
+                                    >
+                                        {angelsPoints.map((p: any, i: number) => (
+                                            <li key={i} className={`py-3.5 text-sm font-medium ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]/90'}`}>
+                                                {p.text}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
 
-                                    <div className="grid sm:grid-cols-2 gap-10">
-                                        <div>
-                                            <div
-                                                className={`font-mono text-xs font-semibold uppercase tracking-wider inline-block px-3 py-1 rounded-lg border mb-5 ${
-                                                    isLight
-                                                        ? 'bg-white/80 border-[#1a2634]/10 text-[#203e5f]'
-                                                        : 'bg-white/[0.05] border-white/10 text-[#eaeaea]/80'
-                                                }`}
-                                            >
-                                                01 / BUSINESS ANGELS
-                                            </div>
-                                            <h4 className={`text-lg font-bold mb-4 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
-                                                {angelsTitle}
-                                            </h4>
-                                            <ul className="space-y-3.5 pl-0 list-none">
-                                                {angelsPoints.map((p: any, i: number) => (
-                                                    <li key={i} className="flex items-start gap-3 text-sm">
-                                                        <span className={isLight ? 'text-[#203e5f]/60' : 'text-[#eaeaea]/45'}>—</span>
-                                                        <span className={isLight ? 'text-[#1a2634]/80' : 'text-[#eaeaea]/80'}>{p.text}</span>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-
-                                        <div>
-                                            <div
-                                                className={`font-mono text-xs font-semibold uppercase tracking-wider inline-block px-3 py-1 rounded-lg border mb-5 ${
-                                                    isLight
-                                                        ? 'bg-emerald-500/10 border-emerald-600/20 text-emerald-800'
-                                                        : 'bg-emerald-400/10 border-emerald-400/25 text-emerald-300'
-                                                }`}
-                                            >
-                                                02 / VENTURE CAPITAL
-                                            </div>
-                                            <h4 className={`text-lg font-bold mb-4 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
-                                                {vcsTitle}
-                                            </h4>
-                                            <ul className="space-y-3.5 pl-0 list-none">
-                                                {vcsPoints.map((p: any, i: number) => (
-                                                    <li key={i} className="flex items-start gap-3 text-sm">
-                                                        <span className={isLight ? 'text-emerald-700 font-bold' : 'text-emerald-400 font-bold'}>✓</span>
-                                                        <span className={isLight ? 'text-[#1a2634] font-medium' : 'text-[#eaeaea]/90'}>{p.text}</span>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    </div>
+                                <div className="border-t-2 border-[#ffcc00] pt-6">
+                                    <h3 className={`text-xl font-bold mb-6 ${isLight ? 'text-[#1a2634]' : 'text-[#ffcc00]'}`}>
+                                        {vcsTitle}
+                                    </h3>
+                                    <ul
+                                        className={`divide-y border-t border-b pl-0 list-none m-0 ${
+                                            isLight ? 'divide-[#203e5f]/15 border-[#203e5f]/20' : 'divide-white/12 border-white/15'
+                                        }`}
+                                    >
+                                        {vcsPoints.map((p: any, i: number) => (
+                                            <li key={i} className={`py-3.5 text-sm font-semibold ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                                                {p.text}
+                                            </li>
+                                        ))}
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* 08 // LEARNING SCIENCE, WHY STRONG & METRICS — Editorial Ledger */}
-                <section className={`mb-36 sm:mb-44 border-t pt-20 sm:pt-28 ${isLight ? 'border-[#1a2634]/10' : 'border-white/[0.08]'}`}>
-                    <div className="grid gap-14 lg:grid-cols-12 lg:gap-16 mb-20">
-                        <div className="lg:col-span-6">
-                            <div className={`font-mono text-xs font-semibold uppercase tracking-[0.22em] mb-4 ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'}`}>
-                                08 // METHODOLOGY &amp; METRICS
-                            </div>
-                            <h2 className={`text-2xl sm:text-3xl font-bold mb-4 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                {/* LEARNING SCIENCE & TELEMETRY — Clean Two-Column Index */}
+                <section className={`mb-36 sm:mb-48 border-t pt-16 sm:pt-24 ${isLight ? 'border-[#203e5f]/20' : 'border-[#ffcc00]/20'}`}>
+                    <div className="grid gap-16 lg:grid-cols-12 lg:gap-20">
+                        <div className="lg:col-span-5">
+                            <h2 className={`text-2xl sm:text-3xl font-bold tracking-tight mb-3 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                 {sciTitle}
                             </h2>
-                            <p className={`text-sm mb-8 ${isLight ? 'text-[#1a2634]/75' : 'text-[#eaeaea]/70'}`}>
+                            <p className={`text-sm leading-relaxed mb-8 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]/85'}`}>
                                 {sciSubtitle}
                             </p>
-                            <div className={`divide-y border-t border-b ${isLight ? 'divide-[#1a2634]/10 border-[#1a2634]/10' : 'divide-white/10 border-white/10'}`}>
+                            <ul
+                                className={`divide-y border-t border-b pl-0 list-none m-0 ${
+                                    isLight ? 'divide-[#203e5f]/15 border-[#203e5f]/20' : 'divide-white/12 border-white/15'
+                                }`}
+                            >
                                 {sciPoints.map((p: any, i: number) => (
-                                    <div key={i} className="py-4 flex items-center justify-between gap-4 text-sm font-medium">
+                                    <li key={i} className="py-4 text-sm font-semibold flex items-center gap-3">
+                                        <span className="text-[#ffcc00]">—</span>
                                         <span>{p.text}</span>
-                                        <span className={`font-mono text-xs ${isLight ? 'text-[#1a2634]/45' : 'text-[#eaeaea]/45'}`}>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        <div className="lg:col-span-7">
+                            <h2 className={`text-2xl sm:text-3xl font-bold tracking-tight mb-3 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                                {metricsTitle}
+                            </h2>
+                            <p className={`text-sm leading-relaxed mb-8 ${isLight ? 'text-[#203e5f]' : 'text-[#fee5b1]/85'}`}>
+                                Measurable programme outputs recorded across every 100-day cohort:
+                            </p>
+                            <div
+                                className={`grid sm:grid-cols-2 gap-x-10 divide-y border-t border-b ${
+                                    isLight ? 'divide-[#203e5f]/15 border-[#203e5f]/20' : 'divide-white/12 border-white/15'
+                                }`}
+                            >
+                                {metricsPoints.map((p: any, i: number) => (
+                                    <div key={i} className="py-4 flex items-baseline gap-3.5 text-sm">
+                                        <span className={`text-xs font-bold shrink-0 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
                                             0{i + 1}
                                         </span>
+                                        <span className={`font-medium ${isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'}`}>{p.text}</span>
                                     </div>
                                 ))}
                             </div>
-                            <p className={`mt-6 text-xs italic ${isLight ? 'text-[#1a2634]/70' : 'text-[#eaeaea]/60'}`}>
-                                {sciFooter}
-                            </p>
-                        </div>
-
-                        <div className="lg:col-span-6 flex flex-col justify-between gap-10">
-                            <div>
-                                <h3 className={`text-xl font-bold mb-3 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
-                                    {whyStrongTitle}
-                                </h3>
-                                <p className={`text-sm mb-5 ${isLight ? 'text-[#1a2634]/75' : 'text-[#eaeaea]/70'}`}>
-                                    {whyStrongIntro}
-                                </p>
-                                <div className="space-y-3.5">
-                                    {whyStrongPoints.map((p: any, i: number) => (
-                                        <div
-                                            key={i}
-                                            className={`p-5 rounded-2xl border backdrop-blur-xl flex items-start gap-3.5 text-sm font-medium ${
-                                                isLight
-                                                    ? 'bg-white/60 border-[#1a2634]/[0.08] text-[#1a2634]'
-                                                    : 'bg-white/[0.025] border-white/[0.08] text-[#eaeaea]'
-                                            }`}
-                                        >
-                                            <span
-                                                className={`font-mono text-xs font-semibold px-2.5 py-0.5 rounded-md border ${
-                                                    isLight
-                                                        ? 'bg-white border-[#1a2634]/10 text-[#203e5f]'
-                                                        : 'bg-white/[0.05] border-white/10 text-[#eaeaea]/75'
-                                                }`}
-                                            >
-                                                0{i + 1}
-                                            </span>
-                                            <span>{p.text}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <div>
-                                <h3 className={`text-xl font-bold mb-4 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
-                                    {whatDiffTitle}
-                                </h3>
-                                <div className="flex flex-wrap gap-2.5">
-                                    {whatDiffPoints.map((p: any, i: number) => (
-                                        <div
-                                            key={i}
-                                            className={`px-4 py-2 rounded-xl border text-xs font-semibold backdrop-blur-md ${
-                                                isLight
-                                                    ? 'bg-white/65 border-[#1a2634]/10 text-[#1a2634]'
-                                                    : 'bg-white/[0.04] border-white/10 text-[#eaeaea]/85'
-                                            }`}
-                                        >
-                                            {p.text}
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Core Metrics Grid */}
-                    <div
-                        className={`rounded-2xl border p-8 sm:p-11 backdrop-blur-xl ${
-                            isLight ? 'border-[#1a2634]/[0.08] bg-white/55' : 'border-white/[0.08] bg-white/[0.02]'
-                        }`}
-                    >
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-8 pb-5 border-b border-current/10">
-                            <h3 className={`text-2xl font-bold m-0 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
-                                {metricsTitle}
-                            </h3>
-                            <span className={`font-mono text-xs font-semibold uppercase ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'}`}>
-                                8 TELEMETRY INDICATORS
-                            </span>
-                        </div>
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                            {metricsPoints.map((p: any, i: number) => (
-                                <div
-                                    key={i}
-                                    className={`p-5 rounded-xl border flex flex-col justify-between backdrop-blur-md ${
-                                        isLight
-                                            ? 'border-[#1a2634]/[0.08] bg-white/70 text-[#1a2634]'
-                                            : 'border-white/[0.08] bg-white/[0.03] text-[#eaeaea]'
-                                    }`}
-                                >
-                                    <span className={`font-mono text-[10px] font-semibold mb-2.5 ${isLight ? 'text-[#203e5f]/65' : 'text-[#eaeaea]/45'}`}>
-                                        KPI / 0{i + 1}
-                                    </span>
-                                    <span className="text-sm font-medium leading-snug">{p.text}</span>
-                                </div>
-                            ))}
                         </div>
                     </div>
                 </section>
 
                 <FaqSection settings={settings} theme={theme} />
 
-                {/* 10 // PRICING & LEGAL — Required for PayNow / Polish e-commerce compliance */}
-                <section id="pricing" className={`mb-20 border-t pt-20 sm:pt-28 ${isLight ? 'border-[#1a2634]/10' : 'border-white/[0.08]'}`}>
+                {/* PRICING & LEGAL — Required for PayNow / Polish e-commerce compliance */}
+                <section id="pricing" className={`mb-20 border-t pt-16 sm:pt-24 ${isLight ? 'border-[#203e5f]/20' : 'border-[#ffcc00]/20'}`}>
                     <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-6">
                         <div>
-                            <div className={`font-mono text-xs font-semibold uppercase tracking-[0.22em] mb-3 ${isLight ? 'text-[#203e5f]/70' : 'text-[#eaeaea]/55'}`}>
-                                10 // COMMERCIAL TERMS &amp; ACCESS
+                            <div className={`text-xs font-bold uppercase tracking-widest mb-3 ${isLight ? 'text-[#203e5f]' : 'text-[#ffcc00]'}`}>
+                                Programme Access
                             </div>
-                            <h2 className={`text-3xl sm:text-4xl font-bold m-0 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                            <h2 className={`text-3xl sm:text-5xl font-bold tracking-tight m-0 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                 {pricing[pricingLang].sectionTitle}
                             </h2>
                         </div>
                         <div
-                            className={`inline-flex self-start items-center gap-1 border rounded-xl p-1 backdrop-blur-md ${
-                                isLight ? 'bg-white/60 border-[#1a2634]/12' : 'bg-white/[0.04] border-white/12'
+                            className={`inline-flex self-start items-center gap-1 border rounded-md p-1 ${
+                                isLight ? 'bg-white/70 border-[#203e5f]/20' : 'bg-[#203e5f]/45 border-[#ffcc00]/25'
                             }`}
                         >
                             <button
                                 onClick={() => setPricingLang('en')}
-                                className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-colors cursor-pointer ${
+                                className={`px-3.5 py-1.5 rounded text-xs font-bold transition-colors cursor-pointer ${
                                     pricingLang === 'en'
-                                        ? isLight
-                                            ? 'bg-[#1a2634] text-white'
-                                            : 'bg-white/15 text-white'
+                                        ? 'bg-[#ffcc00] text-[#1a2634]'
                                         : isLight
-                                          ? 'text-[#1a2634]/65 hover:text-[#1a2634]'
-                                          : 'text-[#eaeaea]/65 hover:text-white'
+                                          ? 'text-[#203e5f] hover:text-[#1a2634]'
+                                          : 'text-[#fee5b1] hover:text-white'
                                 }`}
                             >
-                                EN (EUR)
+                                EUR
                             </button>
                             <button
                                 onClick={() => setPricingLang('pl')}
-                                className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-colors cursor-pointer ${
+                                className={`px-3.5 py-1.5 rounded text-xs font-bold transition-colors cursor-pointer ${
                                     pricingLang === 'pl'
-                                        ? isLight
-                                            ? 'bg-[#1a2634] text-white'
-                                            : 'bg-white/15 text-white'
+                                        ? 'bg-[#ffcc00] text-[#1a2634]'
                                         : isLight
-                                          ? 'text-[#1a2634]/65 hover:text-[#1a2634]'
-                                          : 'text-[#eaeaea]/65 hover:text-white'
+                                          ? 'text-[#203e5f] hover:text-[#1a2634]'
+                                          : 'text-[#fee5b1] hover:text-white'
                                 }`}
                             >
-                                PL (PLN)
+                                PLN
                             </button>
                         </div>
                     </div>
 
                     <div
-                        className={`rounded-2xl border overflow-hidden backdrop-blur-2xl ${
+                        className={`rounded-xl border overflow-hidden backdrop-blur-xl ${
                             isLight
-                                ? 'bg-white/65 border-[#1a2634]/10 shadow-xl shadow-[#1a2634]/[0.04]'
-                                : 'bg-white/[0.025] border-white/10 shadow-2xl shadow-black/25'
+                                ? 'bg-white/75 border-[#203e5f]/20'
+                                : 'bg-[#203e5f]/35 border-[#ffcc00]/25'
                         }`}
                     >
-                        <div className={`grid lg:grid-cols-12 border-b ${isLight ? 'border-[#1a2634]/10' : 'border-white/10'}`}>
+                        <div className="h-1.5 w-full bg-gradient-to-r from-[#ffcc00] via-[#fee5b1] to-[#203e5f]" />
+
+                        <div className={`grid lg:grid-cols-12 border-b ${isLight ? 'border-[#203e5f]/15' : 'border-white/12'}`}>
                             <div className="lg:col-span-7 p-8 sm:p-12 flex flex-col justify-between">
                                 <div>
-                                    <div
-                                        className={`font-mono text-xs font-semibold uppercase tracking-wider inline-block px-3.5 py-1 rounded-lg border mb-5 ${
-                                            isLight
-                                                ? 'bg-white/80 border-[#1a2634]/10 text-[#203e5f]'
-                                                : 'bg-white/[0.05] border-white/10 text-[#fee5b1]'
-                                        }`}
-                                    >
-                                        FULL 100-DAY COHORT LICENSE
-                                    </div>
                                     <h3 className={`text-2xl sm:text-3xl font-bold mb-4 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
                                         {pricing[pricingLang].serviceName}
                                     </h3>
-                                    <p className={`text-sm sm:text-base leading-relaxed mb-8 max-w-xl ${isLight ? 'text-[#1a2634]/75' : 'text-[#eaeaea]/70'}`}>
+                                    <p className={`text-base leading-relaxed mb-8 max-w-xl ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/85'}`}>
                                         {pricing[pricingLang].serviceDescription}
                                     </p>
-                                    <ul className="space-y-3.5 pl-0 list-none">
+                                    <ul className="space-y-3 pl-0 list-none">
                                         {pricing[pricingLang].features.map((f: any, i: number) => (
                                             <li
                                                 key={i}
-                                                className={`flex items-center gap-3.5 text-sm font-medium ${
+                                                className={`flex items-center gap-3 text-sm font-semibold ${
                                                     isLight ? 'text-[#1a2634]' : 'text-[#eaeaea]'
                                                 }`}
                                             >
-                                                <span className={isLight ? 'text-emerald-700 font-bold' : 'text-emerald-400 font-bold'}>✓</span>
+                                                <span className="text-[#ffcc00] font-bold">✓</span>
                                                 <span>{f.text}</span>
                                             </li>
                                         ))}
                                     </ul>
                                 </div>
 
-                                <div className={`mt-10 pt-6 border-t space-y-1.5 ${isLight ? 'border-[#1a2634]/10' : 'border-white/10'}`}>
-                                    <p className={`text-xs ${isLight ? 'text-[#1a2634]/70' : 'text-[#eaeaea]/65'}`}>
+                                <div className={`mt-10 pt-6 border-t space-y-1 ${isLight ? 'border-[#203e5f]/15' : 'border-white/12'}`}>
+                                    <p className={`text-xs ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/75'}`}>
                                         {pricing[pricingLang].individualNote}
                                     </p>
-                                    <p className={`text-xs font-semibold ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/85'}`}>
+                                    <p className={`text-xs font-bold ${isLight ? 'text-[#1a2634]' : 'text-[#fee5b1]'}`}>
                                         {pricing[pricingLang].partnerNote}
                                     </p>
                                 </div>
                             </div>
 
                             <div
-                                className={`lg:col-span-5 p-8 sm:p-12 flex flex-col justify-between border-t lg:border-t-0 lg:border-l backdrop-blur-xl ${
+                                className={`lg:col-span-5 p-8 sm:p-12 flex flex-col justify-between border-t lg:border-t-0 lg:border-l ${
                                     isLight
-                                        ? 'bg-white/55 border-[#1a2634]/10 text-[#1a2634]'
-                                        : 'bg-white/[0.03] border-white/10 text-[#eaeaea]'
+                                        ? 'bg-[#1a2634] border-[#203e5f]/20 text-[#eaeaea]'
+                                        : 'bg-[#1a2634]/75 border-white/12 text-[#eaeaea]'
                                 }`}
                             >
                                 <div>
-                                    <div className="flex items-center justify-between mb-4">
-                                        <span className={`font-mono text-xs uppercase tracking-wider ${isLight ? 'text-[#1a2634]/60' : 'text-[#eaeaea]/60'}`}>
-                                            ONE-TIME FEE
+                                    <div className="flex items-center justify-between mb-3">
+                                        <span className="text-xs font-semibold text-[#fee5b1]">
+                                            Programme access fee
                                         </span>
                                         {logoUrl && (
-                                            <img src={logoUrl} alt={companyName} className="h-7 object-contain" />
+                                            <img src={logoUrl} alt={companyName} className="h-6 object-contain" />
                                         )}
                                     </div>
-                                    <div className={`font-mono text-4xl sm:text-5xl font-bold ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                                    <div className="text-4xl sm:text-5xl font-bold tracking-tight text-[#ffcc00]">
                                         {pricingLang === 'en' ? pricingPriceDisplayEur : pricingPriceDisplay}
                                     </div>
-                                    <div className={`text-xs mt-1.5 ${isLight ? 'text-[#1a2634]/65' : 'text-[#eaeaea]/60'}`}>
+                                    <div className="text-xs mt-1.5 text-[#fee5b1]/80">
                                         {pricing[pricingLang].vatInfo}
                                     </div>
 
                                     <div className="mt-8 grid gap-3">
                                         <button
                                             onClick={addProductToCart}
-                                            className="w-full rounded-xl px-5 py-4 text-xs font-bold uppercase tracking-wider text-[#1a2634] bg-[#ffcc00] hover:bg-[#fee5b1] transition-colors cursor-pointer"
+                                            className="w-full rounded-md px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-[#1a2634] bg-[#ffcc00] hover:bg-[#fee5b1] transition-colors cursor-pointer"
                                         >
                                             {pricingLang === 'pl' ? 'Dodaj do koszyka →' : 'Add to cart →'}
                                         </button>
                                         <Link
                                             href="/cart"
-                                            className={`w-full rounded-xl px-5 py-3.5 text-xs font-semibold uppercase tracking-wider border transition-colors text-center ${
-                                                isLight
-                                                    ? 'border-[#1a2634]/15 bg-white/60 text-[#1a2634] hover:bg-white'
-                                                    : 'border-white/15 bg-white/[0.04] text-[#eaeaea] hover:bg-white/[0.09]'
-                                            }`}
+                                            className="w-full rounded-md px-5 py-3 text-xs font-semibold uppercase tracking-wider border border-[#fee5b1]/30 bg-white/[0.03] text-[#fee5b1] hover:border-[#ffcc00] hover:text-[#ffcc00] transition-colors text-center"
                                         >
                                             {pricingLang === 'pl' ? 'Zobacz koszyk' : 'View cart'}
                                         </Link>
                                     </div>
                                 </div>
 
-                                <div className={`mt-10 pt-6 border-t ${isLight ? 'border-[#1a2634]/10' : 'border-white/10'}`}>
-                                    <div className={`text-[11px] ${isLight ? 'text-[#1a2634]/70' : 'text-[#eaeaea]/65'}`}>
+                                <div className="mt-10 pt-6 border-t border-white/12">
+                                    <div className="text-[11px] text-[#eaeaea]/75">
                                         {pricing[pricingLang].paymentMethods}
                                     </div>
-                                    <p className={`text-[11px] mt-1 ${isLight ? 'text-[#1a2634]/55' : 'text-[#eaeaea]/50'}`}>
+                                    <p className="text-[11px] mt-1 text-[#eaeaea]/55">
                                         {pricingLang === 'pl'
                                             ? 'Podmiotem świadczącym obsługę płatności online w zakresie płatności kartami jest Autopay S.A.'
                                             : 'Card payments are handled online by Autopay S.A.'}
@@ -2455,18 +1965,18 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                                     <img
                                         src="/paynow/banner-payment-methods.png"
                                         alt="Paynow, BLIK, Visa, Mastercard and Google Pay payment methods"
-                                        className={`mt-3.5 w-full h-auto rounded-xl border ${isLight ? 'border-[#1a2634]/10' : 'border-white/10'}`}
+                                        className="mt-3 w-full h-auto rounded-md border border-white/10"
                                     />
-                                    <div className="mt-3.5 flex items-center gap-3">
+                                    <div className="mt-3 flex items-center gap-3">
                                         <img
                                             src="/paynow/banner-autopay-cards.png"
                                             alt="Visa, Mastercard"
-                                            className="h-8 w-auto object-contain"
+                                            className="h-7 w-auto object-contain"
                                         />
                                         <img
                                             src="/paynow/logo-autopay.webp"
                                             alt="Autopay"
-                                            className="h-5 w-auto object-contain"
+                                            className="h-4.5 w-auto object-contain"
                                         />
                                     </div>
                                 </div>
@@ -2476,30 +1986,30 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                         {/* Legal info grid */}
                         <div
                             className={`grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x ${
-                                isLight ? 'divide-[#1a2634]/10 bg-white/40' : 'divide-white/10 bg-white/[0.015]'
+                                isLight ? 'divide-[#203e5f]/15 bg-[#fee5b1]/25' : 'divide-white/10 bg-[#1a2634]/50'
                             }`}
                         >
                             <div className="p-7 sm:p-8">
-                                <h4 className={`font-mono text-xs font-semibold uppercase tracking-wider mb-2 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                                <h4 className={`text-xs font-bold mb-1.5 ${isLight ? 'text-[#1a2634]' : 'text-[#ffcc00]'}`}>
                                     {pricing[pricingLang].activationLabel}
                                 </h4>
-                                <p className={`text-xs leading-relaxed m-0 ${isLight ? 'text-[#1a2634]/70' : 'text-[#eaeaea]/65'}`}>
+                                <p className={`text-xs leading-relaxed m-0 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/75'}`}>
                                     {pricing[pricingLang].activationInfo}
                                 </p>
                             </div>
                             <div className="p-7 sm:p-8">
-                                <h4 className={`font-mono text-xs font-semibold uppercase tracking-wider mb-2 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                                <h4 className={`text-xs font-bold mb-1.5 ${isLight ? 'text-[#1a2634]' : 'text-[#ffcc00]'}`}>
                                     {pricing[pricingLang].returnLabel}
                                 </h4>
-                                <p className={`text-xs leading-relaxed m-0 ${isLight ? 'text-[#1a2634]/70' : 'text-[#eaeaea]/65'}`}>
+                                <p className={`text-xs leading-relaxed m-0 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/75'}`}>
                                     {pricing[pricingLang].returnPolicy}
                                 </p>
                             </div>
                             <div className="p-7 sm:p-8">
-                                <h4 className={`font-mono text-xs font-semibold uppercase tracking-wider mb-2 ${isLight ? 'text-[#1a2634]' : 'text-white'}`}>
+                                <h4 className={`text-xs font-bold mb-1.5 ${isLight ? 'text-[#1a2634]' : 'text-[#ffcc00]'}`}>
                                     {pricing[pricingLang].complaintLabel}
                                 </h4>
-                                <p className={`text-xs leading-relaxed m-0 ${isLight ? 'text-[#1a2634]/70' : 'text-[#eaeaea]/65'}`}>
+                                <p className={`text-xs leading-relaxed m-0 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/75'}`}>
                                     {pricing[pricingLang].complaintProcedure}
                                 </p>
                             </div>
@@ -2514,8 +2024,8 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                             )
                             const text = pricingLang === 'pl' ? <>Pełna treść warunków dostępna w: </> : <>Full terms available in: </>
                             return (
-                                <div className={`px-8 py-4 border-t text-left flex items-center justify-between ${isLight ? 'border-[#1a2634]/10' : 'border-white/10'}`}>
-                                    <p className={`text-[11px] m-0 ${isLight ? 'text-[#1a2634]/70' : 'text-[#eaeaea]/60'}`}>
+                                <div className={`px-8 py-4 border-t text-left flex items-center justify-between ${isLight ? 'border-[#203e5f]/15' : 'border-white/10'}`}>
+                                    <p className={`text-xs m-0 ${isLight ? 'text-[#203e5f]' : 'text-[#eaeaea]/70'}`}>
                                         {text}
                                         {termsLink.href ? (
                                             <a
@@ -2523,7 +2033,7 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className={`font-bold underline underline-offset-2 transition-colors ${
-                                                    isLight ? 'text-[#1a2634] hover:text-[#203e5f]' : 'text-white hover:text-[#fee5b1]'
+                                                    isLight ? 'text-[#1a2634] hover:text-[#203e5f]' : 'text-[#ffcc00] hover:text-[#fee5b1]'
                                                 }`}
                                             >
                                                 {termsLink.label}
@@ -2532,9 +2042,6 @@ export default function LandingPage({ settings, partners = [], mentors = [] }: L
                                             <span className="font-semibold">{termsLink.label}</span>
                                         )}
                                     </p>
-                                    <span className={`font-mono text-[10px] ${isLight ? 'text-[#1a2634]/45' : 'text-[#eaeaea]/40'}`}>
-                                        MESGA // PAYNOW COMPLIANT
-                                    </span>
                                 </div>
                             )
                         })()}
