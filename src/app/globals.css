@@ -19,6 +19,34 @@
 body {
   background: var(--background);
   color: var(--foreground);
+  color-scheme: dark;
+  background-image:
+    radial-gradient(circle at 8% -8%, rgba(255, 204, 0, 0.08), transparent 28rem),
+    radial-gradient(circle at 92% 12%, rgba(32, 62, 95, 0.75), transparent 34rem);
+  background-attachment: fixed;
+}
+
+::selection {
+  background: rgba(255, 204, 0, 0.28);
+  color: #ffffff;
+}
+
+:where(a, button, input, textarea, select):focus-visible {
+  outline: 2px solid #ffcc00;
+  outline-offset: 3px;
+}
+
+/* Logged-in UI: keep gold CTAs readable after applying the landing palette. */
+[class~="bg-[#ffcc00]"][class~="text-white"] {
+  color: #1a2634;
+}
+
+[class~="bg-[#ffcc00]"] {
+  box-shadow: 0 14px 38px -20px rgba(255, 204, 0, 0.72);
+}
+
+[class~="bg-[#203e5f]"] {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.025);
 }
 
 /* Landing Page Light / Dark Theme Variables */
@@ -91,7 +119,7 @@ body {
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
-  border: 4px solid #101011; /* fallback color */
+  border: 4px solid #1a2634;
   background-clip: content-box;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {

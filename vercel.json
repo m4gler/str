@@ -1,0 +1,15 @@
+{
+  "git": {
+    "deploymentEnabled": false
+  },
+  "crons": [
+    {
+      "path": "/api/cron/miss-check",
+      "schedule": "1 0 * * *"
+    },
+    {
+      "path": "/api/cron/unverified-cleanup",
+      "schedule": "17 * * * *"
+    }
+  ]
+}

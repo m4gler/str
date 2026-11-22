@@ -1,25 +1,80 @@
 {
-  "name": "mesga-landing-eu",
+  "name": "mesga-app",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@10.20.0",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "eslint",
+    "generate:types": "cross-env NODE_OPTIONS='--import=tsx' payload generate:types",
+    "generate:importmap": "cross-env NODE_OPTIONS='--import=tsx' payload generate:importmap",
+    "curriculum:export": "tsx src/scripts/export-curriculum-snapshots.ts",
+    "curriculum:sync:v3": "tsx src/scripts/sync-curriculum-v3.ts",
+    "news:seed": "tsx src/scripts/seed-news-posts.ts",
+    "cleanup:general-mentor": "tsx src/scripts/delete-general-mentor.ts",
+    "seed:horizontal-logo": "tsx src/scripts/seed-horizontal-logo.ts",
+    "legal:pdfs": "tsx src/scripts/generate-legal-review-pdfs.tsx",
+    "payload": "cross-env NODE_OPTIONS='--import=tsx' payload",
+    "test": "vitest",
+    "test:run": "vitest run"
   },
   "dependencies": {
+    "@fontsource/roboto": "^5.2.10",
+    "@payloadcms/db-postgres": "3.72.0",
+    "@payloadcms/db-vercel-postgres": "3.72.0",
+    "@payloadcms/email-resend": "3.72.0",
+    "@payloadcms/next": "3.72.0",
+    "@payloadcms/richtext-lexical": "3.72.0",
+    "@payloadcms/storage-vercel-blob": "3.72.0",
+    "@payloadcms/ui": "3.72.0",
+    "@react-pdf/renderer": "^4.4.0",
+    "bcryptjs": "^3.0.3",
     "clsx": "^2.1.1",
+    "cross-env": "^10.1.0",
+    "exceljs": "^4.4.0",
+    "graphql": "^16.12.0",
+    "jose": "^6.1.3",
     "lucide-react": "^0.562.0",
     "next": "16.1.1",
+    "payload": "3.72.0",
+    "pg": "^8.16.3",
+    "pg-connection-string": "^2.9.1",
     "react": "19.2.1",
-    "react-dom": "19.2.1"
+    "react-dom": "19.2.1",
+    "reactflow": "^11.11.4",
+    "resend": "^6.9.3",
+    "sharp": "^0.34.5",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "@tailwindcss/postcss": "4.1.18",
+    "@types/bcryptjs": "^3.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitest/coverage-v8": "^4.1.0",
+    "dotenv": "^17.2.3",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.10",
+    "playwright": "^1.58.2",
     "tailwindcss": "4.1.18",
-    "typescript": "5.9.3"
+    "tsx": "4.20.6",
+    "typescript": "5.9.3",
+    "vitest": "^4.1.0"
+  },
+  "engines": {
+    "node": "^18.20.2 || >=20.9.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@prisma/engines",
+      "esbuild",
+      "prisma",
+      "sharp",
+      "unrs-resolver"
+    ]
   }
 }

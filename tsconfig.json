@@ -10,6 +10,8 @@
         "skipLibCheck": true,
         "strict": true,
         "noEmit": true,
+        "allowImportingTsExtensions": true,
+        "rewriteRelativeImportExtensions": true,
         "esModuleInterop": true,
         "module": "esnext",
         "moduleResolution": "bundler",
@@ -33,9 +35,16 @@
         "**/*.ts",
         "**/*.tsx",
         ".next/types/**/*.ts",
-        ".next/dev/types/**/*.ts"
+        ".next/dev/types/**/*.ts",
+        "**/*.mts"
     ],
     "exclude": [
-        "node_modules"
+        "node_modules",
+        "skills",
+        ".agents",
+        "scripts/demo",
+        "recordings",
+        "vitest.config.ts",
+        "tests"
     ]
 }
